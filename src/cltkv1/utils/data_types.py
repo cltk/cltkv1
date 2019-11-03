@@ -5,7 +5,9 @@ TODO: Fill out more attributes to these
 
 from dataclasses import dataclass, field
 from typing import List
+from typing import Any, Callable, Generic, List
 
+# from cltkv1.tokenizers.word import DefaultTokenizer
 from cltkv1.utils import example_texts
 
 
@@ -21,6 +23,47 @@ class Language:
     level: str  # a language or a dialect
     iso639P3code: str
     type: str  # "an" for ancient and "h" for historical
+
+
+
+@dataclass
+class Operation:
+    """For each type of NLP operation there needs to be a definition.
+    It includes the type of data it expects (``str``, ``List[str]``,
+    ``Word``, etc.) and what field withing ``Word`` it will populate.
+    This base class is intended to be inherited by NLP operation
+    types (e.g., ``TokenizationOperation`` or ``DependencyOperation``).
+    """
+
+    name: str
+    description: str
+    input: Any
+    output: Any
+    algorithm: Callable
+    type: str
+
+
+
+@dataclass
+class TokenizationOperation(Operation):
+    """To be inherited for each language's tokenization declaration.
+
+    Example: ``TokenizationOperation`` -> ``LatinTokenizationOperation``
+    """
+
+    type = "tokenization"
+
+
+@dataclass
+class DefaultTokenizationOperation(TokenizationOperation):
+    """The default Latin tokenization algorithm"""
+
+    name = "CLTK Dummy Tokenizer for any language"
+    description = "This is a simple regex which divides on word spaces (``r'\w+)`` for illustrative purposes."
+    input = str
+    output = List[List[int]]
+    algorithm = None  # DefaultTokenizer.dummy_get_token_indices
+    language = None
 
 
 @dataclass
@@ -49,14 +92,3 @@ class Doc:
     pipeline: List[str] = None
     raw: str = None
 
-    def get_raw_tokens(self):
-        """Return list of string tokens.
-
-        >>> from cltkv1 import NLP
-        >>> cltk_nlp = NLP(language='greek')
-        >>> john_text_analyzed = cltk_nlp.analyze(example_texts.GREEK)
-        >>> str_tokens = john_text_analyzed.get_raw_tokens()
-        >>> str_tokens[0:3]
-        ['ὅτι', 'μὲν', 'ὑμεῖς']
-        """
-        return [word.string for word in self.tokens]

@@ -39,6 +39,57 @@ class NLP:
         self.custom_pipeline = custom_pipeline
         self.pipeline = self._get_pipeline(self.custom_pipeline)
 
+    '''
+    def __init__(self, language: str) -> None:
+        self.language = language
+        if self.language == "latin":
+            self.pipeline = LatinPipeline
+        else:
+            raise NotImplementedError(
+                f"Pipeline not available for language '{self.language}'."
+            )
+
+    def run_pipeline(self, text: str) -> Doc:
+        """Take a raw unprocessed text string, then return a ``Doc`` object
+        containing all available processed information.
+        """
+        # Get token indices
+        token_indices = self.pipeline.word_tokenizer.algorithm(text=text)
+
+        # Populate a ``Word`` object for each token in the submitted text
+        all_word_tokens = list()
+        for token_count, token_index in enumerate(token_indices):
+            token_start = token_index[0]
+            token_end = token_index[1]
+            token_str = text[token_start:token_end]
+
+            # index_char_start: int = None
+            # index_char_stop: int = None
+            # index_token: int = None
+            # index_sentence: int = None
+            # string: str = None
+            # pos: str = None
+            # scansion: str = None
+
+            word = Word(
+                index_char_start=token_start,
+                index_char_stop=token_end,
+                index_token=token_count,
+                string=token_str,
+            )
+            all_word_tokens.append(word)
+
+        doc = Doc(
+            indices_tokens=token_indices,
+            language=self.language,
+            pipeline=self.pipeline,
+            tokens=all_word_tokens,
+            raw=text,
+        )
+
+        return doc
+    '''
+
     def _get_pipeline(self, custom_pipeline=None):
         """Select appropriate pipeline for given language. If custom
         processing is requested, ensure that user-selected choices

@@ -16,34 +16,7 @@ from typing import Any, Callable, Generic, List
 from cltkv1.languages.glottolog import LANGUAGES
 from cltkv1.tokenizers.sentence import DefaultSplitter, LatinSplitter
 from cltkv1.tokenizers.word import DefaultTokenizer, LatinTokenizer, dummy_get_token
-from cltkv1.utils.data_types import Word
-
-
-@dataclass
-class Operation:
-    """For each type of NLP operation there needs to be a definition.
-    It includes the type of data it expects (``str``, ``List[str]``,
-    ``Word``, etc.) and what field withing ``Word`` it will populate.
-    This base class is intended to be inherited by NLP operation
-    types (e.g., ``TokenizationOperation`` or ``DependencyOperation``).
-    """
-
-    name: str
-    description: str
-    input: Any
-    output: Any
-    algorithm: Callable
-    type: str
-
-
-@dataclass
-class TokenizationOperation(Operation):
-    """To be inherited for each language's tokenization declaration.
-
-    Example: ``TokenizationOperation`` -> ``LatinTokenizationOperation``
-    """
-
-    type = "tokenization"
+from cltkv1.utils.data_types import Word, Operation, TokenizationOperation
 
 
 @dataclass
@@ -58,17 +31,6 @@ class LatinTokenizationOperation(TokenizationOperation):
     language = LANGUAGES["lat"]
 
 
-@dataclass
-class DefaultTokenizationOperation(TokenizationOperation):
-    """The default Latin tokenization algorithm"""
-
-    name = "CLTK Dummy Tokenizer for any language"
-    description = "This is a simple regex which divides on word spaces (``r'\w+)`` for illustrative purposes."
-    input = str
-    output = List[List[int]]
-    algorithm = DefaultTokenizer.dummy_get_token_indices
-    language = None
-
 
 if __name__ == "__main__":
     lto = LatinTokenizationOperation
@@ -79,3 +41,4 @@ if __name__ == "__main__":
     print(lto.language.name)
     print(lto.language.latitude)
     print(lto.language.glottocode)
+

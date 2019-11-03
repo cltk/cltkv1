@@ -28,7 +28,7 @@ The following steps will give you a working development environment.
 Python setup
 ============
 
-Setup `pyenv` and `poetry` to manage Python versions.
+Use `pyenv` to manage Python versions and `poetry` for package builds.
 
 * Install ``pyenv``: `Managing Multiple Python Versions With pyenv <https://realpython.com/intro-to-pyenv/>`_
 * ``$ pyenv virtualenv 3.7.5 cltk``
