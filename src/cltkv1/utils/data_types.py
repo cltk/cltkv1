@@ -1,10 +1,13 @@
-"""Custom data types for the CLTK.
+"""Custom data types for the CLTK. These types form the building blocks
+of the NLP pipeline.
 
-TODO: Fill out more attributes to these
+>>> from cltkv1.utils.data_types import Word
+>>> from cltkv1.utils.data_types import Operation
+>>> from cltkv1.utils.data_types import TokenizationOperation
+>>> from cltkv1.utils.data_types import Doc
 """
 
 from dataclasses import dataclass, field
-from typing import List
 from typing import Any, Callable, Generic, List
 
 # from cltkv1.tokenizers.word import DefaultTokenizer
@@ -13,6 +16,19 @@ from cltkv1.utils import example_texts
 
 @dataclass
 class Language:
+    """For holding information about any given language. Used to
+    encode data from ISO 639-3 and Glottolog at
+    ``cltkv1.lagnuages.glottolog.LANGUAGES`` May be extended by
+    user for dialects or languages not documented by ISO 639-3.
+
+    >>> from cltkv1.utils.data_types import Language
+    >>> from cltkv1.languages.glottolog import LANGUAGES
+    >>> latin = LANGUAGES["lat"]
+    >>> isinstance(latin, Language)
+    True
+    >>> latin
+    Language(name='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso639P3code='lat', type='a')
+    """
     name: str  # Glottolog name
     glottolog_id: str
     latitude: float
@@ -24,6 +40,29 @@ class Language:
     iso639P3code: str
     type: str  # "an" for ancient and "h" for historical
 
+
+@dataclass
+class Word:
+    """Contains attributes of each processed word in a list of
+    tokens. To be used most often in the ``Doc.tokens`` dataclass.
+
+    >>> from cltkv1.utils.data_types import Word
+    >>> from cltkv1.utils.example_texts import LATIN
+    >>> LATIN[:25]
+    'Gallia est omnis divisa i'
+    >>> from cltkv1.languages.glottolog import LANGUAGES
+    >>> latin = LANGUAGES["lat"]
+    >>> Word(index_char_start=0, index_char_stop=6, index_token=0, string=LATIN[0:6], pos="nom")
+    Word(index_char_start=0, index_char_stop=6, index_token=0, index_sentence=None, string='Gallia', pos='nom', scansion=None)
+    """
+
+    index_char_start: int = None
+    index_char_stop: int = None
+    index_token: int = None
+    index_sentence: int = None
+    string: str = None
+    pos: str = None
+    scansion: str = None
 
 
 @dataclass
@@ -43,7 +82,6 @@ class Operation:
     type: str
 
 
-
 @dataclass
 class TokenizationOperation(Operation):
     """To be inherited for each language's tokenization declaration.
@@ -56,7 +94,7 @@ class TokenizationOperation(Operation):
 
 @dataclass
 class DefaultTokenizationOperation(TokenizationOperation):
-    """The default Latin tokenization algorithm"""
+    """The default Latin tokenization algorithm."""
 
     name = "CLTK Dummy Tokenizer for any language"
     description = "This is a simple regex which divides on word spaces (``r'\w+)`` for illustrative purposes."
@@ -66,24 +104,12 @@ class DefaultTokenizationOperation(TokenizationOperation):
     language = None
 
 
-@dataclass
-class Word:
-    """Contains attributes of each processed word in a list of tokens. To be used most often in the ``Doc.tokens``
-    dataclass. """
-
-    index_char_start: int = None
-    index_char_stop: int = None
-    index_token: int = None
-    index_sentence: int = None
-    string: str = None
-    pos: str = None
-    scansion: str = None
-
 
 @dataclass
 class Doc:
     """The object returned to the user from the ``NLP()`` class. Contains overall attributes of submitted texts,
-    plus most importantly the processed tokenized text ``tokens``, being a list of ``Word`` types.. """
+    plus most importantly the processed tokenized text ``tokens``, being a list of ``Word`` types.
+    """
 
     indices_sentences: List[List[int]] = None
     indices_tokens: List[List[int]] = None
@@ -91,4 +117,3 @@ class Doc:
     tokens: List[Word] = None
     pipeline: List[str] = None
     raw: str = None
-

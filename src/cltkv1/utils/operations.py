@@ -16,7 +16,7 @@ from typing import Any, Callable, Generic, List
 from cltkv1.languages.glottolog import LANGUAGES
 from cltkv1.tokenizers.sentence import DefaultSplitter, LatinSplitter
 from cltkv1.tokenizers.word import DefaultTokenizer, LatinTokenizer, dummy_get_token
-from cltkv1.utils.data_types import Word, Operation, TokenizationOperation
+from cltkv1.utils.data_types import Operation, TokenizationOperation, Word
 
 
 @dataclass
@@ -31,7 +31,6 @@ class LatinTokenizationOperation(TokenizationOperation):
     language = LANGUAGES["lat"]
 
 
-
 if __name__ == "__main__":
     lto = LatinTokenizationOperation
     print(lto.__dict__.keys())
@@ -41,4 +40,3 @@ if __name__ == "__main__":
     print(lto.language.name)
     print(lto.language.latitude)
     print(lto.language.glottocode)
-

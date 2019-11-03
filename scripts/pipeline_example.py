@@ -48,11 +48,9 @@ from dataclasses import dataclass
 from typing import Any, Callable, List
 
 from cltkv1.languages.glottolog import LANGUAGES
+from cltkv1.nlp import NLP
 from cltkv1.utils.data_types import Language, Word
 from cltkv1.utils.operations import Operation
-from cltkv1.nlp import NLP
-
-
 
 # #####################################################################################
 # #######################START OPERATION TYPE##########################################
@@ -72,7 +70,6 @@ def dummy_get_token_indices(text: str) -> List[List[int]]:
         idx_word_start, idx_word_stop = word_match.span()
         indices_words.append([idx_word_start, idx_word_stop])
     return indices_words
-
 
 
 @dataclass
@@ -101,7 +98,6 @@ class LatinTokenizationOperation(TokenizationOperation):
 # #####################################################################################
 
 
-
 # #####################################################################################
 # #######################START PIPELINE TYPE###########################################
 
@@ -128,6 +124,7 @@ class LatinPipeline(Pipeline):
 
 if __name__ == "__main__":
     from cltkv1.utils.example_texts import LATIN
+
     cltk_nlp = NLP(language="latin")
     doc_germanica = cltk_nlp.run_pipeline(LATIN)
 

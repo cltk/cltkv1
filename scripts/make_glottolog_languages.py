@@ -2,10 +2,10 @@
 The contents of ``cltkv1/languages/glottolog.py`` were created by this.
 """
 
-from collections import OrderedDict, defaultdict
 import csv
 import os
 import typing
+from collections import OrderedDict, defaultdict
 
 from cltkv1.utils.data_types import Language
 

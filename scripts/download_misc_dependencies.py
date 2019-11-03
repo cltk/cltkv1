@@ -9,7 +9,7 @@ from typing import Any, List
 from stanfordnlp.utils.resources import download
 
 
-def get_stanfordnlp_models(force_update: bool=True) -> None:
+def get_stanfordnlp_models(force_update: bool = True) -> None:
     """Download language models, from the ``stanfordnlp`` project,
     that are supported by the CLTK or in scope. More here:
     `<https://stanfordnlp.github.io/stanfordnlp/models.html>_.
