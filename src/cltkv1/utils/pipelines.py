@@ -9,7 +9,7 @@ these dataclasses is to represent:
 from dataclasses import dataclass
 from typing import Callable, List
 
-from cltkv1.languages.glottolog import GREEK, LATIN
+# from cltkv1.languages.glottolog import GREEK, LATIN
 from cltkv1.utils.data_types import Doc, Word
 from cltkv1.utils.operations import (
     DefaultTokenizationOperation,
@@ -37,14 +37,14 @@ class DefaultPipeline(Pipeline):
 class LatinPipeline(Pipeline):
     # sentence_splitter = LatinSplitter().dummy_get_indices
     word_tokenizer = LatinTokenizationOperation
-    language = LATIN
+    # language = LATIN
 
 
 @dataclass
 class GreekPipeline(Pipeline):
     # sentence_splitter = DefaultSplitter().dummy_get_indices
     word_tokenizer = DefaultTokenizationOperation
-    language = GREEK
+    # language = GREEK
 
 
 if __name__ == "__main__":

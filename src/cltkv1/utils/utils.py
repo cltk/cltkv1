@@ -76,7 +76,7 @@ def suppress_stdout():
     """Wrap a function with this to suppress
     its printing to screen.
 
-    Source: https://thesmithfam.org/blog/2012/10/25/temporarily-suppress-console-output-in-python/
+    Source: `<https://thesmithfam.org/blog/2012/10/25/temporarily-suppress-console-output-in-python/>`_.
 
     >>> print("You can see this")
     You can see this

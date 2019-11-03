@@ -6,6 +6,22 @@ TODO: Fill out more attributes to these
 from dataclasses import dataclass, field
 from typing import List
 
+from cltkv1.utils import example_texts
+
+
+@dataclass
+class Language:
+    name: str  # Glottolog name
+    glottolog_id: str
+    latitude: float
+    longitude: float
+    dates: List[int]  # add later; not available from Glottolog or ISO list
+    family_id: str  # from Glottolog
+    parent_id: str  # from Glottolog
+    level: str  # a language or a dialect
+    iso639P3code: str
+    type: str  # "an" for ancient and "h" for historical
+
 
 @dataclass
 class Word:
@@ -38,10 +54,9 @@ class Doc:
 
         >>> from cltkv1 import NLP
         >>> cltk_nlp = NLP(language='greek')
-        >>> john_damascus_corinth = "Τοῦτο εἰπὼν, ᾐνίξατο αἰτίους ὄντας τοῦ τὰ ἐλάσσονα λαμβάνειν, καὶ κυρίους, εἰ βούλοιντο, τοῦ τὰ μείζονα. Ἔστι δὲ πολὺ μείζων ἡ ἀγάπη πάντων τῶν χαρισμάτων."
-        >>> john_text_analyzed = cltk_nlp.analyze(john_damascus_corinth)
+        >>> john_text_analyzed = cltk_nlp.analyze(example_texts.GREEK)
         >>> str_tokens = john_text_analyzed.get_raw_tokens()
         >>> str_tokens[0:3]
-        ['Τοῦτο', 'εἰπὼν', 'ᾐνίξατο']
+        ['ὅτι', 'μὲν', 'ὑμεῖς']
         """
         return [word.string for word in self.tokens]
