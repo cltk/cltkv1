@@ -13,17 +13,255 @@ Glottolog is a project run by the Max Planck Institute for the
 Science of Human History. The website contains languages for languages
 as well as reconstructions of language families. About: `<http://glottolog.org/>`_.
 Data of Glottolog 4.0 is published under the following license:
-`<https://creativecommons.org/licenses/by/4.0/>_`.
+`<https://creativecommons.org/licenses/by/4.0/>`_.
 
 Haspelmath, Martin & Forkel, Robert & Hammarström, Harald. 2019.
 Glottolog 4.0.
 Jena: Max Planck Institute for the Science of Human History.
 (Available online at `<http://glottolog.org>`_, Accessed on 2019-10-02.)
+
+>>> from cltkv1.languages.glottolog import LANGUAGES
+>>> akkadian = LANGUAGES["akk"]
+>>> akkadian
+Language(name='Akkadian', glottolog_id='akka1240', latitude=33.1, longitude=44.1, dates=[], family_id='afro1255', parent_id='east2678', level='language', iso639P3code='akk', type='a')
+>>> akkadian.name
+'Akkadian'
+>>> akkadian.glottolog_id
+'akka1240'
+>>> akkadian.latitude
+33.1
+>>> akkadian.longitude
+44.1
+>>> akkadian.family_id
+'afro1255'
+>>> akkadian.parent_id
+'east2678'
+>>> len(LANGUAGES)
+207
+>>> from collections import OrderedDict
+>>> alpha_sorted_langs = OrderedDict(sorted(LANGUAGES.items(), key=lambda x: x[1].name))
+>>> for iso_id, lang in alpha_sorted_langs.items():
+...     print(iso_id, "\t", lang.name)
+xae   Aequian
+xag   Aghwan
+akk   Akkadian
+xln   Alanic
+grc   Ancient Greek
+hbo   Ancient Hebrew
+xlg   Ancient Ligurian
+xmk   Ancient Macedonian
+xna   Ancient North Arabian
+xzp   Ancient Zapotec
+xaa   Andalusian Arabic
+xno   Anglo-Norman
+xaq   Aquitanian
+pka   Ardhamāgadhī Prākrit
+xrm   Armazic
+ave   Avestan
+xbc   Bactrian
+xbo   Bolgarian
+pyx   Burma Pyu
+xcc   Camunic
+xcr   Carian
+xce   Celtiberian
+chu   Church Slavic
+xcg   Cisalpine Gaulish
+xcl   Classical Armenian
+myz   Classical Mandaic
+cmg   Classical Mongolian
+nci   Classical Nahuatl
+nwc   Classical Newari
+qwc   Classical Quechua
+syc   Classical Syriac
+xct   Classical Tibetan
+xcb   Cumbric
+xlu   Cuneiform Luwian
+xcu   Curonian
+xdc   Dacian
+sga   Early Irish
+xtr   Early Tripuri
+xeb   Eblaite
+xdm   Edomite
+egy   Egyptian (Ancient)
+elx   Elamite
+xly   Elymian
+xep   Epi-Olmec
+emy   Epigraphic Mayan
+ecr   Eteocretan
+ecy   Eteocypriot
+ett   Etruscan
+xfa   Faliscan
+xga   Galatian
+xgl   Galindan
+gez   Geez
+got   Gothic
+pgd   Gāndhārī
+xhd   Hadrami
+xha   Harami
+xiv   Harappan
+xht   Hattic
+xhr   Hernican
+ghc   Hiberno-Scottish Gaelic
+hlu   Hieroglyphic Luwian
+hit   Hittite
+xhc   Hunnic
+xhu   Hurrian
+xib   Iberian
+xil   Illyrian
+jut   Jutish
+kjv   Kajkavian
+zra   Kara (Korea)
+xqa   Karakhanid
+zsk   Kaskean
+kaw   Kawi
+zkz   Khazar
+zkh   Khorezmian
+kho   Khotanese
+xco   Khwarezmian
+zkt   Kitan
+zkg   Koguryo
+lng   Langobardic
+lat   Latin
+xle   Lemnian
+xlp   Lepontic
+xli   Liburnian
+lab   Linear A
+lzh   Literary Chinese
+xls   Lusitanian
+xlc   Lycian A
+xld   Lydian
+hmk   Maek
+pmh   Maharastri Prakrit
+xmn   Manichaean Middle Persian
+umc   Marrucinian
+ims   Marsian
+xme   Median
+xmr   Meroitic
+cms   Messapic
+axm   Middle Armenian
+xbm   Middle Breton
+ltc   Middle Chinese
+cnx   Middle Cornish
+dum   Middle Dutch
+enm   Middle English
+frm   Middle French
+gmh   Middle High German
+htx   Middle Hittite
+mga   Middle Irish (10-12th century)
+okm   Middle Korean (10th-16th cent.)
+gml   Middle Low German
+xng   Middle Mongol
+nwx   Middle Newar
+wlm   Middle Welsh
+imy   Milyan
+inm   Minaean
+omn   Minoan
+obm   Moabite
+mxi   Mozarabic
+gmy   Mycenaean Greek
+yms   Mysian
+ndf   Nadruvian
+nei   Neo-Hittite
+nrc   Noric
+nrp   North Picene
+nxm   Numidian
+arc   Official Aramaic (700-300 BCE)
+oar   Old Aramaic (up to 700 BCE)
+oav   Old Avar
+obt   Old Breton
+obr   Old Burmese
+och   Old Chinese
+oco   Old Cornish
+odt   Old Dutch-Old Frankish
+ang   Old English (ca. 450-1100)
+frk   Old Frankish
+fro   Old French (842-ca. 1400)
+ofs   Old Frisian
+oge   Old Georgian
+goh   Old High German (ca. 750-1050)
+oht   Old Hittite
+ohu   Old Hungarian
+ojp   Old Japanese
+oko   Old Korean (3rd-9th cent.)
+olt   Old Lithuanian
+omp   Old Manipuri
+omr   Old Marathi
+omx   Old Mon
+non   Old Norse
+onw   Old Nubian
+oos   Old Ossetic
+peo   Old Persian (ca. 600-400 B.C.)
+pro   Old Provençal
+orv   Old Russian
+osx   Old Saxon
+osp   Old Spanish
+oty   Old Tamil
+otb   Old Tibetan
+oui   Old Turkic
+otk   Old Turkish
+owl   Old-Middle Welsh
+osc   Oscan
+ota   Ottoman Turkish (1500-1928)
+pkc   Paekche
+pgn   Paelignian
+pal   Pahlavi
+plq   Palaic
+jpa   Palestinian Jewish Aramaic
+pli   Pali
+xpr   Parthian
+xpc   Pecheneg
+phn   Phoenician
+xpg   Phrygian
+xpi   Pictish
+xps   Pisidian
+pgl   Primitive Irish
+xpu   Punic
+xpy   Puyo
+xpp   Puyo-Paekche
+xqt   Qatabanian
+xrr   Raetic
+xsa   Sabaic
+sbv   Sabine
+san   Sanskrit
+psu   Sauraseni Prakrit
+xsc   Scythian
+sxc   Sicana
+scx   Sicula
+sqr   Siculo Arabic
+xsd   Sidetic
+svx   Skalvian
+sog   Sogdian
+sxo   Sorothaptic
+spx   South Picene
+sux   Sumerian
+txg   Tangut
+txr   Tartessian
+txh   Thracian
+xto   Tokharian A
+txb   Tokharian B
+xtg   Transalpine Gaulish
+xtq   Tumshuqese
+uga   Ugaritic
+xum   Umbrian
+xur   Urartian
+xvn   Vandalic
+xve   Venetic
+xvs   Vestinian
+xvo   Volscian
+xzh   Zhangzhung
 """
 
 from collections import OrderedDict
 
 from cltkv1.utils.data_types import Language
+
+
+def search_lang_code(approximate_lang_name):
+    """Take in search term of usual language name and find ISO code.
+
+    TODO: Write this
+    """
+    pass
 
 LANGUAGES = OrderedDict(
     [

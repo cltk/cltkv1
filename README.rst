@@ -17,7 +17,7 @@ Installation
 Documentation
 -------------
 
-https://cltkv1.readthedocs.io/en/latest/
+``$ make docs``
 
 
 Development
