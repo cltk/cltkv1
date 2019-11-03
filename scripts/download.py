@@ -8,7 +8,11 @@ import os
 from stanfordnlp.utils.resources import download  # type: ignore
 
 
-def stanford(force_update=True):
+def get_stanfordnlp_models(force_update=True):
+    """Download language models, from the ``stanfordnlp`` project,
+    that are supported by the CLTK or in scope. More here:
+    `<https://stanfordnlp.github.io/stanfordnlp/models.html>_.
+    """
     ud_models_for_cltk = [
         "grc_perseus",
         "grc_proiel",
@@ -32,4 +36,4 @@ def stanford(force_update=True):
 
 
 if __name__ == "__main__":
-    stanford()
+    get_stanfordnlp_models()

@@ -1,5 +1,5 @@
 """These stopwords are taken from
-- people.stanford.edu/widner/content/text-mining-middle-ages (slide 13)
+- people.get_stanfordnlp_models.edu/widner/content/text-mining-middle-ages (slide 13)
 - textifier.com/resources/common-english-words.txt
 - en.wikipedia.org/wiki/Middle_English
 - en.wiktionary.org/wiki/Category:Middle_English_prepositions

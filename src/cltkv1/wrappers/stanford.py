@@ -14,7 +14,7 @@ class StanfordNLPWrapper:
     """CLTK's wrapper for the StanfordNLP project."""
 
     def __init__(self, language: str, treebank: Optional[str] = None) -> None:
-        """Constructor for ``stanford`` wrapper class.
+        """Constructor for ``get_stanfordnlp_models`` wrapper class.
 
         >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
         >>> isinstance(stanford_wrapper, StanfordNLPWrapper)
@@ -169,7 +169,7 @@ class StanfordNLPWrapper:
         # >>> stanford_wrapper._download_model()
         # True
         """
-        # prompt user to DL the stanford models
+        # prompt user to DL the get_stanfordnlp_models models
         print("")
         print("")
         print("Α" * 80)

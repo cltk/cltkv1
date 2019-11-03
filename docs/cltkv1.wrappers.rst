@@ -4,10 +4,10 @@ cltkv1.wrappers package
 Submodules
 ----------
 
-cltkv1.wrappers.stanford module
+cltkv1.wrappers.get_stanfordnlp_models module
 -------------------------------
 
-.. automodule:: cltkv1.wrappers.stanford
+.. automodule:: cltkv1.wrappers.get_stanfordnlp_models
    :members:
    :undoc-members:
    :show-inheritance:

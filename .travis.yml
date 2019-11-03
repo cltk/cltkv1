@@ -13,7 +13,7 @@ before_install:
   - pip install --upgrade pip
   - pip install poetry
   - pip install pre-commit
-  - poetry run python src/cltkv1/utils/download.py
+  - poetry run python scipts/download.py
 
 install:
   - poetry install -v
