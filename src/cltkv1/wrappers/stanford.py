@@ -7,6 +7,7 @@ from typing import Dict, Optional
 
 import stanfordnlp  # type: ignore
 
+from cltkv1.utils import example_texts
 from cltkv1.utils import UnknownLanguageError, file_exists, suppress_stdout
 
 
@@ -32,8 +33,7 @@ class StanfordNLPWrapper:
         >>> stanford_wrapper_perseus.treebank
         'grc_perseus'
 
-        >>> xen_anab = "Δαρείου καὶ Παρυσάτιδος γίγνονται παῖδες δύο, πρεσβύτερος μὲν Ἀρταξέρξης, νεώτερος δὲ Κῦρος: ἐπεὶ δὲ ἠσθένει Δαρεῖος καὶ ὑπώπτευε τελευτὴν τοῦ βίου, ἐβούλετο τὼ παῖδε ἀμφοτέρω παρεῖναι."
-        >>> xen_anab_nlp = stanford_wrapper.parse(xen_anab)
+        >>> xen_anab_nlp = stanford_wrapper.parse(example_texts.GREEK)
 
         >>> stanford_nlp_obj_bad = StanfordNLPWrapper(language='BADLANG')
         Traceback (most recent call last):
@@ -97,8 +97,7 @@ class StanfordNLPWrapper:
         """Run all ``stanfordnlp`` parsing on input text.
 
         >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
-        >>> xen_anab = "Δαρείου καὶ Παρυσάτιδος γίγνονται παῖδες δύο, πρεσβύτερος μὲν Ἀρταξέρξης, νεώτερος δὲ Κῦρος: ἐπεὶ δὲ ἠσθένει Δαρεῖος καὶ ὑπώπτευε τελευτὴν τοῦ βίου, ἐβούλετο τὼ παῖδε ἀμφοτέρω παρεῖναι."
-        >>> xen_anab_nlp = stanford_wrapper.parse(xen_anab)
+        >>> xen_anab_nlp = stanford_wrapper.parse(example_texts.GREEK)
         >>> isinstance(xen_anab_nlp, stanfordnlp.pipeline.doc.Document)
         True
 
@@ -106,26 +105,26 @@ class StanfordNLPWrapper:
         >>> nlp_xen_anab_first_sent.tokens[0].index
         '1'
         >>> nlp_xen_anab_first_sent.tokens[0].text
-        'Δαρείου'
+        'ὅτι'
         >>> first_word = nlp_xen_anab_first_sent.tokens[0].words[0]
         >>> first_word.dependency_relation
-        'nmod'
+        'advmod'
         >>> first_word.feats
-        'Case=Gen|Gender=Masc|Number=Sing'
+        '_'
         >>> first_word.governor
-        5
+        13
         >>> first_word.index
         '1'
         >>> first_word.lemma
-        'Δαρεῖος'
+        'ὅτι#1'
         >>> first_word.pos
-        'Ne'
+        'Df'
         >>> first_word.text
-        'Δαρείου'
+        'ὅτι'
         >>> first_word.upos
-        'PROPN'
+        'ADV'
         >>> first_word.xpos
-        'Ne'
+        'Df'
         """
         parsed_text = self.nlp(text)
         return parsed_text
@@ -185,7 +184,7 @@ class StanfordNLPWrapper:
         # if file model still not available after attempted DL, then raise error
         if not file_exists(self.model_path):
             raise FileNotFoundError(
-                "Missing required models for `stanfordnlp` at `{0}`.".format(
+                "Missing required models for ``stanfordnlp`` at ``{0}``.".format(
                     self.model_path
                 )
             )
