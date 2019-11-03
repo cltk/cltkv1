@@ -7,8 +7,12 @@ from typing import Dict, Optional
 
 import stanfordnlp  # type: ignore
 
-from cltkv1.utils import example_texts
-from cltkv1.utils import UnknownLanguageError, file_exists, suppress_stdout
+from cltkv1.utils import (
+    UnknownLanguageError,
+    example_texts,
+    file_exists,
+    suppress_stdout,
+)
 
 
 class StanfordNLPWrapper:

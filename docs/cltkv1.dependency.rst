@@ -4,10 +4,10 @@ cltkv1.dependency package
 Submodules
 ----------
 
-cltkv1.dependency.get_stanfordnlp_models module
+cltkv1.dependency.stanford module
 ---------------------------------
 
-.. automodule:: cltkv1.dependency.get_stanfordnlp_models
+.. automodule:: cltkv1.dependency.stanford
    :members:
    :undoc-members:
    :show-inheritance:

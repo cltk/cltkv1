@@ -2,9 +2,10 @@
 The contents of ``cltkv1/languages/glottolog.py`` were created by this.
 """
 
+from collections import OrderedDict, defaultdict
 import csv
 import os
-from collections import defaultdict, OrderedDict
+import typing
 
 from cltkv1.utils.data_types import Language
 
@@ -26,13 +27,13 @@ def make_iso_glotto_map():
         csv_reader = csv.reader(file_open, delimiter="\t")
         for row in csv_reader:
             if row[5] == "H":
-                code = row[0]
-                name = row[6]
-                iso_name_h[code] = name
+                iso_code = row[0]
+                iso_name = row[6]
+                iso_name_h[iso_code] = iso_name
             if row[5] == "A":
-                code = row[0]
-                name = row[6]
-                iso_name_a[code] = name
+                iso_code = row[0]
+                iso_name = row[6]
+                iso_name_a[iso_code] = iso_name
     print("ISO 639-3 properties:")
     print("\tAncient:", len(iso_name_a))
     print("\tHistorical:", len(iso_name_h))
@@ -48,7 +49,6 @@ def make_iso_glotto_map():
     glottolog_csv = os.path.expanduser(
         "~/Downloads/glottolog_languoid.csv/languoid.csv"
     )
-
     glottolog_dict = defaultdict(Language)
     with open(glottolog_csv) as file_open:
         csv_reader = csv.reader(file_open, delimiter=",")
@@ -87,7 +87,7 @@ def make_iso_glotto_map():
                 iso639P3code=glottolog_iso639p3code,
                 type=lang_type,
             )
-            glottolog_dict[glottolog_id] = lang_object
+            glottolog_dict[glottolog_iso639p3code] = lang_object
 
     print("Remaining 'ancient' ISO languages not in Glottolog", len(iso_name_a))
     print("Remaining 'historical' ISO languages not in Glottolog", len(iso_name_h))
@@ -123,10 +123,11 @@ def make_iso_glotto_map():
         glottolog_dict[iso_code] = lang_object
     print("Total languages in final output (ISO & Glottolog):", len(glottolog_dict))
 
+    # sort alpha
     lang_keys_sorted = sorted(glottolog_dict)
     glottolog_dict_ordered = OrderedDict()
-    for key, val in glottolog_dict.items():
-        glottolog_dict_ordered[key] = val
+    for lang in lang_keys_sorted:
+        glottolog_dict_ordered[lang] = glottolog_dict[lang]
 
     # now write as string to txt file, in order to copy-paste into this file
     txt_fp = os.path.expanduser("~/Downloads/cltk_langs.dict")

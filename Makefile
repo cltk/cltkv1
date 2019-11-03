@@ -8,7 +8,7 @@ docs:
 	poetry run sphinx-apidoc -f -o docs src/cltkv1 && cd docs && poetry run make html && cd ..
 
 format:
-	isort --recursive . && poetry run black src/cltkv1 tests docs
+	isort --recursive . && poetry run black src/cltkv1 tests docs scripts
 
 install:
 	# Equivalent of ``python setup.py install``

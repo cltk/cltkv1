@@ -13,7 +13,7 @@ Inheritance example: ``Operation`` -> ``TokenizationOperation`` -> ``LatinTokeni
 from dataclasses import dataclass
 from typing import Any, Callable, Generic, List
 
-# from cltkv1.languages.glottolog import GREEK, LATIN
+from cltkv1.languages.glottolog import LANGUAGES
 from cltkv1.tokenizers.sentence import DefaultSplitter, LatinSplitter
 from cltkv1.tokenizers.word import DefaultTokenizer, LatinTokenizer, dummy_get_token
 from cltkv1.utils.data_types import Word
@@ -55,7 +55,7 @@ class LatinTokenizationOperation(TokenizationOperation):
     input = str
     output = List[List[int]]
     algorithm = LatinTokenizer.dummy_get_token_indices
-    # language = LATIN
+    language = LANGUAGES["lat"]
 
 
 @dataclass

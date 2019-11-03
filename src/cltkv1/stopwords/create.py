@@ -16,7 +16,7 @@ class Stoplist:
         """
         if language:
             self.language = language.lower()
-        self.numpy_installed = True  ## Write utility for common import traps?
+        self.numpy_installed = True  # Write utility for common import traps?
         self.sklearn_installed = True
 
         try:
@@ -35,8 +35,7 @@ class Stoplist:
 
     @abstractmethod
     def build_stoplist(self, text, size=100):
-        """
-        Build a stoplist based on string or list of strings. This method
+        """Build a stoplist based on string or list of strings. This method
         should be overridden by subclasses of Stoplist.
         """
 
@@ -132,15 +131,15 @@ class BaseCorpusStoplist(Stoplist):
         include=[],
         exclude=[],
     ):
-        """
+        """Build stopslist.
+
         :param texts: list of strings used as document collection for extracting stopwords
         :param basis: Define the basis for extracting stopwords from the corpus. Available methods are:
-                      - 'frequency', word counts
-                      - 'mean', mean probabilities
-                      - 'variance', variance probabilities
-                      - 'entropy', entropy
-                      - 'zou', composite measure as defined in the following paper
-                        Zou, F., Wang, F.L., Deng, X., Han, S., and Wang, L.S. 2006. “Automatic Construction of Chinese Stop Word List.” In Proceedings of the 5th WSEAS International Conference on Applied Computer Science, 1010–1015. https://pdfs.semanticscholar.org/c543/8e216071f6180c228cc557fb1d3c77edb3a3.pdf.
+           - 'frequency', word counts
+           - 'mean', mean probabilities
+           - 'variance', variance probabilities
+           - 'entropy', entropy
+           - 'zou', composite measure as defined in the following paper: Zou, F., Wang, F.L., Deng, X., Han, S., and Wang, L.S. 2006. “Automatic Construction of Chinese Stop Word List.” In Proceedings of the 5th WSEAS International Conference on Applied Computer Science, 1010–1015. `<https://pdfs.semanticscholar.org/c543/8e216071f6180c228cc557fb1d3c77edb3a3.pdf>`_.
         :param size: Set the size of the output list
         :param sort_words: Sort output list alphabetically? (Otherwise return is descending by basis value)
         :param inc_values: Include basis value; e.g. word counts for
@@ -253,7 +252,3 @@ class BaseCorpusStoplist(Stoplist):
             return stops
         else:
             return [item[0] for item in stops]
-
-
-if __name__ == "__main__":
-    pass
