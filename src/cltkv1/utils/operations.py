@@ -8,6 +8,8 @@ the two most important attributes are:
 3. data type produced
 
 Inheritance example: ``Operation`` -> ``TokenizationOperation`` -> ``LatinTokenizationOperation``
+
+TODO: consider whether this is necessary; eg mv to cltkv1.tokenizers.__init__
 """
 
 from dataclasses import dataclass
@@ -16,27 +18,18 @@ from typing import Any, Callable, Generic, List
 from cltkv1.languages.glottolog import LANGUAGES
 from cltkv1.tokenizers.sentence import DefaultSplitter, LatinSplitter
 from cltkv1.tokenizers.word import DefaultTokenizer, LatinTokenizer, dummy_get_token
-from cltkv1.utils.data_types import Operation, TokenizationOperation, Word
+from cltkv1.utils.data_types import Operation, Word
+# from cltkv1.utils.operations import LatinTokenizationOperation
+from cltkv1.tokenizers import TokenizationOperation
 
 
-@dataclass
-class LatinTokenizationOperation(TokenizationOperation):
-    """The default Latin tokenization algorithm"""
-
-    name = "CLTK Dummy Latin Tokenizer"
-    description = "This is a simple regex which divides on word spaces (``r'\w+)`` for illustrative purposes."
-    input = str
-    output = List[List[int]]
-    algorithm = LatinTokenizer.dummy_get_token_indices
-    language = LANGUAGES["lat"]
-
-
-if __name__ == "__main__":
-    lto = LatinTokenizationOperation
-    print(lto.__dict__.keys())
-    print(lto.name)
-    print(lto.description)
-    print(lto.language)
-    print(lto.language.name)
-    print(lto.language.latitude)
-    print(lto.language.glottocode)
+#
+# if __name__ == "__main__":
+#     lto = LatinTokenizationOperation
+#     print(lto.__dict__.keys())
+#     print(lto.name)
+#     print(lto.description)
+#     print(lto.language)
+#     print(lto.language.name)
+#     print(lto.language.latitude)
+#     print(lto.language.glottocode)

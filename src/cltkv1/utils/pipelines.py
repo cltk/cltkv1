@@ -10,8 +10,8 @@ from dataclasses import dataclass
 from typing import Callable, List
 
 from cltkv1.languages.glottolog import LANGUAGES
-from cltkv1.utils.data_types import DefaultTokenizationOperation, Doc, Word
-from cltkv1.utils.operations import LatinTokenizationOperation
+from cltkv1.utils.data_types import Doc, Word
+from cltkv1.tokenizers import DefaultTokenizationOperation, LatinTokenizationOperation
 
 
 @dataclass
