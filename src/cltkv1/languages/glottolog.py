@@ -23,8 +23,8 @@ Jena: Max Planck Institute for the Science of Human History.
 >>> from cltkv1.languages.glottolog import LANGUAGES
 >>> akkadian = LANGUAGES["akk"]
 >>> akkadian
-Language(description='Akkadian', glottolog_id='akka1240', latitude=33.1, longitude=44.1, dates=[], family_id='afro1255', parent_id='east2678', level='language', iso639P3code='akk', type='a')
->>> akkadian.description
+Language(name='Akkadian', glottolog_id='akka1240', latitude=33.1, longitude=44.1, dates=[], family_id='afro1255', parent_id='east2678', level='language', iso639P3code='akk', type='a')
+>>> akkadian.name
 'Akkadian'
 >>> akkadian.glottolog_id
 'akka1240'
@@ -39,9 +39,9 @@ Language(description='Akkadian', glottolog_id='akka1240', latitude=33.1, longitu
 >>> len(LANGUAGES)
 207
 >>> from collections import OrderedDict
->>> alpha_sorted_langs = OrderedDict(sorted(LANGUAGES.items(), key=lambda x: x[1].description))
+>>> alpha_sorted_langs = OrderedDict(sorted(LANGUAGES.items(), key=lambda x: x[1].name))
 >>> for iso_id, lang in alpha_sorted_langs.items():
-...     print(iso_id, "\t", lang.description)
+...     print(iso_id, "\t", lang.name)
 xae   Aequian
 xag   Aghwan
 akk   Akkadian
@@ -258,11 +258,11 @@ from cltkv1.utils.exceptions import UnknownLanguageError
 
 
 def get_lang(iso_code):
-    """Take in search term of usual language description and find ISO code.
+    """Take in search term of usual language name and find ISO code.
 
     >>> from cltkv1.languages.glottolog import get_lang
     >>> get_lang("akk")
-    Language(description='Akkadian', glottolog_id='akka1240', latitude=33.1, longitude=44.1, dates=[], family_id='afro1255', parent_id='east2678', level='language', iso639P3code='akk', type='a')
+    Language(name='Akkadian', glottolog_id='akka1240', latitude=33.1, longitude=44.1, dates=[], family_id='afro1255', parent_id='east2678', level='language', iso639P3code='akk', type='a')
     >>> from cltkv1.utils.exceptions import UnknownLanguageError
     >>> get_lang("xxx")
     Traceback (most recent call last):

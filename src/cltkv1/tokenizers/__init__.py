@@ -4,10 +4,14 @@ from dataclasses import dataclass, field
 import re
 from typing import Any, Callable, List
 
+from cltk.tokenize.word import WordTokenizer as LatinWordTokenizer
+
 from cltkv1.languages.glottolog import LANGUAGES
 from cltkv1.utils.data_types import Operation, Language
 
 from .word import *
+
+latin_word_tok = LatinWordTokenizer(language='latin')
 
 
 @dataclass
@@ -26,10 +30,6 @@ class TokenizationOperation(Operation):
     """
 
 
-def splitter(input_str: str) -> List[str]:
-    return input_str.split()
-
-
 def simple_regexp_tok(input_str: str) -> List[str]:
     """Simple regexp tokenizer for illustration.
 
@@ -46,9 +46,10 @@ class DefaultTokenizationOperation(TokenizationOperation):
     """The default tokenization algorithm.
 
     >>> from cltkv1.tokenizers import DefaultTokenizationOperation
-    >>> tok = DefaultTokenizationOperation(operation_input="aaa bbb ccc")
+    >>> from cltkv1.utils.example_texts import OLD_NORSE
+    >>> tok = DefaultTokenizationOperation(operation_input=OLD_NORSE[:29])
     >>> tok.output
-    ['aaa', 'bbb', 'ccc']
+    ['Gylfi', 'konungr', 'réð', 'þar', 'löndum']
     >>> tok.description
     'A basic whitespace tokenizer'
     """
@@ -63,11 +64,21 @@ class DefaultTokenizationOperation(TokenizationOperation):
 
 @dataclass
 class LatinTokenizationOperation(TokenizationOperation):
-    """The default Latin tokenization algorithm"""
+    """The default Latin tokenization algorithm.
 
-    description = "CLTK Dummy Latin Tokenizer"
-    description = "This is a simple regex which divides on word spaces (``r'\w+)`` for illustrative purposes."
-    op_input = str
-    op_output = List[List[int]]
-    algorithm = LatinTokenizer.dummy_get_token_indices
-    language = LANGUAGES["lat"]
+    >>> from cltkv1.tokenizers import LatinTokenizationOperation
+    >>> from cltkv1.utils.example_texts import LATIN
+    >>> tok = LatinTokenizationOperation(operation_input=LATIN[:23])
+    >>> tok.output
+    ['Gallia', 'est', 'omnis', 'divisa']
+    """
+
+    operation_input: str = None
+    description: str = field(default="The default Latin tokenizer")
+    algorithm: Callable = field(default=latin_word_tok.tokenize)
+
+    @property
+    def output(self):
+        return self.algorithm(self.operation_input)
+
+

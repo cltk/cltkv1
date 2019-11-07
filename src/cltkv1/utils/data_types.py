@@ -27,7 +27,7 @@ class Language:
     >>> isinstance(latin, Language)
     True
     >>> latin
-    Language(description='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso639P3code='lat', type='a')
+    Language(name='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso639P3code='lat', type='a')
     """
 
     name: str  # Glottolog description
