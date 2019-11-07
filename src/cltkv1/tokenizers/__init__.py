@@ -1,17 +1,30 @@
 """Init for `cltkv1.tokenize`."""
 
-from dataclasses import dataclass, field
 import re
-from typing import Any, Callable, List
+from dataclasses import dataclass, field
+from typing import Any, Callable, List, Tuple
 
-from cltk.tokenize.word import WordTokenizer as LatinWordTokenizer
+from cltk.tokenize.word import WordTokenizer as WordTokenizer
 
 from cltkv1.languages.glottolog import LANGUAGES
-from cltkv1.utils.data_types import Operation, Language
+from cltkv1.utils.data_types import Language, Operation
 
 from .word import *
 
-latin_word_tok = LatinWordTokenizer(language='latin')
+akkadian_word_tok = WordTokenizer(language="akkadian")
+greek_word_tok = WordTokenizer(language="greek")
+latin_word_tok = WordTokenizer(language="latin")
+middle_high_german_word_tok = WordTokenizer(language="middle_high_german")
+old_norse_word_tok = WordTokenizer(language="old_norse")
+
+# TODO: Add these to the below
+# arabic_word_tok = WordTokenizer(language="arabic")
+# french_word_tok = WordTokenizer(language="french")
+# middle_english_word_tok = WordTokenizer(language="middle_english")
+# middle_french_word_tok = WordTokenizer(language="middle_french")
+# old_french_word_tok = WordTokenizer(language="old_french")
+# sanskrit_word_tok = WordTokenizer(language="sanskrit")
+# multilingual_word_tok = WordTokenizer(language="multilingual")
 
 
 @dataclass
@@ -38,7 +51,7 @@ def simple_regexp_tok(input_str: str) -> List[str]:
     >>> simple_regexp_tok(input_str=OLD_NORSE[:29])
     ['Gylfi', 'konungr', 'réð', 'þar', 'löndum']
     """
-    return re.findall("[A-Z]{2,}(?![a-z])|[A-Z][a-z]+(?=[A-Z])|[\'\w\-]+", input_str)
+    return re.findall("[A-Z]{2,}(?![a-z])|[A-Z][a-z]+(?=[A-Z])|['\w\-]+", input_str)
 
 
 @dataclass
@@ -53,6 +66,7 @@ class DefaultTokenizationOperation(TokenizationOperation):
     >>> tok.description
     'A basic whitespace tokenizer'
     """
+
     operation_input: str = None
     description: str = field(default="A basic whitespace tokenizer")
     algorithm: Callable = field(default=simple_regexp_tok)
@@ -78,7 +92,85 @@ class LatinTokenizationOperation(TokenizationOperation):
     algorithm: Callable = field(default=latin_word_tok.tokenize)
 
     @property
-    def output(self):
+    def output(self) -> List[str]:
         return self.algorithm(self.operation_input)
 
 
+@dataclass
+class GreekTokenizationOperation(TokenizationOperation):
+    """The default Greek tokenization algorithm.
+
+    >>> from cltkv1.tokenizers import GreekTokenizationOperation
+    >>> from cltkv1.utils.example_texts import GREEK
+    >>> tok = GreekTokenizationOperation(operation_input=GREEK[:23])
+    >>> tok.output
+    ['ὅτι', 'μὲν', 'ὑμεῖς', ',', 'ὦ', 'ἄνδρες']
+    """
+
+    operation_input: str = None
+    description: str = field(default="The default Greek tokenizer")
+    algorithm: Callable = field(default=greek_word_tok.tokenize)
+
+    @property
+    def output(self) -> List[str]:
+        return self.algorithm(self.operation_input)
+
+
+@dataclass
+class AkkadianTokenizationOperation(TokenizationOperation):
+    """The default Akkadian tokenization algorithm.
+
+    >>> from cltkv1.tokenizers import AkkadianTokenizationOperation
+    >>> from cltkv1.utils.example_texts import AKKADIAN
+    >>> tok = AkkadianTokenizationOperation(operation_input=AKKADIAN)
+    >>> tok.output
+    [('u2-wa-a-ru', 'akkadian'), ('at-ta', 'akkadian'), ('e2-kal2-la-ka', 'akkadian'), ('_e2_-ka', 'sumerian'), ('wu-e-er', 'akkadian')]
+    """
+
+    operation_input: str = None
+    description: str = field(default="The default Akkadian tokenizer")
+    algorithm: Callable = field(default=akkadian_word_tok.tokenize)
+
+    @property
+    def output(self) -> List[Tuple[str, str]]:
+        return self.algorithm(self.operation_input)
+
+
+@dataclass
+class OldNorseTokenizationOperation(TokenizationOperation):
+    """The default OldNorse tokenization algorithm.
+
+    >>> from cltkv1.tokenizers import OldNorseTokenizationOperation
+    >>> from cltkv1.utils.example_texts import OLD_NORSE
+    >>> tok = OldNorseTokenizationOperation(operation_input=OLD_NORSE[:29])
+    >>> tok.output
+    ['Gylfi', 'konungr', 'réð', 'þar', 'löndum']
+    """
+
+    operation_input: str = None
+    description: str = field(default="The default Old Norse tokenizer")
+    algorithm: Callable = field(default=old_norse_word_tok.tokenize)
+
+    @property
+    def output(self) -> List[str]:
+        return self.algorithm(self.operation_input)
+
+
+@dataclass
+class OldNorseTokenizationOperation(TokenizationOperation):
+    """The default OldNorse tokenization algorithm.
+
+    >>> from cltkv1.tokenizers import OldNorseTokenizationOperation
+    >>> from cltkv1.utils.example_texts import MIDDLE_HIGH_GERMAN
+    >>> tok = OldNorseTokenizationOperation(operation_input=MIDDLE_HIGH_GERMAN[:29])
+    >>> tok.output
+    ['Ik', 'gihorta', 'ðat', 'seggen', 'ðat', 'sih']
+    """
+
+    operation_input: str = None
+    description: str = field(default="The default Middle High German tokenizer")
+    algorithm: Callable = field(default=middle_high_german_word_tok.tokenize)
+
+    @property
+    def output(self) -> List[str]:
+        return self.algorithm(self.operation_input)
