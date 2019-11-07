@@ -27,10 +27,10 @@ class Language:
     >>> isinstance(latin, Language)
     True
     >>> latin
-    Language(name='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso639P3code='lat', type='a')
+    Language(description='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso639P3code='lat', type='a')
     """
 
-    name: str  # Glottolog name
+    name: str  # Glottolog description
     glottolog_id: str
     latitude: float
     longitude: float
@@ -74,21 +74,13 @@ class Operation:
     This base class is intended to be inherited by NLP operation
     types (e.g., ``TokenizationOperation`` or ``DependencyOperation``).
 
-    TODO: Rename type to kind; consider making list of such kinds (tok, scan, pos, etc)
-
-    >>> def tok(_str):    return _str.split(" ")
-    >>> operation = Operation(name="custom_tokenizer", description="A very naive tokenizer", input=str, output=List[str], algorithm=tok, type="tokenizer")
-    >>> from cltkv1.utils.example_texts import LATIN
-    >>> operation.algorithm(LATIN)[:10]
-    ['Gallia', 'est', 'omnis', 'divisa', 'in', 'partes', 'tres,', 'quarum', 'unam', 'incolunt']
+    >>> def a_function():    pass
+    >>> Operation(description="abstract operation", algorithm=a_function())
+    Operation(description='abstract operation', algorithm=None)
     """
 
-    name: str
     description: str
-    input: Any
-    output: Any
     algorithm: Callable
-    type: str
 
 
 @dataclass

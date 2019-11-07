@@ -23,7 +23,7 @@ In the following, I propose these new data types:
    - ``Operation``: One for each type of NLP algo we cover (e.g., tokenization, sentence splitting, pos tagging,
    dependency, phonetics, prosody, etc.). Each of these is the subclassed for each language (e.g,
    ``TokenizationOperation`` <- ``LatinTokenizationOperation``). Here is defined the code to be used for a given
-   operation, plus documenting a bit more about it (I/O, name, description).
+   operation, plus documenting a bit more about it (I/O, description, description).
 
    - ``Word``: This holds basic information for each token (start/end character indices, sentence index occurring
    within, raw string) and more advanced info if available (e.g., NER, POS tag, dependency relations).
@@ -37,7 +37,7 @@ In the following, I propose these new data types:
 Notes:
 
     - At the end of the module, see a dummy example of the ``cltk.NLP`` class and a use example (in ``"__main__"``),
-    plus output.
+    plus op_output.
 
     - Reqs Python 3.7
 
@@ -134,7 +134,7 @@ if __name__ == "__main__":
     print("``Doc.pipeline``:", doc_germanica.pipeline)
     print("")
     print(
-        "``Doc.pipeline.word_tokenizer.name``:",
+        "``Doc.pipeline.word_tokenizer.description``:",
         doc_germanica.pipeline.word_tokenizer.name,
     )
     print("")

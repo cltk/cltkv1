@@ -98,7 +98,7 @@ class StanfordNLPWrapper:
             self.nlp = self._load_pipeline()
 
     def parse(self, text: str):
-        """Run all ``stanfordnlp`` parsing on input text.
+        """Run all ``stanfordnlp`` parsing on op_input text.
 
         >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
         >>> xen_anab_nlp = stanford_wrapper.parse(example_texts.GREEK)
@@ -166,7 +166,7 @@ class StanfordNLPWrapper:
     def _download_model(self):
         """Interface with the `stanfordnlp` model downloader.
 
-        TODO: Figure out why doctests here hang. Presumably because waiting for user input, but prompt shouldn't arise if models already present.
+        TODO: Figure out why doctests here hang. Presumably because waiting for user op_input, but prompt shouldn't arise if models already present.
 
         # >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
         # >>> stanford_wrapper._download_model()
@@ -195,7 +195,7 @@ class StanfordNLPWrapper:
         pass
 
     def _get_default_treebank(self) -> str:
-        """Return name of a language's default treebank if none
+        """Return description of a language's default treebank if none
         supplied.
 
         >>> stanford_wrapper = StanfordNLPWrapper(language='greek')

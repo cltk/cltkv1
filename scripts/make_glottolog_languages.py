@@ -41,7 +41,7 @@ def make_iso_glotto_map():
     print("")
 
     # Get Glottolog langs that have been marked as ancient or historical in ISO
-    # ['id,family_id,parent_id,name,bookkeeping,level,
+    # ['id,family_id,parent_id,description,bookkeeping,level,
     # latitude,longitude,iso639P3code,description,
     # markup_description,child_family_count,
     # child_language_count,child_dialect_count,
@@ -121,7 +121,7 @@ def make_iso_glotto_map():
             type="h",
         )
         glottolog_dict[iso_code] = lang_object
-    print("Total languages in final output (ISO & Glottolog):", len(glottolog_dict))
+    print("Total languages in final op_output (ISO & Glottolog):", len(glottolog_dict))
 
     # sort alpha
     lang_keys_sorted = sorted(glottolog_dict)
