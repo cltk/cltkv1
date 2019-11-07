@@ -4,6 +4,7 @@ of the NLP pipeline.
 >>> from cltkv1.utils.data_types import Word
 >>> from cltkv1.utils.data_types import Operation
 >>> from cltkv1.utils.data_types import Doc
+>>> from cltkv1.utils.data_types import Language
 """
 
 from dataclasses import dataclass, field

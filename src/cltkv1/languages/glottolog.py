@@ -254,14 +254,22 @@ xzh   Zhangzhung
 from collections import OrderedDict
 
 from cltkv1.utils.data_types import Language
+from cltkv1.utils.exceptions import UnknownLanguageError
 
 
-def search_lang_code(approximate_lang_name):
+def get_lang(iso_code):
     """Take in search term of usual language name and find ISO code.
 
-    TODO: Write this
+    >>> from cltkv1.languages.glottolog import get_lang
+    >>> get_lang("akk")
+    Language(name='Akkadian', glottolog_id='akka1240', latitude=33.1, longitude=44.1, dates=[], family_id='afro1255', parent_id='east2678', level='language', iso639P3code='akk', type='a')
+    >>> from cltkv1.utils.exceptions import UnknownLanguageError
+    >>> get_lang("xxx")
     """
-    pass
+    try:
+        return LANGUAGES[iso_code]
+    except KeyError:
+        raise UnknownLanguageError
 
 
 LANGUAGES = OrderedDict(
