@@ -28,14 +28,6 @@ cltkv1.utils.exceptions module
    :undoc-members:
    :show-inheritance:
 
-cltkv1.utils.operations module
-------------------------------
-
-.. automodule:: cltkv1.utils.operations
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 cltkv1.utils.pipelines module
 -----------------------------
 
