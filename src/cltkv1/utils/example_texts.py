@@ -1,6 +1,6 @@
 """Example paragraphs of text to be reused within the codebase for testing or demonstrating code.
 
-# TODO: Get longer Akkadian text
+TODO: Get longer Akkadian text
 
 >>> from cltkv1.utils.example_texts import GREEK, LATIN
 >>> GREEK
@@ -15,6 +15,8 @@
 
 
 AKKADIAN = "u2-wa-a-ru at-ta e2-kal2-la-ka _e2_-ka wu-e-er"
+
+ARABIC = "كهيعص ﴿١﴾ ذِكْرُ رَحْمَتِ رَبِّكَ عَبْدَهُ زَكَرِيَّا ﴿٢﴾ إِذْ نَادَىٰ رَبَّهُ نِدَاءً خَفِيًّا ﴿٣﴾ قَالَ رَبِّ إِنِّي وَهَنَ الْعَظْمُ مِنِّي وَاشْتَعَلَ الرَّأْسُ شَيْبًا وَلَمْ أَكُن بِدُعَائِكَ رَبِّ شَقِيًّا ﴿٤﴾ وَإِنِّي خِفْتُ الْمَوَالِيَ مِن وَرَائِي وَكَانَتِ امْرَأَتِي عَاقِرًا فَهَبْ لِي مِن لَّدُنكَ وَلِيًّا ﴿٥﴾ يَرِثُنِي وَيَرِثُ مِنْ آلِ يَعْقُوبَ ۖ وَاجْعَلْهُ رَبِّ رَضِيًّا ﴿٦﴾ يَا زَكَرِيَّا إِنَّا نُبَشِّرُكَ بِغُلَامٍ اسْمُهُ يَحْيَىٰ لَمْ نَجْعَل لَّهُ مِن قَبْلُ سَمِيًّا ﴿٧﴾ قَالَ رَبِّ أَنَّىٰ يَكُونُ لِي غُلَامٌ وَكَانَتِ امْرَأَتِي عَاقِرًا وَقَدْ بَلَغْتُ مِنَ الْكِبَرِ عِتِيًّا ﴿٨﴾ قَالَ كَذَٰلِكَ قَالَ رَبُّكَ هُوَ عَلَيَّ هَيِّنٌ وَقَدْ خَلَقْتُكَ مِن قَبْلُ وَلَمْ تَكُ شَيْئًا ﴿٩﴾ قَالَ رَبِّ اجْعَل لِّي آيَةً ۚ قَالَ آيَتُكَ أَلَّا تُكَلِّمَ النَّاسَ ثَلَاثَ لَيَالٍ سَوِيًّا ﴿١٠﴾ فَخَرَجَ عَلَىٰ قَوْمِهِ مِنَ الْمِحْرَابِ فَأَوْحَىٰ إِلَيْهِمْ أَن سَبِّحُوا بُكْرَةً وَعَشِيًّا ﴿١١﴾"
 
 # Plato, Apology (17)
 GREEK = "ὅτι μὲν ὑμεῖς, ὦ ἄνδρες Ἀθηναῖοι, πεπόνθατε ὑπὸ τῶν ἐμῶν κατηγόρων, οὐκ οἶδα: ἐγὼ δ᾽ οὖν καὶ αὐτὸς ὑπ᾽ αὐτῶν ὀλίγου ἐμαυτοῦ ἐπελαθόμην, οὕτω πιθανῶς ἔλεγον. καίτοι ἀληθές γε ὡς ἔπος εἰπεῖν οὐδὲν εἰρήκασιν. μάλιστα δὲ αὐτῶν ἓν ἐθαύμασα τῶν πολλῶν ὧν ἐψεύσαντο, τοῦτο ἐν ᾧ ἔλεγον ὡς χρῆν ὑμᾶς εὐλαβεῖσθαι μὴ ὑπ᾽ ἐμοῦ ἐξαπατηθῆτε ὡς δεινοῦ ὄντος λέγειν. τὸ γὰρ μὴ αἰσχυνθῆναι ὅτι αὐτίκα ὑπ᾽ ἐμοῦ ἐξελεγχθήσονται ἔργῳ, ἐπειδὰν μηδ᾽ ὁπωστιοῦν φαίνωμαι δεινὸς λέγειν, τοῦτό μοι ἔδοξεν αὐτῶν ἀναισχυντότατον εἶναι, εἰ μὴ ἄρα δεινὸν καλοῦσιν οὗτοι λέγειν τὸν τἀληθῆ λέγοντα: εἰ μὲν γὰρ τοῦτο λέγουσιν, ὁμολογοίην ἂν ἔγωγε οὐ κατὰ τούτους εἶναι ῥήτωρ. οὗτοι μὲν οὖν, ὥσπερ ἐγὼ λέγω, ἤ τι ἢ οὐδὲν ἀληθὲς εἰρήκασιν, ὑμεῖς δέ μου ἀκούσεσθε πᾶσαν τὴν ἀλήθειαν—οὐ μέντοι μὰ Δία, ὦ ἄνδρες Ἀθηναῖοι, κεκαλλιεπημένους γε λόγους, ὥσπερ οἱ τούτων, ῥήμασί τε καὶ ὀνόμασιν οὐδὲ κεκοσμημένους, ἀλλ᾽ ἀκούσεσθε εἰκῇ λεγόμενα τοῖς ἐπιτυχοῦσιν ὀνόμασιν—πιστεύω γὰρ δίκαια εἶναι ἃ λέγω—καὶ μηδεὶς ὑμῶν προσδοκησάτω ἄλλως: οὐδὲ γὰρ ἂν δήπου πρέποι, ὦ ἄνδρες, τῇδε τῇ ἡλικίᾳ ὥσπερ μειρακίῳ πλάττοντι λόγους εἰς ὑμᾶς εἰσιέναι. καὶ μέντοι καὶ πάνυ, ὦ ἄνδρες Ἀθηναῖοι, τοῦτο ὑμῶν δέομαι καὶ παρίεμαι: ἐὰν διὰ τῶν αὐτῶν λόγων ἀκούητέ μου ἀπολογουμένου δι᾽ ὧνπερ εἴωθα λέγειν καὶ ἐν ἀγορᾷ ἐπὶ τῶν τραπεζῶν, ἵνα ὑμῶν πολλοὶ ἀκηκόασι, καὶ ἄλλοθι, μήτε θαυμάζειν μήτε θορυβεῖν τούτου ἕνεκα. ἔχει γὰρ οὑτωσί. νῦν ἐγὼ πρῶτον ἐπὶ δικαστήριον ἀναβέβηκα, ἔτη γεγονὼς ἑβδομήκοντα: ἀτεχνῶς οὖν ξένως ἔχω τῆς ἐνθάδε λέξεως. ὥσπερ οὖν ἄν, εἰ τῷ ὄντι ξένος ἐτύγχανον ὤν, συνεγιγνώσκετε δήπου ἄν μοι εἰ ἐν ἐκείνῃ τῇ φωνῇ τε καὶ τῷ τρόπῳ  ἔλεγον ἐν οἷσπερ ἐτεθράμμην, καὶ δὴ καὶ νῦν τοῦτο ὑμῶν δέομαι δίκαιον, ὥς γέ μοι δοκῶ, τὸν μὲν τρόπον τῆς λέξεως ἐᾶν—ἴσως μὲν γὰρ χείρων, ἴσως δὲ βελτίων ἂν εἴη—αὐτὸ δὲ τοῦτο σκοπεῖν καὶ τούτῳ τὸν νοῦν προσέχειν, εἰ δίκαια λέγω ἢ μή: δικαστοῦ μὲν γὰρ αὕτη ἀρετή, ῥήτορος δὲ τἀληθῆ λέγειν."
@@ -32,6 +34,33 @@ Hiltibrant enti Haðubrant untar heriun tuem
 sunufatarungo iro saro rihtun
 garutun se iro guðhamun gurtun sih iro suert ana
 helidos ubar hringa do sie to dero hiltiu ritun"""
+
+# Li Lay del Trot, 1
+OLD_FRENCH = """Une aventure vos voil dire
+Molt bien rimee tire a tire;
+Com il avint vos conterai,
+Ne ja ne vos en mentirai.
+L’aventure fu molt estraigne,
+Si avint jadis en Bretaigne
+A .I. molt riche chevalier,
+Hardi et coragous et fier;
+De la Table Reonde estoit
+Le roi Artu, que bien savoit
+.I. bon chevalier honorer
+Et riches dons sovent doner.
+Li chevaliers ot non Lorois,
+Si ert del castel de Morois,
+S’ot .Vc. livrees de terre,
+Miex seant ne peüsciés querre.
+Et si ot molt bele maison,
+Close de haut mur environ,
+Et si ot molt parfont fossés
+Trestot de novel regetés.
+Et desos le castel aprés
+Avoit rivieres et forés
+Ou li chevaliers vout aler
+Sovent por son cors deporter.
+"""
 
 # Prose Edda, Gylfaginning 1
 OLD_NORSE = "Gylfi konungr réð þar löndum er nú heitir Svíþjóð. Frá honum er þat sagt at hann gaf einni farandi konu at launum skemmtunar sinnar eitt plógsland í ríki sínu þat er fjórir öxn drægi upp dag ok nótt. En sú kona var ein af ása ætt, hon er nefnd Gefjun. Hon tók fjóra öxn norðan ór Jötunheimum, en þat váru synir jötuns nökkurs ok hennar, ok setti þá fyrir plóg, en plógrinn gekk svá breitt ok djúpt at upp leysti landit, ok drógu öxnirnir þat land út á hafit ok vestr ok námu staðar í sundi nökkuru. Þar setti Gefjun landit ok gaf nafn ok kallaði Selund. Ok þar sem landit hafði upp gengit var þar eftir vatn. Þat er nú Lögrinn kallaðr í Svíþjóð, ok liggja svá víkr í Leginum sem nes í Selundi."
