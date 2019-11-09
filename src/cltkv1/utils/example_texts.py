@@ -16,6 +16,7 @@ TODO: Get longer Akkadian text
 
 AKKADIAN = "u2-wa-a-ru at-ta e2-kal2-la-ka _e2_-ka wu-e-er"
 
+# Quran
 ARABIC = "كهيعص ﴿١﴾ ذِكْرُ رَحْمَتِ رَبِّكَ عَبْدَهُ زَكَرِيَّا ﴿٢﴾ إِذْ نَادَىٰ رَبَّهُ نِدَاءً خَفِيًّا ﴿٣﴾ قَالَ رَبِّ إِنِّي وَهَنَ الْعَظْمُ مِنِّي وَاشْتَعَلَ الرَّأْسُ شَيْبًا وَلَمْ أَكُن بِدُعَائِكَ رَبِّ شَقِيًّا ﴿٤﴾ وَإِنِّي خِفْتُ الْمَوَالِيَ مِن وَرَائِي وَكَانَتِ امْرَأَتِي عَاقِرًا فَهَبْ لِي مِن لَّدُنكَ وَلِيًّا ﴿٥﴾ يَرِثُنِي وَيَرِثُ مِنْ آلِ يَعْقُوبَ ۖ وَاجْعَلْهُ رَبِّ رَضِيًّا ﴿٦﴾ يَا زَكَرِيَّا إِنَّا نُبَشِّرُكَ بِغُلَامٍ اسْمُهُ يَحْيَىٰ لَمْ نَجْعَل لَّهُ مِن قَبْلُ سَمِيًّا ﴿٧﴾ قَالَ رَبِّ أَنَّىٰ يَكُونُ لِي غُلَامٌ وَكَانَتِ امْرَأَتِي عَاقِرًا وَقَدْ بَلَغْتُ مِنَ الْكِبَرِ عِتِيًّا ﴿٨﴾ قَالَ كَذَٰلِكَ قَالَ رَبُّكَ هُوَ عَلَيَّ هَيِّنٌ وَقَدْ خَلَقْتُكَ مِن قَبْلُ وَلَمْ تَكُ شَيْئًا ﴿٩﴾ قَالَ رَبِّ اجْعَل لِّي آيَةً ۚ قَالَ آيَتُكَ أَلَّا تُكَلِّمَ النَّاسَ ثَلَاثَ لَيَالٍ سَوِيًّا ﴿١٠﴾ فَخَرَجَ عَلَىٰ قَوْمِهِ مِنَ الْمِحْرَابِ فَأَوْحَىٰ إِلَيْهِمْ أَن سَبِّحُوا بُكْرَةً وَعَشِيًّا ﴿١١﴾"
 
 # Plato, Apology (17)
@@ -26,6 +27,28 @@ LATIN = "Gallia est omnis divisa in partes tres, quarum unam incolunt Belgae, al
 
 # Job 1
 HEBREW = "אִ֛ישׁ הָיָ֥ה בְאֶֽרֶץ־ע֖וּץ אִיּ֣וֹב שְׁמ֑וֹ וְהָיָ֣ה ׀ הָאִ֣ישׁ הַה֗וּא תָּ֧ם וְיָשָׁ֛ר וִירֵ֥א אֱלֹהִ֖ים וְסָ֥ר מֵרָֽע׃ וַיִּוָּ֥לְדוּ ל֛וֹ שִׁבְעָ֥ה בָנִ֖ים וְשָׁל֥וֹשׁ בָּנֽוֹת׃ וַיְהִ֣י מִ֠קְנֵהוּ שִֽׁבְעַ֨ת אַלְפֵי־צֹ֜אן וּשְׁלֹ֧שֶׁת אַלְפֵ֣י גְמַלִּ֗ים וַחֲמֵ֨שׁ מֵא֤וֹת צֶֽמֶד־בָּקָר֙ וַחֲמֵ֣שׁ מֵא֣וֹת אֲתוֹנ֔וֹת וַעֲבֻדָּ֖ה רַבָּ֣ה מְאֹ֑ד וַיְהִי֙ הָאִ֣ישׁ הַה֔וּא גָּד֖וֹל מִכָּל־בְּנֵי־קֶֽדֶם׃ וְהָלְכ֤וּ בָנָיו֙ וְעָשׂ֣וּ מִשְׁתֶּ֔ה בֵּ֖ית אִ֣ישׁ יוֹמ֑וֹ וְשָׁלְח֗וּ וְקָרְאוּ֙ לִשְׁלֹ֣שֶׁת אחיתיהם אַחְיֽוֹתֵיהֶ֔ם לֶאֱכֹ֥ל וְלִשְׁתּ֖וֹת עִמָּהֶֽם׃ וַיְהִ֡י כִּ֣י הִקִּיפֽוּ֩ יְמֵ֨י הַמִּשְׁתֶּ֜ה וַיִּשְׁלַ֧ח אִיּ֣וֹב וַֽיְקַדְּשֵׁ֗ם וְהִשְׁכִּ֣ים בַּבֹּקֶר֮ וְהֶעֱלָ֣ה עֹלוֹת֮ מִסְפַּ֣ר כֻּלָּם֒ כִּ֚י אָמַ֣ר אִיּ֔וֹב אוּלַי֙ חָטְא֣וּ בָנַ֔י וּבֵרֲכ֥וּ אֱלֹהִ֖ים בִּלְבָבָ֑ם כָּ֛כָה יַעֲשֶׂ֥ה אִיּ֖וֹב כָּל־הַיָּמִֽים׃ (פ) וַיְהִ֣י הַיּ֔וֹם וַיָּבֹ֙אוּ֙ בְּנֵ֣י הָאֱלֹהִ֔ים לְהִתְיַצֵּ֖ב עַל־יְהוָ֑ה וַיָּב֥וֹא גַֽם־הַשָּׂטָ֖ן בְּתוֹכָֽם׃ וַיֹּ֧אמֶר יְהוָ֛ה אֶל־הַשָּׂטָ֖ן מֵאַ֣יִן תָּבֹ֑א וַיַּ֨עַן הַשָּׂטָ֤ן אֶת־יְהוָה֙ וַיֹּאמַ֔ר מִשּׁ֣וּט בָּאָ֔רֶץ וּמֵֽהִתְהַלֵּ֖ךְ בָּֽהּ׃ וַיֹּ֤אמֶר יְהוָה֙ אֶל־הַשָּׂטָ֔ן הֲשַׂ֥מְתָּ לִבְּךָ֖ עַל־עַבְדִּ֣י אִיּ֑וֹב כִּ֣י אֵ֤ין כָּמֹ֙הוּ֙ בָּאָ֔רֶץ אִ֣ישׁ תָּ֧ם וְיָשָׁ֛ר יְרֵ֥א אֱלֹהִ֖ים וְסָ֥ר מֵרָֽע׃ וַיַּ֧עַן הַשָּׂטָ֛ן אֶת־יְהוָ֖ה וַיֹּאמַ֑ר הַֽחִנָּ֔ם יָרֵ֥א אִיּ֖וֹב אֱלֹהִֽים׃ הֲלֹֽא־את אַ֠תָּה שַׂ֣כְתָּ בַעֲד֧וֹ וּבְעַד־בֵּית֛וֹ וּבְעַ֥ד כָּל־אֲשֶׁר־ל֖וֹ מִסָּבִ֑יב מַעֲשֵׂ֤ה יָדָיו֙ בֵּרַ֔כְתָּ וּמִקְנֵ֖הוּ פָּרַ֥ץ בָּאָֽרֶץ׃ וְאוּלָם֙ שְֽׁלַֽח־נָ֣א יָֽדְךָ֔ וְגַ֖ע בְּכָל־אֲשֶׁר־ל֑וֹ אִם־לֹ֥א עַל־פָּנֶ֖יךָ יְבָרֲכֶֽךָּ׃ וַיֹּ֨אמֶר יְהוָ֜ה אֶל־הַשָּׂטָ֗ן הִנֵּ֤ה כָל־אֲשֶׁר־לוֹ֙ בְּיָדֶ֔ךָ רַ֣ק אֵלָ֔יו אַל־תִּשְׁלַ֖ח יָדֶ֑ךָ וַיֵּצֵא֙ הַשָּׂטָ֔ן מֵעִ֖ם פְּנֵ֥י יְהוָֽה׃ וַיְהִ֖י הַיּ֑וֹם וּבָנָ֨יו וּבְנֹתָ֤יו אֹֽכְלִים֙ וְשֹׁתִ֣ים יַ֔יִן בְּבֵ֖ית אֲחִיהֶ֥ם הַבְּכֽוֹר׃ וּמַלְאָ֛ךְ בָּ֥א אֶל־אִיּ֖וֹב וַיֹּאמַ֑ר הַבָּקָר֙ הָי֣וּ חֹֽרְשׁ֔וֹת וְהָאֲתֹנ֖וֹת רֹע֥וֹת עַל־יְדֵיהֶֽם׃ וַתִּפֹּ֤ל שְׁבָא֙ וַתִּקָּחֵ֔ם וְאֶת־הַנְּעָרִ֖ים הִכּ֣וּ לְפִי־חָ֑רֶב וָֽאִמָּ֨לְטָ֧ה רַק־אֲנִ֛י לְבַדִּ֖י לְהַגִּ֥יד לָֽךְ׃ ע֣וֹד ׀ זֶ֣ה מְדַבֵּ֗ר וְזֶה֮ בָּ֣א וַיֹּאמַר֒ אֵ֣שׁ אֱלֹהִ֗ים נָֽפְלָה֙ מִן־הַשָּׁמַ֔יִם וַתִּבְעַ֥ר בַּצֹּ֛אן וּבַנְּעָרִ֖ים וַתֹּאכְלֵ֑ם וָאִמָּ֨לְטָ֧ה רַק־אֲנִ֛י לְבַדִּ֖י לְהַגִּ֥יד לָֽךְ׃ ע֣וֹד ׀ זֶ֣ה מְדַבֵּ֗ר וְזֶה֮ בָּ֣א וַיֹּאמַר֒ כַּשְׂדִּ֞ים שָׂ֣מוּ ׀ שְׁלֹשָׁ֣ה רָאשִׁ֗ים וַֽיִּפְשְׁט֤וּ עַל־הַגְּמַלִּים֙ וַיִּקָּח֔וּם וְאֶת־הַנְּעָרִ֖ים הִכּ֣וּ לְפִי־חָ֑רֶב וָאִמָּ֨לְטָ֧ה רַק־אֲנִ֛י לְבַדִּ֖י לְהַגִּ֥יד לָֽךְ׃ עַ֚ד זֶ֣ה מְדַבֵּ֔ר וְזֶ֖ה בָּ֣א וַיֹּאמַ֑ר בָּנֶ֨יךָ וּבְנוֹתֶ֤יךָ אֹֽכְלִים֙ וְשֹׁתִ֣ים יַ֔יִן בְּבֵ֖ית אֲחִיהֶ֥ם הַבְּכֽוֹר׃ וְהִנֵּה֩ ר֨וּחַ גְּדוֹלָ֜ה בָּ֣אָה ׀ מֵעֵ֣בֶר הַמִּדְבָּ֗ר וַיִּגַּע֙ בְּאַרְבַּע֙ פִּנּ֣וֹת הַבַּ֔יִת וַיִּפֹּ֥ל עַל־הַנְּעָרִ֖ים וַיָּמ֑וּתוּ וָאִמָּ֨לְטָ֧ה רַק־אֲנִ֛י לְבַדִּ֖י לְהַגִּ֥יד לָֽךְ׃ וַיָּ֤קָם אִיּוֹב֙ וַיִּקְרַ֣ע אֶת־מְעִל֔וֹ וַיָּ֖גָז אֶת־רֹאשׁ֑וֹ וַיִּפֹּ֥ל אַ֖רְצָה וַיִּשְׁתָּֽחוּ׃ וַיֹּאמֶר֩ עָרֹ֨ם יצתי יָצָ֜אתִי מִבֶּ֣טֶן אִמִּ֗י וְעָרֹם֙ אָשׁ֣וּב שָׁ֔מָה יְהוָ֣ה נָתַ֔ן וַיהוָ֖ה לָקָ֑ח יְהִ֛י שֵׁ֥ם יְהוָ֖ה מְבֹרָֽךְ׃ בְּכָל־זֹ֖את לֹא־חָטָ֣א אִיּ֑וֹב וְלֹא־נָתַ֥ן תִּפְלָ֖ה לֵאלֹהִֽים׃"
+
+# Chaucer, The Knight's Tale 1
+MIDDLE_ENGLISH = """Whilom, as olde stories tellen us,
+Ther was a duc that highte theseus;
+Of atthenes he was lord and governour,
+And in his tyme swich a conquerour,
+That gretter was ther noon under the sonne.
+Ful many a riche contree hadde he wonne;
+What with his wysdom and his chivalrie,
+He conquered al the regne of femenye,
+That whilom was ycleped scithia,
+And weddede the queene ypolita,
+And broghte hire hoom with hym in his contree
+With muchel glorie and greet solempnytee,
+And eek hir yonge suster emelye.
+And thus with victorie and with melodye
+Lete I this noble duc to atthenes ryde,
+And al his hoost in armes hym bisyde.
+"""
+
+# Montaigne, Les Essais, "De la Parsimonie des Anciens"
+MIDDLE_FRENCH = "Attilius Regulus, general de l'armée Romaine en Afrique, au milieu de sa gloire et de ses victoires contre les Carthaginois, escrivit à la chose publique qu'un valet de labourage qu'il avoit laissé seul au gouvernement de son bien, qui estoit en tout sept arpents de terre, s'en estoit enfuy, ayant desrobé ses utils de labourage, et demandoit congé pour s'en retourner et y pourvoir, de peur que sa femme et ses enfans n'en eussent à souffrir: le Senat pourveut à commettre un autre à la conduite de ses biens et luy fist restablir ce qui luy avoit esté desrobé, et ordonna que sa femme et enfans seroient nourris aux despens du public. Le vieux Caton, revenant d'Espaigne Consul, vendit son cheval de service pour espargner l'argent qu'il eut couté à le ramener par mer en Italie; et, estant au gouvernement de Sardaigne, faisoit ses visitations à pied, n'ayant avec luy autre suite qu'un officier de la chose publique, qui luy portoit sa robbe, et un vase à faire des sacrifices; et le plus souvent il pourtoit sa male luy mesme. "
 
 # Hildebrandslied
 MIDDLE_HIGH_GERMAN = """Ik gihorta ðat seggen
@@ -64,3 +87,23 @@ Sovent por son cors deporter.
 
 # Prose Edda, Gylfaginning 1
 OLD_NORSE = "Gylfi konungr réð þar löndum er nú heitir Svíþjóð. Frá honum er þat sagt at hann gaf einni farandi konu at launum skemmtunar sinnar eitt plógsland í ríki sínu þat er fjórir öxn drægi upp dag ok nótt. En sú kona var ein af ása ætt, hon er nefnd Gefjun. Hon tók fjóra öxn norðan ór Jötunheimum, en þat váru synir jötuns nökkurs ok hennar, ok setti þá fyrir plóg, en plógrinn gekk svá breitt ok djúpt at upp leysti landit, ok drógu öxnirnir þat land út á hafit ok vestr ok námu staðar í sundi nökkuru. Þar setti Gefjun landit ok gaf nafn ok kallaði Selund. Ok þar sem landit hafði upp gengit var þar eftir vatn. Þat er nú Lögrinn kallaðr í Svíþjóð, ok liggja svá víkr í Leginum sem nes í Selundi."
+
+# Isha Upanishad (Īśāvāsyopaniṣad)
+SANSKRIT = """ईशा वास्यम् इदं सर्वं यत् किञ्च जगत्यां जगत् ।
+तेन त्यक्तेन भुञ्जीथा मा गृधः कस्य स्विद्धनम् ॥
+
+कुर्वन्न् एवेह कर्माणि जिजीविषेच्छतं समाः ।
+एवं त्वयि नान्यथेतोऽस्ति न कर्म लिप्यते नरे ॥
+
+असुर्या नाम ते लोका अन्धेन तमसावृताः ।
+तांस्ते प्रेत्याभिगच्छन्ति ये के चात्महनो जनाः ॥
+
+अनेजद् एकं मनसो जवीयो नैनद्देवा आप्नुवन्पूर्वमर्षत् ।
+तद्धावतोऽन्यानत्येति तिष्ठत् तस्मिन्न् अपो मातरिश्वा दधाति ॥
+
+तद् एजति तन् नैजति तद् दूरे तद् व् अन्तिके ।
+तद् अन्तर् अस्य सर्वस्य तद् उ सर्वस्यास्य बाह्यतः ॥
+
+यस् तु सर्वाणि भूतान्य् आत्मन्य् एवानुपश्यति ।
+सर्वभूतेषु चात्मानं ततो न विजुगुप्सते ॥
+"""
