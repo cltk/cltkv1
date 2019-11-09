@@ -6,8 +6,7 @@ from typing import Callable, List, Tuple
 
 from cltk.tokenize.word import WordTokenizer as WordTokenizer
 
-from cltkv1.utils.data_types import Word, Operation
-
+from cltkv1.utils.data_types import Operation, Word
 
 akkadian_word_tok = WordTokenizer(language="akkadian")
 arabic_word_tok = WordTokenizer(language="arabic")
@@ -20,7 +19,6 @@ old_french_word_tok = WordTokenizer(language="old_french")
 old_norse_word_tok = WordTokenizer(language="old_norse")
 sanskrit_word_tok = WordTokenizer(language="sanskrit")
 # multilingual_word_tok = WordTokenizer(language="multilingual")
-
 
 
 @dataclass
@@ -37,6 +35,7 @@ class TokenizationOperation(Operation):
     >>> TokenizationOperation(description="some description", algorithm=a_function())
     TokenizationOperation(description='some description', algorithm=None)
     """
+
 
 def simple_regexp_tok(input_str: str) -> List[str]:
     """Simple regexp tokenizer for illustration.

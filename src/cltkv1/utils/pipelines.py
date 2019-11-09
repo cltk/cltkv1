@@ -6,64 +6,45 @@ these dataclasses is to represent:
 3. specifying what downstream features a particular implemented operation requires
 """
 
-from dataclasses import dataclass
-from typing import Callable, List
+from dataclasses import dataclass, field
+from typing import Callable, List, Type
 
 from cltkv1 import DefaultTokenizationOperation, LatinTokenizationOperation
 from cltkv1.languages.glottolog import LANGUAGES
-from cltkv1.utils.data_types import Doc, Word
-
-
-@dataclass
-class Pipeline:
-    sentence_splitter: Callable[[str], List[List[int]]] = None
-    word_tokenizer: Callable[[str], List[Word]] = None
-    dependency: str = None
-    pos: str = None
-    scansion: Callable[[str], str] = None
+from cltkv1.utils.data_types import Doc, Operation, Pipeline, Word, Language
 
 
 @dataclass
 class DefaultPipeline(Pipeline):
-    # sentence_splitter = DefaultSplitter().dummy_get_indices
-    # word_tokenizer =
-    pass
+    """Default ``Pipeline`` object to be run when language is unknown
+    or of which CLTK coverage is not know.
+
+    >>> from cltkv1.utils.pipelines import DefaultPipeline
+    >>> a_pipeline = DefaultPipeline(description="Pipeline for some language", execution_order=[DefaultTokenizationOperation], language=LANGUAGES["ett"])
+    >>> a_pipeline.description
+    'Pipeline for some language'
+    >>> etruscan = "laris velkasna[s mini muluvanice] menervas"
+    >>> for operation in a_pipeline.execution_order:    print(operation.algorithm(etruscan))
+    ['laris', 'velkasna', 's', 'mini', 'muluvanice', 'menervas']
+    """
 
 
 @dataclass
 class LatinPipeline(Pipeline):
-    # sentence_splitter = LatinSplitter().dummy_get_indices
+    """Default ``Pipeline`` for Latin.
+
+    >>> from cltkv1.utils.pipelines import DefaultPipeline
+    >>> a_pipeline = LatinPipeline(description="Pipeline for some language", execution_order=[DefaultTokenizationOperation])
+    >>> a_pipeline.description
+    'Pipeline for some language'
+    >>> a_pipeline.language
+    Language(name='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso639P3code='lat', type='a')
+    >>> a_pipeline.language.name
+    'Latin'
+    >>> etruscan = "laris velkasna[s mini muluvanice] menervas"
+    >>> for operation in a_pipeline.execution_order:    print(operation.algorithm(etruscan))
+    ['laris', 'velkasna', 's', 'mini', 'muluvanice', 'menervas']
+    """
     word_tokenizer = LatinTokenizationOperation
-    language = LANGUAGES["lat"]
-
-
-@dataclass
-class GreekPipeline(Pipeline):
-    # sentence_splitter = DefaultSplitter().dummy_get_indices
-    word_tokenizer = DefaultTokenizationOperation
-    language = LANGUAGES["grc"]
-
-
-if __name__ == "__main__":
-
-    # example of Latin pipeline (here only word tokenizer implemented)
-    # other Operations need to be added
-    # complete example by writing to ``Doc`` dataclass
-    # think further about how to do this with stanfordnlp or other 3rd party
-    gesta_danorum = (
-        "Malo præterea virum regnare quam patrem. Malo regis coniunx quam nata censeri."
-    )
-
-    lat_pipeline = LatinPipeline
-    lat_fn_word_tok = lat_pipeline.word_tokenizer
-
-    print("Algo:", lat_fn_word_tok.algorithm)
-    print("In:", lat_fn_word_tok.input)
-    print("Out:", lat_fn_word_tok.output)
-
-    idx_tokens = lat_fn_word_tok.algorithm(gesta_danorum)
-    print("Tokens:", idx_tokens)
-
-    # TODO: Populate the ``Word`` object with the above token idx
-
-    # TODO: Do checking of IO req'd by the fn and whether it's available in the current ``Word``
+    language: Language = LANGUAGES["lat"]
+    execution_order: List[Type[Operation]] = field(default_factory=[word_tokenizer])

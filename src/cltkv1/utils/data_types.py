@@ -8,7 +8,7 @@ of the NLP pipeline.
 """
 
 from dataclasses import dataclass, field
-from typing import Any, Callable, Generic, List
+from typing import Any, Callable, Generic, List, Type
 
 # from cltkv1.tokenizers.word import DefaultTokenizer
 from cltkv1.utils import example_texts
@@ -119,3 +119,24 @@ class Doc:
     tokens: List[Word] = None
     pipeline: List[Operation] = None
     raw: str = None
+
+
+@dataclass
+class Pipeline:
+    """Abstract ``Pipeline`` class to be inherited.
+
+    # TODO: Consider adding a Unicode normalization as a default first Operation
+
+    >>> from cltkv1.utils.data_types import Operation, Pipeline
+    >>> from cltkv1.languages.glottolog import LANGUAGES
+    >>> from cltkv1.tokenizers import LatinTokenizationOperation
+    >>> a_pipeline = Pipeline(description="an abstract pipeline", execution_order=[LatinTokenizationOperation], language=LANGUAGES["lat"])
+    >>> a_pipeline.description
+    'an abstract pipeline'
+    >>> issubclass(a_pipeline.execution_order[0], Operation)
+    True
+    """
+
+    description: str
+    execution_order: List[Type[Operation]]
+    language: Language
