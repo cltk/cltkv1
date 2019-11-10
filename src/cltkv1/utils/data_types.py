@@ -62,6 +62,7 @@ class Word:
     index_sentence: int = None
     string: str = None
     pos: str = None
+    lemma: str = None
     scansion: str = None
 
 

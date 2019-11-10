@@ -23,19 +23,19 @@ class StanfordNLPWrapper:
     def __init__(self, language: str, treebank: Optional[str] = None) -> None:
         """Constructor for ``get_stanfordnlp_models`` wrapper class.
 
-        >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
+        >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
         >>> isinstance(stanford_wrapper, StanfordNLPWrapper)
         True
         >>> stanford_wrapper.language
-        'greek'
+        'grc'
         >>> stanford_wrapper.treebank
         'grc_proiel'
 
-        >>> stanford_wrapper_perseus = StanfordNLPWrapper(language='greek', treebank='grc_perseus')
+        >>> stanford_wrapper_perseus = StanfordNLPWrapper(language='grc', treebank='grc_perseus')
         >>> isinstance(stanford_wrapper_perseus, StanfordNLPWrapper)
         True
         >>> stanford_wrapper_perseus.language
-        'greek'
+        'grc'
         >>> stanford_wrapper_perseus.treebank
         'grc_perseus'
 
@@ -51,12 +51,12 @@ class StanfordNLPWrapper:
 
         # Setup language
         # TODO: SWitch cltk to ISO ids
-        self.map_langs_cltk_stanford = dict(
-            greek="Ancient_Greek",
-            latin="Latin",
-            old_church_slavonic="Old_Church_Slavonic",
-            old_french="Old_French",
-        )
+        self.map_langs_cltk_stanford = {
+            "grc": "Ancient_Greek",
+            "lat": "Latin",
+            "chu": "Old_Church_Slavonic",
+            "fro": "Old_French",
+        }
 
         self.wrapper_available = self.is_wrapper_available()  # type: bool
         if not self.wrapper_available:
@@ -106,7 +106,7 @@ class StanfordNLPWrapper:
     def parse(self, text: str):
         """Run all available ``stanfordnlp`` parsing on input text.
 
-        >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
+        >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
         >>> greek_nlp = stanford_wrapper.parse(example_texts.GREEK)
         >>> isinstance(greek_nlp, stanfordnlp.pipeline.doc.Document)
         True
@@ -142,7 +142,7 @@ class StanfordNLPWrapper:
     def _load_pipeline(self):
         """Instantiate `stanfordnlp.Pipeline()`.
 
-        >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
+        >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
         >>> with suppress_stdout():    nlp_obj = stanford_wrapper._load_pipeline()
         >>> isinstance(nlp_obj, stanfordnlp.pipeline.core.Pipeline)
         True
@@ -160,7 +160,7 @@ class StanfordNLPWrapper:
     def _is_model_present(self) -> bool:
         """Checks if the model is already downloaded.
 
-        >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
+        >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
         >>> stanford_wrapper._is_model_present()
         True
         """
@@ -174,7 +174,7 @@ class StanfordNLPWrapper:
 
         TODO: Figure out why doctests here hang. Presumably because waiting for user op_input, but prompt shouldn't arise if models already present.
 
-        # >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
+        # >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
         # >>> stanford_wrapper._download_model()
         # True
         """
@@ -204,7 +204,7 @@ class StanfordNLPWrapper:
         """Return description of a language's default treebank if none
         supplied.
 
-        >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
+        >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
         >>> stanford_wrapper._get_default_treebank()
         'grc_proiel'
         """
@@ -217,7 +217,7 @@ class StanfordNLPWrapper:
         """Check whether for chosen language, optional
         treebank value is valid.
 
-        >>> stanford_wrapper = StanfordNLPWrapper(language='greek', treebank='grc_proiel')
+        >>> stanford_wrapper = StanfordNLPWrapper(language='grc', treebank='grc_proiel')
         >>> stanford_wrapper._is_valid_treebank()
         True
         """
@@ -232,7 +232,7 @@ class StanfordNLPWrapper:
         that used by ``stanfordnlp`` (``la``); confirms that this is
         a language the CLTK supports (i.e., is it pre-modern or not).
 
-        >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
+        >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
         >>> stanford_wrapper.is_wrapper_available()
         True
         """
@@ -245,7 +245,7 @@ class StanfordNLPWrapper:
         """Using known-supported language, use the CLTK's
         internal code to look up the code used by StanfordNLP.
 
-        >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
+        >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
         >>> stanford_wrapper._get_stanford_code()
         'grc'
         """
@@ -262,39 +262,18 @@ class StanfordNLPWrapper:
             raise KeyError
 
 
-@dataclass
-class StanfordNLPOperation(MultiOperation):
-    """An ``Operation`` type to capture everything
-    that the ``stanfordnlp`` project can do for a
-    given language.
-
-    .. note::
-       Note that ``stanfordnlp` has
-       only partial functionality available for
-       some languages.
-
-    >>> from cltkv1.wrappers.stanford import StanfordNLPOperation
-    >>> snlp = StanfordNLPOperation(language="greek", data_input="Δαρείου καὶ Παρυσάτιδος γίγνονται παῖδες δύο")
-    >>> snlp
-    """
-    data_input: str
-    language: str
-    # algorithm = StanfordNLPWrapper(language).parse
-    description = "Operation for all StanfordNLP parsing"
-
-
 if __name__ == "__main__":
 
     stanford_nlp_obj = StanfordNLPWrapper(language="latin")
     print(stanford_nlp_obj.language == "latin")
 
-    stanford_nlp_obj = StanfordNLPWrapper(language="greek", treebank="grc_perseus")
-    print(stanford_nlp_obj.language == "greek")
+    stanford_nlp_obj = StanfordNLPWrapper(language="grc", treebank="grc_perseus")
+    print(stanford_nlp_obj.language == "grc")
     print(stanford_nlp_obj.treebank == "grc_perseus")
     print(stanford_nlp_obj.wrapper_available == True)
 
-    stanford_nlp_obj = StanfordNLPWrapper(language="greek")
-    print(stanford_nlp_obj.language == "greek")
+    stanford_nlp_obj = StanfordNLPWrapper(language="grc")
+    print(stanford_nlp_obj.language == "grc")
     print(stanford_nlp_obj.treebank == "grc_proiel")
     print(stanford_nlp_obj.wrapper_available == True)
     fp_model = stanford_nlp_obj.model_path
