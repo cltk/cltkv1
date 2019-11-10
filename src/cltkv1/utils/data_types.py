@@ -10,7 +10,6 @@ of the NLP pipeline.
 from dataclasses import dataclass, field
 from typing import Any, Callable, Generic, List, Type
 
-# from cltkv1.tokenizers.word import DefaultTokenizer
 from cltkv1.utils import example_texts
 
 
@@ -90,6 +89,7 @@ class Operation:
             return self.algorithm(self.data_input)
         else:
             raise NotImplementedError
+
 
 
 @dataclass
