@@ -15,6 +15,7 @@ latin_word_tok = WordTokenizer(language="latin")
 middle_english_word_tok = WordTokenizer(language="middle_english")
 middle_french_word_tok = WordTokenizer(language="middle_french")
 middle_high_german_word_tok = WordTokenizer(language="middle_high_german")
+multilingual_word_tok = WordTokenizer(language="multilingual")
 old_french_word_tok = WordTokenizer(language="old_french")
 old_norse_word_tok = WordTokenizer(language="old_norse")
 sanskrit_word_tok = WordTokenizer(language="sanskrit")
@@ -30,9 +31,7 @@ class TokenizationOperation(Operation):
     >>> from cltkv1.utils.data_types import Operation
     >>> issubclass(TokenizationOperation, Operation)
     True
-    >>> def a_function():    pass
-    >>> TokenizationOperation(description="some description", algorithm=a_function())
-    TokenizationOperation(description='some description', algorithm=None)
+    >>> tok = TokenizationOperation(data_input="some input data")
     """
 
 
@@ -53,17 +52,17 @@ class DefaultTokenizationOperation(TokenizationOperation):
 
     >>> from cltkv1.tokenizers.word import DefaultTokenizationOperation
     >>> from cltkv1.utils.example_texts import OLD_NORSE
-    >>> tok = DefaultTokenizationOperation(operation_input=OLD_NORSE[:29])
-    >>> tok.output
-    ['Gylfi', 'konungr', 'réð', 'þar', 'löndum']
+    >>> tok = DefaultTokenizationOperation(data_input=OLD_NORSE[:29])
     >>> tok.description
-    'A basic whitespace tokenizer'
+    'Whitespace tokenizer inheriting from the NLTK'
+    >>> tok.data_output
+    ['Gylfi', 'konungr', 'réð', 'þar', 'löndum']
     """
 
-    input_type: Type[str] = ''
-    operation_input: str = None
-    description: str = field(default="A basic whitespace tokenizer")
-    algorithm: Callable = field(default=simple_regexp_tok)
+    data_input: str
+    algorithm = multilingual_word_tok.tokenize
+    description = "Whitespace tokenizer inheriting from the NLTK"
+    language = None
 
 
 @dataclass
@@ -72,14 +71,15 @@ class LatinTokenizationOperation(TokenizationOperation):
 
     >>> from cltkv1.tokenizers import LatinTokenizationOperation
     >>> from cltkv1.utils.example_texts import LATIN
-    >>> tok = LatinTokenizationOperation(operation_input=LATIN[:23])
-    >>> tok.output
+    >>> tok = LatinTokenizationOperation(data_input=LATIN[:23])
+    >>> tok.data_output
     ['Gallia', 'est', 'omnis', 'divisa']
     """
 
-    operation_input: str = None
-    description: str = field(default="The default Latin tokenizer")
-    algorithm: Callable = field(default=latin_word_tok.tokenize)
+    data_input: str
+    algorithm = latin_word_tok.tokenize
+    description = "Default tokenizer for Latin"
+    language = "lat"
 
 
 @dataclass
@@ -88,14 +88,15 @@ class GreekTokenizationOperation(TokenizationOperation):
 
     >>> from cltkv1.tokenizers import GreekTokenizationOperation
     >>> from cltkv1.utils.example_texts import GREEK
-    >>> tok = GreekTokenizationOperation(operation_input=GREEK[:23])
-    >>> tok.output
+    >>> tok = GreekTokenizationOperation(data_input=GREEK[:23])
+    >>> tok.data_output
     ['ὅτι', 'μὲν', 'ὑμεῖς', ',', 'ὦ', 'ἄνδρες']
     """
 
-    operation_input: str = None
-    description: str = field(default="The default Greek tokenizer")
-    algorithm: Callable = field(default=greek_word_tok.tokenize)
+    data_input: str
+    algorithm = greek_word_tok.tokenize
+    description = "Default Greek tokenizer"
+    language = "grc"
 
 
 @dataclass
@@ -104,14 +105,15 @@ class AkkadianTokenizationOperation(TokenizationOperation):
 
     >>> from cltkv1.tokenizers import AkkadianTokenizationOperation
     >>> from cltkv1.utils.example_texts import AKKADIAN
-    >>> tok = AkkadianTokenizationOperation(operation_input=AKKADIAN)
-    >>> tok.output
+    >>> tok = AkkadianTokenizationOperation(data_input=AKKADIAN)
+    >>> tok.data_output
     [('u2-wa-a-ru', 'akkadian'), ('at-ta', 'akkadian'), ('e2-kal2-la-ka', 'akkadian'), ('_e2_-ka', 'sumerian'), ('wu-e-er', 'akkadian')]
     """
 
-    operation_input: str = None
-    description: str = field(default="The default Akkadian tokenizer")
-    algorithm: Callable = field(default=akkadian_word_tok.tokenize)
+    data_input: str
+    algorithm = akkadian_word_tok.tokenize
+    description = "Default Akkadian tokenizer"
+    language = "akk"
 
 
 @dataclass
@@ -120,14 +122,15 @@ class OldNorseTokenizationOperation(TokenizationOperation):
 
     >>> from cltkv1.tokenizers import OldNorseTokenizationOperation
     >>> from cltkv1.utils.example_texts import OLD_NORSE
-    >>> tok = OldNorseTokenizationOperation(operation_input=OLD_NORSE[:29])
-    >>> tok.output
+    >>> tok = OldNorseTokenizationOperation(data_input=OLD_NORSE[:29])
+    >>> tok.data_output
     ['Gylfi', 'konungr', 'réð', 'þar', 'löndum']
     """
 
-    operation_input: str = None
-    description: str = field(default="The default Old Norse tokenizer")
-    algorithm: Callable = field(default=old_norse_word_tok.tokenize)
+    data_input: str
+    algorithm = old_norse_word_tok.tokenize
+    description = "Default Old Norse tokenizer"
+    language = "non"
 
 
 @dataclass
@@ -136,14 +139,15 @@ class MHGTokenizationOperation(TokenizationOperation):
 
     >>> from cltkv1.tokenizers import MHGTokenizationOperation
     >>> from cltkv1.utils.example_texts import MIDDLE_HIGH_GERMAN
-    >>> tok = MHGTokenizationOperation(operation_input=MIDDLE_HIGH_GERMAN[:29])
-    >>> tok.output
+    >>> tok = MHGTokenizationOperation(data_input=MIDDLE_HIGH_GERMAN[:29])
+    >>> tok.data_output
     ['Ik', 'gihorta', 'ðat', 'seggen', 'ðat', 'sih']
     """
 
-    operation_input: str = None
-    description: str = field(default="The default Middle High German tokenizer")
-    algorithm: Callable = field(default=middle_high_german_word_tok.tokenize)
+    data_input: str
+    algorithm = middle_high_german_word_tok.tokenize
+    description = "The default Middle High German tokenizer"
+    language = "gmh"
 
 
 @dataclass
@@ -152,14 +156,15 @@ class ArabicTokenizationOperation(TokenizationOperation):
 
     >>> from cltkv1.tokenizers import ArabicTokenizationOperation
     >>> from cltkv1.utils.example_texts import ARABIC
-    >>> tok = ArabicTokenizationOperation(operation_input=ARABIC[:34])
-    >>> tok.output
+    >>> tok = ArabicTokenizationOperation(data_input=ARABIC[:34])
+    >>> tok.data_output
     ['كهيعص', '﴿', '١', '﴾', 'ذِكْرُ', 'رَحْمَتِ', 'رَبِّكَ']
     """
 
-    operation_input: str = None
-    description: str = field(default="The default Arabic tokenizer")
-    algorithm: Callable = field(default=arabic_word_tok.tokenize)
+    data_input: str
+    algorithm = arabic_word_tok.tokenize
+    description = "Default Arabic tokenizer"
+    language = "arb"
 
 
 @dataclass
@@ -168,14 +173,15 @@ class OldFrenchTokenizationOperation(TokenizationOperation):
 
     >>> from cltkv1.tokenizers import OldFrenchTokenizationOperation
     >>> from cltkv1.utils.example_texts import OLD_FRENCH
-    >>> tok = OldFrenchTokenizationOperation(operation_input=OLD_FRENCH[:37])
-    >>> tok.output
+    >>> tok = OldFrenchTokenizationOperation(data_input=OLD_FRENCH[:37])
+    >>> tok.data_output
     ['Une', 'aventure', 'vos', 'voil', 'dire', 'Molt', 'bien']
     """
 
-    operation_input: str = None
-    description: str = field(default="The default Old French tokenizer")
-    algorithm: Callable = field(default=old_french_word_tok.tokenize)
+    data_input: str
+    algorithm = old_french_word_tok.tokenize
+    description = "Default Old French tokenizer"
+    language = "fro"
 
 
 @dataclass
@@ -184,14 +190,15 @@ class MiddleFrenchTokenizationOperation(TokenizationOperation):
 
     >>> from cltkv1.tokenizers import MiddleFrenchTokenizationOperation
     >>> from cltkv1.utils.example_texts import MIDDLE_FRENCH
-    >>> tok = MiddleFrenchTokenizationOperation(operation_input=MIDDLE_FRENCH[:37])
-    >>> tok.output
+    >>> tok = MiddleFrenchTokenizationOperation(data_input=MIDDLE_FRENCH[:37])
+    >>> tok.data_output
     ['Attilius', 'Regulus', ',', 'general', 'de', "l'", 'armée']
     """
 
-    operation_input: str = None
-    description: str = field(default="The default Middle French tokenizer")
-    algorithm: Callable = field(default=middle_french_word_tok.tokenize)
+    data_input: str
+    algorithm = middle_french_word_tok.tokenize
+    description = "Default Middle French tokenizer"
+    language = "frm"
 
 
 @dataclass
@@ -200,14 +207,15 @@ class MiddleEnglishTokenizationOperation(TokenizationOperation):
 
     >>> from cltkv1.tokenizers import MiddleEnglishTokenizationOperation
     >>> from cltkv1.utils.example_texts import MIDDLE_ENGLISH
-    >>> tok = MiddleEnglishTokenizationOperation(operation_input=MIDDLE_ENGLISH[:31])
-    >>> tok.output
+    >>> tok = MiddleEnglishTokenizationOperation(data_input=MIDDLE_ENGLISH[:31])
+    >>> tok.data_output
     ['Whilom', ',', 'as', 'olde', 'stories', 'tellen']
     """
 
-    operation_input: str = None
-    description: str = field(default="The default Middle English tokenizer")
-    algorithm: Callable = field(default=middle_english_word_tok.tokenize)
+    data_input: str
+    algorithm = middle_english_word_tok.tokenize
+    description = "Default Middle English tokenizer"
+    language = "enm"
 
 
 @dataclass
@@ -216,11 +224,12 @@ class SanskritTokenizationOperation(TokenizationOperation):
 
     >>> from cltkv1.tokenizers import SanskritTokenizationOperation
     >>> from cltkv1.utils.example_texts import SANSKRIT
-    >>> tok = SanskritTokenizationOperation(operation_input=SANSKRIT[:31])
-    >>> tok.output
+    >>> tok = SanskritTokenizationOperation(data_input=SANSKRIT[:31])
+    >>> tok.data_output
     ['ईशा', 'वास्यम्', 'इदं', 'सर्वं', 'यत्', 'किञ्च']
     """
 
-    operation_input: str = None
-    description: str = field(default="The default Middle English tokenizer")
-    algorithm: Callable = field(default=sanskrit_word_tok.tokenize)
+    data_input: str
+    algorithm: Callable = sanskrit_word_tok.tokenize
+    description = "The default Middle English tokenizer"
+    language = "san"

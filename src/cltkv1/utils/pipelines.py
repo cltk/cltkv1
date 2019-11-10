@@ -23,9 +23,9 @@ class DefaultPipeline(Pipeline):
     >>> a_pipeline = DefaultPipeline(description="Pipeline for some language", execution_order=[DefaultTokenizationOperation], language=LANGUAGES["ett"])
     >>> a_pipeline.description
     'Pipeline for some language'
-    >>> etruscan = "laris velkasna[s mini muluvanice] menervas"
+    >>> etruscan = "laris velkasnas mini muluvanice menervas"
     >>> for operation in a_pipeline.execution_order:    print(operation.algorithm(etruscan))
-    ['laris', 'velkasna', 's', 'mini', 'muluvanice', 'menervas']
+    ['laris', 'velkasnas', 'mini', 'muluvanice', 'menervas']
     """
 
 
@@ -41,9 +41,9 @@ class LatinPipeline(Pipeline):
     Language(name='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso639P3code='lat', type='a')
     >>> a_pipeline.language.name
     'Latin'
-    >>> etruscan = "laris velkasna[s mini muluvanice] menervas"
+    >>> etruscan = "laris velkasnas mini muluvanice menervas"
     >>> for operation in a_pipeline.execution_order:    print(operation.algorithm(etruscan))
-    ['laris', 'velkasna', 's', 'mini', 'muluvanice', 'menervas']
+    ['laris', 'velkasnas', 'mini', 'muluvanice', 'menervas']
     """
     word_tokenizer = LatinTokenizationOperation
     language: Language = LANGUAGES["lat"]
