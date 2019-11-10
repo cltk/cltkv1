@@ -4,7 +4,7 @@ About: https://github.com/stanfordnlp/stanfordnlp.
 
 from dataclasses import dataclass
 import os
-from typing import Dict, Optional
+from typing import Dict, Optional, Callable
 
 import stanfordnlp  # type: ignore
 
@@ -15,21 +15,6 @@ from cltkv1.utils import (
     suppress_stdout,
 )
 from cltkv1.utils.data_types import MultiOperation
-
-
-@dataclass
-class StanfordNLPOperation(MultiOperation):
-    """An ``Operation`` type to capture everything
-    that the ``stanfordnlp`` project can do for a
-    given language.
-
-    .. note::
-       Note that ``stanfordnlp` has
-       only partial functionality available for
-       some languages.
-
-    """
-    pass
 
 
 class StanfordNLPWrapper:
@@ -54,7 +39,7 @@ class StanfordNLPWrapper:
         >>> stanford_wrapper_perseus.treebank
         'grc_perseus'
 
-        >>> xen_anab_nlp = stanford_wrapper.parse(example_texts.GREEK)
+        >>> greek_nlp = stanford_wrapper.parse(example_texts.GREEK)
 
         >>> stanford_nlp_obj_bad = StanfordNLPWrapper(language='BADLANG')
         Traceback (most recent call last):
@@ -65,6 +50,7 @@ class StanfordNLPWrapper:
         self.treebank = treebank
 
         # Setup language
+        # TODO: SWitch cltk to ISO ids
         self.map_langs_cltk_stanford = dict(
             greek="Ancient_Greek",
             latin="Latin",
@@ -85,10 +71,11 @@ class StanfordNLPWrapper:
         self.map_code_treebanks = dict(
             grc=["grc_proiel", "grc_perseus"], la=["la_perseus", "la_proiel"]
         )
-        # if not specified, will use the default treebank of stanfordnlp
+        # if not specified, will use the default treebank chosen by stanfordnlp
         if self.treebank:
             valid_treebank = self._is_valid_treebank()
             if not valid_treebank:
+                # TODO: change this to a more general CLTK error
                 raise UnknownLanguageError(
                     "Invalid treebank '{0}' for language '{1}'.".format(
                         self.treebank, self.language
@@ -98,7 +85,9 @@ class StanfordNLPWrapper:
             self.treebank = self._get_default_treebank()
 
         # check if model present
-        # this fp is just to confirm that some model has already been downloaded. This is a weak check for the models actually being downloaded and valid
+        # this fp is just to confirm that some model has already been downloaded.
+        # TODO: This is a weak check for the models actually being downloaded and valid
+        # TODO: Use ``models_dir`` var from below and make self. or global to module
         self.model_path = os.path.expanduser(
             "~/stanfordnlp_resources/{0}_models/{0}_tokenizer.pt".format(self.treebank)
         )
@@ -115,19 +104,19 @@ class StanfordNLPWrapper:
             self.nlp = self._load_pipeline()
 
     def parse(self, text: str):
-        """Run all ``stanfordnlp`` parsing on op_input text.
+        """Run all available ``stanfordnlp`` parsing on input text.
 
         >>> stanford_wrapper = StanfordNLPWrapper(language='greek')
-        >>> xen_anab_nlp = stanford_wrapper.parse(example_texts.GREEK)
-        >>> isinstance(xen_anab_nlp, stanfordnlp.pipeline.doc.Document)
+        >>> greek_nlp = stanford_wrapper.parse(example_texts.GREEK)
+        >>> isinstance(greek_nlp, stanfordnlp.pipeline.doc.Document)
         True
 
-        >>> nlp_xen_anab_first_sent = xen_anab_nlp.sentences[0]
-        >>> nlp_xen_anab_first_sent.tokens[0].index
+        >>> nlp_greek_first_sent = greek_nlp.sentences[0]
+        >>> nlp_greek_first_sent.tokens[0].index
         '1'
-        >>> nlp_xen_anab_first_sent.tokens[0].text
+        >>> nlp_greek_first_sent.tokens[0].text
         'ὅτι'
-        >>> first_word = nlp_xen_anab_first_sent.tokens[0].words[0]
+        >>> first_word = nlp_greek_first_sent.tokens[0].words[0]
         >>> first_word.dependency_relation
         'advmod'
         >>> first_word.feats
@@ -271,6 +260,27 @@ class StanfordNLPWrapper:
             return stanford_lang_code[stanford_lang_name]
         except KeyError:
             raise KeyError
+
+
+@dataclass
+class StanfordNLPOperation(MultiOperation):
+    """An ``Operation`` type to capture everything
+    that the ``stanfordnlp`` project can do for a
+    given language.
+
+    .. note::
+       Note that ``stanfordnlp` has
+       only partial functionality available for
+       some languages.
+
+    >>> from cltkv1.wrappers.stanford import StanfordNLPOperation
+    >>> snlp = StanfordNLPOperation(language="greek", data_input="Δαρείου καὶ Παρυσάτιδος γίγνονται παῖδες δύο")
+    >>> snlp
+    """
+    data_input: str
+    language: str
+    # algorithm = StanfordNLPWrapper(language).parse
+    description = "Operation for all StanfordNLP parsing"
 
 
 if __name__ == "__main__":
