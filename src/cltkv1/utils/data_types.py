@@ -91,6 +91,19 @@ class Operation:
             raise NotImplementedError
 
 
+@dataclass
+class MultiOperation(Operation):
+    """A class to be called directly or inherited from when
+    a particular NLP algo does more than one process, such
+    as tokenization and tagging together.
+
+    >>> def multi_fn(_str: str) -> List[str]:    return _str.upper().split()
+    >>> a_multi_operation = MultiOperation(data_input="Some words for processing.", algorithm=multi_fn)
+    >>> a_multi_operation.data_output
+    ['SOME', 'WORDS', 'FOR', 'PROCESSING.']
+    """
+    algorithm: Callable
+
 
 @dataclass
 class Doc:
