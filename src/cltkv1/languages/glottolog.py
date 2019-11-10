@@ -37,7 +37,7 @@ Language(name='Akkadian', glottolog_id='akka1240', latitude=33.1, longitude=44.1
 >>> akkadian.parent_id
 'east2678'
 >>> len(LANGUAGES)
-207
+208
 >>> from collections import OrderedDict
 >>> alpha_sorted_langs = OrderedDict(sorted(LANGUAGES.items(), key=lambda x: x[1].name))
 >>> for iso_id, lang in alpha_sorted_langs.items():
@@ -233,6 +233,7 @@ svx   Skalvian
 sog   Sogdian
 sxo   Sorothaptic
 spx   South Picene
+arb   Standard Arabic
 sux   Sumerian
 txg   Tangut
 txr   Tartessian
@@ -3384,3 +3385,21 @@ LANGUAGES = OrderedDict(
         ),
     ]
 )
+
+
+# Extra languages in-scope for the CLTK but which are not labeled historical or ancient by Glottolog
+
+LANGUAGES["arb"] = Language(
+    name="Standard Arabic",
+    glottolog_id="stan1318",
+    latitude=27.9625,
+    longitude=43.8525,
+    dates=[],
+    family_id="afro1255",
+    parent_id="arab1395",
+    level="language",
+    iso639P3code="arb",
+    type="",
+)
+
+# TODO: resort according to key
