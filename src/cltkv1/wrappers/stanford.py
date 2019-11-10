@@ -2,6 +2,7 @@
 About: https://github.com/stanfordnlp/stanfordnlp.
 """
 
+from dataclasses import dataclass
 import os
 from typing import Dict, Optional
 
@@ -14,6 +15,21 @@ from cltkv1.utils import (
     suppress_stdout,
 )
 from cltkv1.utils.data_types import MultiOperation
+
+
+@dataclass
+class StanfordNLPOperation(MultiOperation):
+    """An ``Operation`` type to capture everything
+    that the ``stanfordnlp`` project can do for a
+    given language.
+
+    .. note::
+       Note that ``stanfordnlp` has
+       only partial functionality available for
+       some languages.
+
+    """
+    pass
 
 
 class StanfordNLPWrapper:
