@@ -74,17 +74,22 @@ class Operation:
     This base class is intended to be inherited by NLP operation
     types (e.g., ``TokenizationOperation`` or ``DependencyOperation``).
 
-    >>> def a_function():    pass
-    >>> Operation(description="abstract operation", algorithm=a_function())
-    Operation(description='abstract operation', algorithm=None)
+    >>> an_operation = Operation(data_input="input words here")
     """
 
-    description: str
-    algorithm: Callable
+    data_input: Any
+    algorithm = None
+    language = None
 
     @property
-    def output(self):
-        return self.algorithm(self.operation_input)
+    def data_output(self):
+        """Attribute for subclassed ``Operation`` objects to return
+        ``data_input`` that has been processed by the ``algorithm``.
+        """
+        if self.algorithm:
+            return self.algorithm(self.data_input)
+        else:
+            raise NotImplementedError
 
 
 @dataclass
