@@ -18,6 +18,8 @@ class UnknownLanguageError(CLTKException):
     """Exception for when a user requests an NLP method that is not
     supported.
 
+    TODO: Mk separate exceptions for unknown lang vs unimplemented operation for a known lang
+
     >>> from cltkv1.utils.exceptions import UnknownLanguageError
     >>> raise UnknownLanguageError
     Traceback (most recent call last):

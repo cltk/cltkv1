@@ -1,4 +1,7 @@
-"""Module for tokenizers."""
+"""Module for tokenizers.
+
+TODO: Think about adding check somewhere if a contrib (not user) chooses an unavailable item
+"""
 
 import re
 from dataclasses import dataclass, field
@@ -6,19 +9,21 @@ from typing import Callable, List, Tuple, Type
 
 from cltk.tokenize.word import WordTokenizer as WordTokenizer
 
+from cltkv1.languages.glottolog import get_lang, LANGUAGES
 from cltkv1.utils.data_types import Operation, Word
+from cltkv1.utils.exceptions import UnknownLanguageError
 
-akkadian_word_tok = WordTokenizer(language="akkadian")
-arabic_word_tok = WordTokenizer(language="arabic")
-greek_word_tok = WordTokenizer(language="greek")
-latin_word_tok = WordTokenizer(language="latin")
-middle_english_word_tok = WordTokenizer(language="middle_english")
-middle_french_word_tok = WordTokenizer(language="middle_french")
-middle_high_german_word_tok = WordTokenizer(language="middle_high_german")
-multilingual_word_tok = WordTokenizer(language="multilingual")
-old_french_word_tok = WordTokenizer(language="old_french")
-old_norse_word_tok = WordTokenizer(language="old_norse")
-sanskrit_word_tok = WordTokenizer(language="sanskrit")
+AKKADIAN_WORD_TOK = WordTokenizer(language="akkadian")
+ARABIC_WORD_TOK = WordTokenizer(language="arabic")
+GREEK_WORD_TOK = WordTokenizer(language="greek")
+LATIN_WORD_TOK = WordTokenizer(language="latin")
+MIDDLE_ENGLISH_WORD_TOK = WordTokenizer(language="middle_english")
+MIDDLE_FRENCH_WORD_TOK = WordTokenizer(language="middle_french")
+MIDDLE_HIGH_GERMAN_WORD_TOK = WordTokenizer(language="middle_high_german")
+MULTILINGUAL_WORD_TOK = WordTokenizer(language="multilingual")
+OLD_FRENCH_WORD_TOK = WordTokenizer(language="old_french")
+OLD_NORSE_WORD_TOK = WordTokenizer(language="old_norse")
+SANSKRIT_WORD_TOK = WordTokenizer(language="sanskrit")
 
 
 @dataclass
@@ -33,17 +38,7 @@ class TokenizationOperation(Operation):
     True
     >>> tok = TokenizationOperation(data_input="some input data")
     """
-
-
-def simple_regexp_tok(input_str: str) -> List[str]:
-    """Simple regexp tokenizer for illustration.
-
-    >>> from cltkv1.tokenizers.word import simple_regexp_tok
-    >>> from cltkv1.utils.example_texts import OLD_NORSE
-    >>> simple_regexp_tok(input_str=OLD_NORSE[:29])
-    ['Gylfi', 'konungr', 'réð', 'þar', 'löndum']
-    """
-    return re.findall("[A-Z]{2,}(?![a-z])|[A-Z][a-z]+(?=[A-Z])|['\w\-]+", input_str)
+    language = None
 
 
 @dataclass
@@ -60,7 +55,7 @@ class DefaultTokenizationOperation(TokenizationOperation):
     """
 
     data_input: str
-    algorithm = multilingual_word_tok.tokenize
+    algorithm = MULTILINGUAL_WORD_TOK.tokenize
     description = "Whitespace tokenizer inheriting from the NLTK"
     language = None
 
@@ -77,7 +72,7 @@ class LatinTokenizationOperation(TokenizationOperation):
     """
 
     data_input: str
-    algorithm = latin_word_tok.tokenize
+    algorithm = LATIN_WORD_TOK.tokenize
     description = "Default tokenizer for Latin"
     language = "lat"
 
@@ -94,7 +89,7 @@ class GreekTokenizationOperation(TokenizationOperation):
     """
 
     data_input: str
-    algorithm = greek_word_tok.tokenize
+    algorithm = GREEK_WORD_TOK.tokenize
     description = "Default Greek tokenizer"
     language = "grc"
 
@@ -111,7 +106,7 @@ class AkkadianTokenizationOperation(TokenizationOperation):
     """
 
     data_input: str
-    algorithm = akkadian_word_tok.tokenize
+    algorithm = AKKADIAN_WORD_TOK.tokenize
     description = "Default Akkadian tokenizer"
     language = "akk"
 
@@ -128,7 +123,7 @@ class OldNorseTokenizationOperation(TokenizationOperation):
     """
 
     data_input: str
-    algorithm = old_norse_word_tok.tokenize
+    algorithm = OLD_NORSE_WORD_TOK.tokenize
     description = "Default Old Norse tokenizer"
     language = "non"
 
@@ -145,7 +140,7 @@ class MHGTokenizationOperation(TokenizationOperation):
     """
 
     data_input: str
-    algorithm = middle_high_german_word_tok.tokenize
+    algorithm = MIDDLE_HIGH_GERMAN_WORD_TOK.tokenize
     description = "The default Middle High German tokenizer"
     language = "gmh"
 
@@ -162,7 +157,7 @@ class ArabicTokenizationOperation(TokenizationOperation):
     """
 
     data_input: str
-    algorithm = arabic_word_tok.tokenize
+    algorithm = ARABIC_WORD_TOK.tokenize
     description = "Default Arabic tokenizer"
     language = "arb"
 
@@ -179,7 +174,7 @@ class OldFrenchTokenizationOperation(TokenizationOperation):
     """
 
     data_input: str
-    algorithm = old_french_word_tok.tokenize
+    algorithm = OLD_FRENCH_WORD_TOK.tokenize
     description = "Default Old French tokenizer"
     language = "fro"
 
@@ -196,7 +191,7 @@ class MiddleFrenchTokenizationOperation(TokenizationOperation):
     """
 
     data_input: str
-    algorithm = middle_french_word_tok.tokenize
+    algorithm = MIDDLE_FRENCH_WORD_TOK.tokenize
     description = "Default Middle French tokenizer"
     language = "frm"
 
@@ -213,7 +208,7 @@ class MiddleEnglishTokenizationOperation(TokenizationOperation):
     """
 
     data_input: str
-    algorithm = middle_english_word_tok.tokenize
+    algorithm = MIDDLE_ENGLISH_WORD_TOK.tokenize
     description = "Default Middle English tokenizer"
     language = "enm"
 
@@ -230,6 +225,6 @@ class SanskritTokenizationOperation(TokenizationOperation):
     """
 
     data_input: str
-    algorithm: Callable = sanskrit_word_tok.tokenize
+    algorithm: Callable = SANSKRIT_WORD_TOK.tokenize
     description = "The default Middle English tokenizer"
     language = "san"
