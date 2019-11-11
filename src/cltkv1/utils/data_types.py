@@ -74,6 +74,8 @@ class Operation:
     This base class is intended to be inherited by NLP operation
     types (e.g., ``TokenizationOperation`` or ``DependencyOperation``).
 
+    TODO: Rename ``Operation`` here and in all subclasses to ``Process``
+
     >>> an_operation = Operation(data_input="input words here")
     """
 
