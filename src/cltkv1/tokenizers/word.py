@@ -10,7 +10,7 @@ from typing import Callable, List, Tuple, Type
 from cltk.tokenize.word import WordTokenizer as WordTokenizer
 
 from cltkv1.languages.glottolog import get_lang, LANGUAGES
-from cltkv1.utils.data_types import Operation, Word
+from cltkv1.utils.data_types import Process, Word
 from cltkv1.utils.exceptions import UnknownLanguageError
 
 AKKADIAN_WORD_TOK = WordTokenizer(language="akkadian")
@@ -27,22 +27,22 @@ SANSKRIT_WORD_TOK = WordTokenizer(language="sanskrit")
 
 
 @dataclass
-class TokenizationOperation(Operation):
+class TokenizationProcess(Process):
     """To be inherited for each language's tokenization declarations.
 
     Example: ``TokenizationOperation`` -> ``LatinTokenizationOperation``
 
-    >>> from cltkv1.tokenizers.word import TokenizationOperation
-    >>> from cltkv1.utils.data_types import Operation
-    >>> issubclass(TokenizationOperation, Operation)
+    >>> from cltkv1.tokenizers.word import TokenizationProcess
+    >>> from cltkv1.utils.data_types import Process
+    >>> issubclass(TokenizationProcess, Process)
     True
-    >>> tok = TokenizationOperation(data_input="some input data")
+    >>> tok = TokenizationProcess(data_input="some input data")
     """
     language = None
 
 
 @dataclass
-class DefaultTokenizationOperation(TokenizationOperation):
+class DefaultTokenizationOperation(TokenizationProcess):
     """The default tokenization algorithm.
 
     >>> from cltkv1.tokenizers.word import DefaultTokenizationOperation
@@ -61,7 +61,7 @@ class DefaultTokenizationOperation(TokenizationOperation):
 
 
 @dataclass
-class LatinTokenizationOperation(TokenizationOperation):
+class LatinTokenizationOperation(TokenizationProcess):
     """The default Latin tokenization algorithm.
 
     >>> from cltkv1.tokenizers import LatinTokenizationOperation
@@ -78,7 +78,7 @@ class LatinTokenizationOperation(TokenizationOperation):
 
 
 @dataclass
-class GreekTokenizationOperation(TokenizationOperation):
+class GreekTokenizationOperation(TokenizationProcess):
     """The default Greek tokenization algorithm.
 
     >>> from cltkv1.tokenizers import GreekTokenizationOperation
@@ -95,7 +95,7 @@ class GreekTokenizationOperation(TokenizationOperation):
 
 
 @dataclass
-class AkkadianTokenizationOperation(TokenizationOperation):
+class AkkadianTokenizationOperation(TokenizationProcess):
     """The default Akkadian tokenization algorithm.
 
     >>> from cltkv1.tokenizers import AkkadianTokenizationOperation
@@ -112,7 +112,7 @@ class AkkadianTokenizationOperation(TokenizationOperation):
 
 
 @dataclass
-class OldNorseTokenizationOperation(TokenizationOperation):
+class OldNorseTokenizationOperation(TokenizationProcess):
     """The default OldNorse tokenization algorithm.
 
     >>> from cltkv1.tokenizers import OldNorseTokenizationOperation
@@ -129,7 +129,7 @@ class OldNorseTokenizationOperation(TokenizationOperation):
 
 
 @dataclass
-class MHGTokenizationOperation(TokenizationOperation):
+class MHGTokenizationOperation(TokenizationProcess):
     """The default Middle High German tokenization algorithm.
 
     >>> from cltkv1.tokenizers import MHGTokenizationOperation
@@ -146,7 +146,7 @@ class MHGTokenizationOperation(TokenizationOperation):
 
 
 @dataclass
-class ArabicTokenizationOperation(TokenizationOperation):
+class ArabicTokenizationOperation(TokenizationProcess):
     """The default Arabic tokenization algorithm.
 
     >>> from cltkv1.tokenizers import ArabicTokenizationOperation
@@ -163,7 +163,7 @@ class ArabicTokenizationOperation(TokenizationOperation):
 
 
 @dataclass
-class OldFrenchTokenizationOperation(TokenizationOperation):
+class OldFrenchTokenizationOperation(TokenizationProcess):
     """The default Old French tokenization algorithm.
 
     >>> from cltkv1.tokenizers import OldFrenchTokenizationOperation
@@ -180,7 +180,7 @@ class OldFrenchTokenizationOperation(TokenizationOperation):
 
 
 @dataclass
-class MiddleFrenchTokenizationOperation(TokenizationOperation):
+class MiddleFrenchTokenizationOperation(TokenizationProcess):
     """The default Middle French tokenization algorithm.
 
     >>> from cltkv1.tokenizers import MiddleFrenchTokenizationOperation
@@ -197,7 +197,7 @@ class MiddleFrenchTokenizationOperation(TokenizationOperation):
 
 
 @dataclass
-class MiddleEnglishTokenizationOperation(TokenizationOperation):
+class MiddleEnglishTokenizationOperation(TokenizationProcess):
     """The default Middle English tokenization algorithm.
 
     >>> from cltkv1.tokenizers import MiddleEnglishTokenizationOperation
@@ -214,7 +214,7 @@ class MiddleEnglishTokenizationOperation(TokenizationOperation):
 
 
 @dataclass
-class SanskritTokenizationOperation(TokenizationOperation):
+class SanskritTokenizationOperation(TokenizationProcess):
     """The default Middle English tokenization algorithm.
 
     >>> from cltkv1.tokenizers import SanskritTokenizationOperation

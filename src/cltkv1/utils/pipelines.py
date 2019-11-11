@@ -11,7 +11,7 @@ from typing import Callable, List, Type
 
 from cltkv1 import DefaultTokenizationOperation, LatinTokenizationOperation
 from cltkv1.languages.glottolog import LANGUAGES
-from cltkv1.utils.data_types import Doc, Language, Operation, Pipeline, Word
+from cltkv1.utils.data_types import Doc, Language, Process, Pipeline, Word
 
 
 @dataclass
@@ -48,4 +48,4 @@ class LatinPipeline(Pipeline):
 
     word_tokenizer = LatinTokenizationOperation
     language: Language = LANGUAGES["lat"]
-    execution_order: List[Type[Operation]] = field(default_factory=[word_tokenizer])
+    execution_order: List[Type[Process]] = field(default_factory=[word_tokenizer])

@@ -18,11 +18,11 @@
 In the following, I propose these new data types:
 
    - ``Language``: Simple, just a place to hold attributes about a language. Can be referenced within
-   ``Operation`` or ``Pipeline`` (e.g., ``LatinPipeline.language == LatinLanguage == True``).
+   ``Process`` or ``Pipeline`` (e.g., ``LatinPipeline.language == LatinLanguage == True``).
 
-   - ``Operation``: One for each type of NLP algo we cover (e.g., tokenization, sentence splitting, pos tagging,
+   - ``Process``: One for each type of NLP algo we cover (e.g., tokenization, sentence splitting, pos tagging,
    dependency, phonetics, prosody, etc.). Each of these is the subclassed for each language (e.g,
-   ``TokenizationOperation`` <- ``LatinTokenizationOperation``). Here is defined the code to be used for a given
+   ``TokenizationProcess`` <- ``LatinTokenizationOperation``). Here is defined the code to be used for a given
    operation, plus documenting a bit more about it (I/O, description, description).
 
    - ``Word``: This holds basic information for each token (start/end character indices, sentence index occurring
@@ -76,7 +76,7 @@ def dummy_get_token_indices(text: str) -> List[List[int]]:
 class TokenizationOperation(Operation):
     """To be inherited for each language's tokenization declaration.
 
-    Example: ``TokenizationOperation`` <- ``LatinTokenizationOperation``
+    Example: ``TokenizationProcess`` <- ``LatinTokenizationOperation``
     """
 
     type = "tokenization"

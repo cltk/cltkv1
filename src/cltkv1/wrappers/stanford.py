@@ -14,7 +14,7 @@ from cltkv1.utils import (
     file_exists,
     suppress_stdout,
 )
-from cltkv1.utils.data_types import MultiOperation
+from cltkv1.utils.data_types import MultiProcess
 
 
 class StanfordNLPWrapper:

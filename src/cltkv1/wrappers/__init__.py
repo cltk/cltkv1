@@ -5,8 +5,8 @@ from .stanford import *
 from cltkv1.utils.data_types import Doc, Word
 
 
-class StanfordNLPOperation(MultiOperation):
-    """An ``Operation`` type to capture everything
+class StanfordNLPOperation(MultiProcess):
+    """An ``Process`` type to capture everything
     that the ``stanfordnlp`` project can do for a
     given language.
 

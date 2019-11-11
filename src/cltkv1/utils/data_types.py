@@ -2,7 +2,7 @@
 of the NLP pipeline.
 
 >>> from cltkv1.utils.data_types import Word
->>> from cltkv1.utils.data_types import Operation
+>>> from cltkv1.utils.data_types import Process
 >>> from cltkv1.utils.data_types import Doc
 >>> from cltkv1.utils.data_types import Language
 """
@@ -67,7 +67,7 @@ class Word:
 
 
 @dataclass
-class Operation:
+class Process:
     """For each type of NLP operation there needs to be a definition.
     It includes the type of data it expects (``str``, ``List[str]``,
     ``Word``, etc.) and what field within ``Word`` it will populate.
@@ -76,7 +76,7 @@ class Operation:
 
     TODO: Rename ``Operation`` here and in all subclasses to ``Process``
 
-    >>> an_operation = Operation(data_input="input words here")
+    >>> an_operation = Process(data_input="input words here")
     """
 
     data_input: Any
@@ -85,7 +85,7 @@ class Operation:
 
     @property
     def data_output(self):
-        """Attribute for subclassed ``Operation`` objects to return
+        """Attribute for subclassed ``Process`` objects to return
         ``data_input`` that has been processed by the ``algorithm``.
         """
         if self.algorithm:
@@ -95,13 +95,13 @@ class Operation:
 
 
 @dataclass
-class MultiOperation(Operation):
+class MultiProcess(Process):
     """A class to be called directly or inherited from when
     a particular NLP algo does more than one process, such
     as tokenization and tagging together.
 
     >>> def multi_fn(_str: str) -> List[str]:    return _str.upper().split()
-    >>> a_multi_operation = MultiOperation(data_input="Some words for processing.", algorithm=multi_fn)
+    >>> a_multi_operation = MultiProcess(data_input="Some words for processing.", algorithm=multi_fn)
     >>> a_multi_operation.data_output
     ['SOME', 'WORDS', 'FOR', 'PROCESSING.']
     """
@@ -120,7 +120,7 @@ class Doc:
     indices_tokens: List[List[int]] = None
     language: str = None
     tokens: List[Word] = None
-    pipeline: List[Operation] = None
+    pipeline: List[Process] = None
     raw: str = None
 
 
@@ -130,16 +130,16 @@ class Pipeline:
 
     # TODO: Consider adding a Unicode normalization as a default first Operation
 
-    >>> from cltkv1.utils.data_types import Operation, Pipeline
+    >>> from cltkv1.utils.data_types import Process, Pipeline
     >>> from cltkv1.languages.glottolog import LANGUAGES
     >>> from cltkv1.tokenizers import LatinTokenizationOperation
     >>> a_pipeline = Pipeline(description="an abstract pipeline", execution_order=[LatinTokenizationOperation], language=LANGUAGES["lat"])
     >>> a_pipeline.description
     'an abstract pipeline'
-    >>> issubclass(a_pipeline.execution_order[0], Operation)
+    >>> issubclass(a_pipeline.execution_order[0], Process)
     True
     """
 
     description: str
-    execution_order: List[Type[Operation]]
+    execution_order: List[Type[Process]]
     language: Language
