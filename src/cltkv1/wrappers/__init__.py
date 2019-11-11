@@ -5,7 +5,7 @@ from .stanford import *
 from cltkv1.utils.data_types import Doc, Word
 
 
-class StanfordNLPOperation(MultiProcess):
+class StanfordNLPProcess(MultiProcess):
     """An ``Process`` type to capture everything
     that the ``stanfordnlp`` project can do for a
     given language.
@@ -15,13 +15,13 @@ class StanfordNLPOperation(MultiProcess):
        only partial functionality available for
        some languages.
 
-    >>> from cltkv1.wrappers import StanfordNLPOperation
+    >>> from cltkv1.wrappers import StanfordNLPProcess
     >>> from cltkv1.utils.example_texts import LATIN
-    >>> operation_stanford = StanfordNLPOperation(data_input=LATIN, language="lat")
-    >>> from cltkv1.wrappers import StanfordNLPOperation
-    >>> isinstance(operation_stanford, StanfordNLPOperation)
+    >>> process_stanford = StanfordNLPProcess(data_input=LATIN, language="lat")
+    >>> from cltkv1.wrappers import StanfordNLPProcess
+    >>> isinstance(process_stanford, StanfordNLPProcess)
     True
-    >>> stanford_nlp_doc = operation_stanford.nlp_doc_stanford
+    >>> stanford_nlp_doc = process_stanford.nlp_doc_stanford
     >>> from stanfordnlp.pipeline.doc import Document
     >>> isinstance(stanford_nlp_doc, Document)
     True
@@ -44,10 +44,10 @@ class StanfordNLPOperation(MultiProcess):
         each word, and encode it in the way expected in
         the CLTK's ``Word`` type.
 
-        >>> from cltkv1.wrappers import StanfordNLPOperation
+        >>> from cltkv1.wrappers import StanfordNLPProcess
         >>> from cltkv1.utils.example_texts import LATIN
-        >>> operation_stanford = StanfordNLPOperation(data_input=LATIN, language="lat")
-        >>> cltk_words = operation_stanford.words
+        >>> process_stanford = StanfordNLPProcess(data_input=LATIN, language="lat")
+        >>> cltk_words = process_stanford.words
         >>> isinstance(cltk_words, list)
         True
         >>> isinstance(cltk_words[0], Word)

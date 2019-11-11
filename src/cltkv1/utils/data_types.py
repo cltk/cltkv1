@@ -68,15 +68,15 @@ class Word:
 
 @dataclass
 class Process:
-    """For each type of NLP operation there needs to be a definition.
+    """For each type of NLP process there needs to be a definition.
     It includes the type of data it expects (``str``, ``List[str]``,
     ``Word``, etc.) and what field within ``Word`` it will populate.
-    This base class is intended to be inherited by NLP operation
-    types (e.g., ``TokenizationOperation`` or ``DependencyOperation``).
+    This base class is intended to be inherited by NLP process
+    types (e.g., ``TokenizationProcess`` or ``DependencyProcess``).
 
-    TODO: Rename ``Operation`` here and in all subclasses to ``Process``
+    TODO: Rename ``Process`` here and in all subclasses to ``Process``
 
-    >>> an_operation = Process(data_input="input words here")
+    >>> a_process = Process(data_input="input words here")
     """
 
     data_input: Any
@@ -101,8 +101,8 @@ class MultiProcess(Process):
     as tokenization and tagging together.
 
     >>> def multi_fn(_str: str) -> List[str]:    return _str.upper().split()
-    >>> a_multi_operation = MultiProcess(data_input="Some words for processing.", algorithm=multi_fn)
-    >>> a_multi_operation.data_output
+    >>> a_multi_process = MultiProcess(data_input="Some words for processing.", algorithm=multi_fn)
+    >>> a_multi_process.data_output
     ['SOME', 'WORDS', 'FOR', 'PROCESSING.']
     """
     algorithm: Callable
@@ -128,12 +128,12 @@ class Doc:
 class Pipeline:
     """Abstract ``Pipeline`` class to be inherited.
 
-    # TODO: Consider adding a Unicode normalization as a default first Operation
+    # TODO: Consider adding a Unicode normalization as a default first Process
 
     >>> from cltkv1.utils.data_types import Process, Pipeline
     >>> from cltkv1.languages.glottolog import LANGUAGES
-    >>> from cltkv1.tokenizers import LatinTokenizationOperation
-    >>> a_pipeline = Pipeline(description="an abstract pipeline", execution_order=[LatinTokenizationOperation], language=LANGUAGES["lat"])
+    >>> from cltkv1.tokenizers import LatinTokenizationProcess
+    >>> a_pipeline = Pipeline(description="an abstract pipeline", execution_order=[LatinTokenizationProcess], language=LANGUAGES["lat"])
     >>> a_pipeline.description
     'an abstract pipeline'
     >>> issubclass(a_pipeline.execution_order[0], Process)
