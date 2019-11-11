@@ -53,7 +53,7 @@ class Word:
     >>> from cltkv1.languages.glottolog import LANGUAGES
     >>> latin = LANGUAGES["lat"]
     >>> Word(index_char_start=0, index_char_stop=6, index_token=0, string=LATIN[0:6], pos="nom")
-    Word(index_char_start=0, index_char_stop=6, index_token=0, index_sentence=None, string='Gallia', pos='nom', scansion=None)
+    Word(index_char_start=0, index_char_stop=6, index_token=0, index_sentence=None, string='Gallia', pos='nom', lemma=None, scansion=None)
     """
 
     index_char_start: int = None
