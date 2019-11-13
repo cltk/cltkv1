@@ -2,10 +2,10 @@
 
 from typing import List
 
-from cltkv1.utils.data_types import Doc, Language, Pipeline
 from cltkv1.languages.glottolog import get_lang
-from cltkv1.utils.pipelines import DefaultPipeline, LatinPipeline
+from cltkv1.utils.data_types import Doc, Language, Pipeline
 from cltkv1.utils.exceptions import UnknownLanguageError
+from cltkv1.utils.pipelines import DefaultPipeline, LatinPipeline
 
 
 class NLP:
@@ -26,7 +26,9 @@ class NLP:
         try:
             self.language = get_lang(language)  # type: Language
         except UnknownLanguageError:
-            raise UnknownLanguageError(f"Unknown language '{language}'. Use ISO 639-3 languages.")
+            raise UnknownLanguageError(
+                f"Unknown language '{language}'. Use ISO 639-3 languages."
+            )
         if custom_pipeline:
             raise NotImplementedError("Custom pipelines not implemented yet.")
         self.pipeline = self._get_pipeline()  # type: Pipeline
@@ -68,11 +70,10 @@ class NLP:
         # 'algorithm', 'data_output', 'language', 'stanfordnlp_to_cltk_word_type
         snlpwrapper = self.pipeline.process0
         # print(dir(snlp))
-        process_stanford = snlpwrapper(data_input=text, language=self.language.iso_639_3_code)
+        process_stanford = snlpwrapper(
+            data_input=text, language=self.language.iso_639_3_code
+        )
         cltk_words = process_stanford.words
         # print(cltk_words)
-        doc = Doc(language=self.language.iso_639_3_code,
-                  tokens=cltk_words,
-                  raw=text)
+        doc = Doc(language=self.language.iso_639_3_code, tokens=cltk_words, raw=text)
         return doc
-
