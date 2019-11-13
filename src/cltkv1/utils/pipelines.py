@@ -12,6 +12,7 @@ from typing import List, Type
 from cltkv1 import DefaultTokenizationProcess, LatinTokenizationProcess
 from cltkv1.languages.glottolog import LANGUAGES
 from cltkv1.utils.data_types import Language, Pipeline, Process
+from cltkv1.wrappers import StanfordNLPProcess
 
 
 @dataclass
@@ -41,11 +42,10 @@ class LatinPipeline(Pipeline):
     Language(name='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso_639_3_code='lat', type='a')
     >>> a_pipeline.language.name
     'Latin'
-    >>> etruscan = "laris velkasnas mini muluvanice menervas"
-    >>> for process in a_pipeline.execution_order:    print(process.algorithm(etruscan))
-    ['laris', 'velkasnas', 'mini', 'muluvanice', 'menervas']
     """
 
     word_tokenizer = LatinTokenizationProcess
     language: Language = LANGUAGES["lat"]
-    execution_order: List[Type[Process]] = field(default_factory=[word_tokenizer])
+    # execution_order: List[Type[Process]] = field(default_factory=[word_tokenizer, StanfordNLPProcess])
+    # execution_order: List[Type[Process]] = field(default_factory=[StanfordNLPProcess])
+    process0: Process = StanfordNLPProcess
