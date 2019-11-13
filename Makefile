@@ -18,7 +18,7 @@ installPyPITest:
 	pip install --index-url https://test.pypi.org/simple/ cltk
 
 lint:
-	mkdir pylint && poetry run pylint --output-format=json cltkv1 > pylint/pylint.json || true && poetry run pylint-json2html pylint/pylint.json 1> pylint/pylint.html
+	mkdir -p pylint && poetry run pylint --output-format=json cltkv1 > pylint/pylint.json || true && poetry run pylint-json2html pylint/pylint.json 1> pylint/pylint.html
 
 preCommitRun:
 	poetry run pre-commit autoupdate && poetry run pre-commit install && poetry run pre-commit autoupdate

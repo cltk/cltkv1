@@ -3,15 +3,12 @@
 TODO: Think about adding check somewhere if a contrib (not user) chooses an unavailable item
 """
 
-import re
-from dataclasses import dataclass, field
-from typing import Callable, List, Tuple, Type
+from dataclasses import dataclass
+from typing import Callable
 
-from cltk.tokenize.word import WordTokenizer as WordTokenizer
+from cltk.tokenize.word import WordTokenizer
 
-from cltkv1.languages.glottolog import LANGUAGES, get_lang
-from cltkv1.utils.data_types import Process, Word
-from cltkv1.utils.exceptions import UnknownLanguageError
+from cltkv1.utils.data_types import Process
 
 AKKADIAN_WORD_TOK = WordTokenizer(language="akkadian")
 ARABIC_WORD_TOK = WordTokenizer(language="arabic")

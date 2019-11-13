@@ -7,11 +7,11 @@ these dataclasses is to represent:
 """
 
 from dataclasses import dataclass, field
-from typing import Callable, List, Type
+from typing import List, Type
 
 from cltkv1 import DefaultTokenizationProcess, LatinTokenizationProcess
 from cltkv1.languages.glottolog import LANGUAGES
-from cltkv1.utils.data_types import Doc, Language, Pipeline, Process, Word
+from cltkv1.utils.data_types import Language, Pipeline, Process
 
 
 @dataclass
@@ -38,7 +38,7 @@ class LatinPipeline(Pipeline):
     >>> a_pipeline.description
     'Pipeline for some language'
     >>> a_pipeline.language
-    Language(name='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso639P3code='lat', type='a')
+    Language(name='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso_639_3_code='lat', type='a')
     >>> a_pipeline.language.name
     'Latin'
     >>> etruscan = "laris velkasnas mini muluvanice menervas"

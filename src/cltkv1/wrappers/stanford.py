@@ -3,8 +3,7 @@ About: https://github.com/stanfordnlp/stanfordnlp.
 """
 
 import os
-from dataclasses import dataclass
-from typing import Callable, Dict, Optional
+from typing import Dict, Optional
 
 import stanfordnlp  # type: ignore
 
@@ -165,8 +164,7 @@ class StanfordNLPWrapper:
         """
         if file_exists(self.model_path):
             return True
-        else:
-            return False
+        return False
 
     def _download_model(self):
         """Interface with the `stanfordnlp` model downloader.
@@ -197,7 +195,6 @@ class StanfordNLPWrapper:
                     self.model_path
                 )
             )
-        pass
 
     def _get_default_treebank(self) -> str:
         """Return description of a language's default treebank if none
@@ -223,8 +220,7 @@ class StanfordNLPWrapper:
         possible_treebanks = self.map_code_treebanks[self.stanford_code]
         if self.treebank in possible_treebanks:
             return True
-        else:
-            return False
+        return False
 
     def is_wrapper_available(self) -> bool:
         """Maps CLTK's internal language term (e.g., ``latin``) to
@@ -237,8 +233,7 @@ class StanfordNLPWrapper:
         """
         if self.language in self.map_langs_cltk_stanford:
             return True
-        else:
-            return False
+        return False
 
     def _get_stanford_code(self) -> str:
         """Using known-supported language, use the CLTK's

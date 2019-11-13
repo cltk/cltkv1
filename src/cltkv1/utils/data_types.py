@@ -1,6 +1,7 @@
 """Custom data types for the CLTK. These types form the building blocks
 of the NLP pipeline.
 
+
 >>> from cltkv1.utils.data_types import Language
 >>> from cltkv1.utils.data_types import Word
 >>> from cltkv1.utils.data_types import Process
@@ -26,7 +27,7 @@ class Language:
     >>> isinstance(latin, Language)
     True
     >>> latin
-    Language(name='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso639P3code='lat', type='a')
+    Language(name='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso_639_3_code='lat', type='a')
     """
 
     name: str  # Glottolog description
@@ -37,7 +38,7 @@ class Language:
     family_id: str  # from Glottolog
     parent_id: str  # from Glottolog
     level: str  # a language or a dialect
-    iso639P3code: str
+    iso_639_3_code: str
     type: str  # "a" for ancient and "h" for historical; this from Glottolog
 
 
@@ -96,8 +97,7 @@ class Process:
         """
         if self.algorithm:
             return self.algorithm(self.data_input)
-        else:
-            raise NotImplementedError
+        raise NotImplementedError
 
 
 @dataclass
