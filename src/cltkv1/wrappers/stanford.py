@@ -2,9 +2,9 @@
 About: https://github.com/stanfordnlp/stanfordnlp.
 """
 
-from dataclasses import dataclass
 import os
-from typing import Dict, Optional, Callable
+from dataclasses import dataclass
+from typing import Callable, Dict, Optional
 
 import stanfordnlp  # type: ignore
 
@@ -14,7 +14,6 @@ from cltkv1.utils import (
     file_exists,
     suppress_stdout,
 )
-from cltkv1.utils.data_types import MultiProcess
 
 
 class StanfordNLPWrapper:
@@ -41,10 +40,10 @@ class StanfordNLPWrapper:
 
         >>> greek_nlp = stanford_wrapper.parse(example_texts.GREEK)
 
-        >>> stanford_nlp_obj_bad = StanfordNLPWrapper(language='BADLANG')
+        >>> stanford_nlp_obj_bad = StanfordNLPWrapper(language='xxx')
         Traceback (most recent call last):
           ...
-        cltkv1.utils.exceptions.UnknownLanguageError: Language 'BADLANG' either not in scope for CLTK or not supported by StanfordNLP.
+        cltkv1.utils.exceptions.UnknownLanguageError: Language 'xxx' either not in scope for CLTK or not supported by StanfordNLP.
         """
         self.language = language
         self.treebank = treebank
@@ -260,48 +259,3 @@ class StanfordNLPWrapper:
             return stanford_lang_code[stanford_lang_name]
         except KeyError:
             raise KeyError
-
-
-if __name__ == "__main__":
-
-    stanford_nlp_obj = StanfordNLPWrapper(language="latin")
-    print(stanford_nlp_obj.language == "latin")
-
-    stanford_nlp_obj = StanfordNLPWrapper(language="grc", treebank="grc_perseus")
-    print(stanford_nlp_obj.language == "grc")
-    print(stanford_nlp_obj.treebank == "grc_perseus")
-    print(stanford_nlp_obj.wrapper_available == True)
-
-    stanford_nlp_obj = StanfordNLPWrapper(language="grc")
-    print(stanford_nlp_obj.language == "grc")
-    print(stanford_nlp_obj.treebank == "grc_proiel")
-    print(stanford_nlp_obj.wrapper_available == True)
-    fp_model = stanford_nlp_obj.model_path
-    print(os.path.split(fp_model)[1] == "grc_proiel_tokenizer.pt")
-    print(isinstance(stanford_nlp_obj.nlp, stanfordnlp.pipeline.core.Pipeline))
-
-    xen_anab = "Δαρείου καὶ Παρυσάτιδος γίγνονται παῖδες δύο, πρεσβύτερος μὲν Ἀρταξέρξης, νεώτερος δὲ Κῦρος: ἐπεὶ δὲ ἠσθένει Δαρεῖος καὶ ὑπώπτευε τελευτὴν τοῦ βίου, ἐβούλετο τὼ παῖδε ἀμφοτέρω παρεῖναι."
-    xen_anab_nlp = stanford_nlp_obj.parse(xen_anab)
-
-    nlp_xen_anab_first_sent = xen_anab_nlp.sentences[0]
-    # print(dir(nlp_xen_anab_first_sent))  # build_dependencies', 'dependencies', 'print_dependencies', 'print_tokens', 'print_words', 'tokens', 'words'
-    print(nlp_xen_anab_first_sent.tokens[0].index == "1")
-    print(nlp_xen_anab_first_sent.tokens[0].text == "Δαρείου")
-    first_word = nlp_xen_anab_first_sent.tokens[0].words[
-        0
-    ]  # 'dependency_relation', 'feats', 'governor', 'index', 'lemma', 'parent_token', 'pos', 'text', 'upos', 'xpos'
-    print(first_word.dependency_relation == "iobj")
-    print(first_word.feats == "Case=Gen|Gender=Masc|Number=Sing")
-    print(first_word.governor == 4)
-    print(first_word.index == "1")
-    print(first_word.lemma == "Δαρεῖος")
-    print(first_word.pos == "Ne")
-    print(first_word.text == "Δαρείου")
-    print(first_word.upos == "PROPN")
-    print(first_word.xpos == "Ne")
-    # print(first_word.parent_token)  # <Token index=1;words=[<Word index=1;text=Δαρείου;lemma=Δαρεῖος;upos=PROPN;xpos=Ne;feats=Case=Gen|Gender=Masc|Number=Sing;governor=4;dependency_relation=iobj>]>
-
-    try:
-        stanford_nlp_obj_bad = StanfordNLPWrapper(language="FAKELANG")
-    except UnknownLanguageError as err:
-        print(isinstance(err, UnknownLanguageError))

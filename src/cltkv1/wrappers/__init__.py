@@ -1,8 +1,8 @@
 """Init for `cltkv1.wrappers`."""
 
-from .stanford import *
+from cltkv1.utils.data_types import Doc, MultiProcess, Word
 
-from cltkv1.utils.data_types import Doc, Word
+from .stanford import StanfordNLPWrapper
 
 
 class StanfordNLPProcess(MultiProcess):
@@ -10,10 +10,10 @@ class StanfordNLPProcess(MultiProcess):
     that the ``stanfordnlp`` project can do for a
     given language.
 
+
     .. note::
-       Note that ``stanfordnlp` has
-       only partial functionality available for
-       some languages.
+        ``stanfordnlp`` has only partial functionality available for some languages.
+
 
     >>> from cltkv1.wrappers import StanfordNLPProcess
     >>> from cltkv1.utils.example_texts import LATIN
@@ -53,30 +53,28 @@ class StanfordNLPProcess(MultiProcess):
         >>> isinstance(cltk_words[0], Word)
         True
         >>> cltk_words[0]
-        Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='Gallia', pos='A1|grn1|casA|gen2|stAM', lemma='aallius', scansion=None)
+        Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='Gallia', pos='A1|grn1|casA|gen2|stAM', lemma='aallius', scansion=None, xpos='A1|grn1|casA|gen2|stAM', upos='NOUN', dependency_relation='nsubj', governor=4, parent_token=<Token index=1;words=[<Word index=1;text=Gallia;lemma=aallius;upos=NOUN;xpos=A1|grn1|casA|gen2|stAM;feats=Case=Nom|Degree=Pos|Gender=Fem|Number=Sing;governor=4;dependency_relation=nsubj>]>, feats='Case=Nom|Degree=Pos|Gender=Fem|Number=Sing')
         """
         words_list = list()
         # print('* * * ', dir(self.nlp_doc_stanford))  # .sentences, .text, .conll_file, .load_annotations, .write_conll_to_file
         # .text is the raw str
         # .sentences is list
         for sentence_index, sentence in enumerate(self.nlp_doc_stanford.sentences):
-            # print(type(sentence))  # <class 'stanfordnlp.pipeline.doc.Sentence'>
-            # print(dir(sentence))  # 'build_dependencies', 'dependencies', 'dependencies_string', 'print_dependencies', 'print_tokens', 'print_words', 'tokens', 'tokens_string', 'words', 'words_string'
             for token in sentence.tokens:
-                # print("%%%", type(token), token)  # stanfordnlp.pipeline.doc.Token
-                # print("999", dir(token))  # 'index', 'text', 'words'
-                # print(type(token.text))  # str
-                # print(token.index, type(token.index))  # str; is the word index per sentence
-
-                # print("$$$", type(token.words))  # type: list
-                # print("!!!", type(token.words[0]), dir(token.words[0]), token.words[0])  # type: 'stanfordnlp.pipeline.doc.Word'; 'dependency_relation', 'feats', 'governor', 'index', 'lemma', 'parent_token', 'pos', 'text', 'upos', 'xpos'
-                # print(token.words)  # [<Word index=7;text=.;lemma=.;upos=PUNCT;xpos=Punc;feats=_;governor=1;dependency_relation=punct>]
-                # print(len(token.words))  # 1
                 stanfordnlp_word = token.words[0]
-                # print(dir(stanfordnlp_word))  # 'dependency_relation', 'feats', 'governor', 'index', 'lemma', 'parent_token', 'pos', 'text', 'upos', 'xpos
-
-                cltk_word = Word(index_token=int(token.index), index_sentence=sentence_index, string=token.text, pos=stanfordnlp_word.pos, lemma=stanfordnlp_word.lemma)
+                cltk_word = Word(
+                    index_token=int(stanfordnlp_word.index),  # same as ``token.index``
+                    index_sentence=sentence_index,
+                    string=stanfordnlp_word.text,  # same as ``token.text``
+                    pos=stanfordnlp_word.pos,
+                    xpos=stanfordnlp_word.xpos,
+                    upos=stanfordnlp_word.upos,
+                    lemma=stanfordnlp_word.lemma,
+                    dependency_relation=stanfordnlp_word.dependency_relation,
+                    governor=stanfordnlp_word.governor,
+                    parent_token=stanfordnlp_word.parent_token,
+                    feats=stanfordnlp_word.feats,
+                )
                 words_list.append(cltk_word)
 
         return words_list
-

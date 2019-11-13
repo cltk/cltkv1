@@ -11,7 +11,7 @@ from typing import Callable, List, Type
 
 from cltkv1 import DefaultTokenizationProcess, LatinTokenizationProcess
 from cltkv1.languages.glottolog import LANGUAGES
-from cltkv1.utils.data_types import Doc, Language, Process, Pipeline, Word
+from cltkv1.utils.data_types import Doc, Language, Pipeline, Process, Word
 
 
 @dataclass

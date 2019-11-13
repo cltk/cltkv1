@@ -9,7 +9,7 @@ from typing import Callable, List, Tuple, Type
 
 from cltk.tokenize.word import WordTokenizer as WordTokenizer
 
-from cltkv1.languages.glottolog import get_lang, LANGUAGES
+from cltkv1.languages.glottolog import LANGUAGES, get_lang
 from cltkv1.utils.data_types import Process, Word
 from cltkv1.utils.exceptions import UnknownLanguageError
 
@@ -38,6 +38,7 @@ class TokenizationProcess(Process):
     True
     >>> tok = TokenizationProcess(data_input="some input data")
     """
+
     language = None
 
 

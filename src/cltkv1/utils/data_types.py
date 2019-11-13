@@ -1,16 +1,16 @@
 """Custom data types for the CLTK. These types form the building blocks
 of the NLP pipeline.
 
+>>> from cltkv1.utils.data_types import Language
 >>> from cltkv1.utils.data_types import Word
 >>> from cltkv1.utils.data_types import Process
+>>> from cltkv1.utils.data_types import MultiProcess
 >>> from cltkv1.utils.data_types import Doc
->>> from cltkv1.utils.data_types import Language
+>>> from cltkv1.utils.data_types import Pipeline
 """
 
-from dataclasses import dataclass, field
-from typing import Any, Callable, Generic, List, Type
-
-from cltkv1.utils import example_texts
+from dataclasses import dataclass
+from typing import Any, Callable, List, Type
 
 
 @dataclass
@@ -38,7 +38,7 @@ class Language:
     parent_id: str  # from Glottolog
     level: str  # a language or a dialect
     iso639P3code: str
-    type: str  # "an" for ancient and "h" for historical
+    type: str  # "a" for ancient and "h" for historical; this from Glottolog
 
 
 @dataclass
@@ -53,7 +53,7 @@ class Word:
     >>> from cltkv1.languages.glottolog import LANGUAGES
     >>> latin = LANGUAGES["lat"]
     >>> Word(index_char_start=0, index_char_stop=6, index_token=0, string=LATIN[0:6], pos="nom")
-    Word(index_char_start=0, index_char_stop=6, index_token=0, index_sentence=None, string='Gallia', pos='nom', lemma=None, scansion=None)
+    Word(index_char_start=0, index_char_stop=6, index_token=0, index_sentence=None, string='Gallia', pos='nom', lemma=None, scansion=None, xpos=None, upos=None, dependency_relation=None, governor=None, parent_token=None, feats=None)
     """
 
     index_char_start: int = None
@@ -64,6 +64,12 @@ class Word:
     pos: str = None
     lemma: str = None
     scansion: str = None
+    xpos: str = None  # treebank-specific POS tag (from stanfordnlp)
+    upos: str = None  # universal POS tag (from stanfordnlp)
+    dependency_relation: str = None  # (from stanfordnlp)
+    governor: str = None  # (from stanfordnlp)
+    parent_token: str = None  # (from stanfordnlp)
+    feats: str = None  # morphological features (from stanfordnlp)
 
 
 @dataclass
@@ -105,6 +111,7 @@ class MultiProcess(Process):
     >>> a_multi_process.data_output
     ['SOME', 'WORDS', 'FOR', 'PROCESSING.']
     """
+
     algorithm: Callable
 
 
