@@ -7,7 +7,7 @@ these dataclasses is to represent:
 """
 
 from dataclasses import dataclass, field
-from typing import List, Type
+from typing import Callable, List, Type
 
 from cltkv1 import DefaultTokenizationProcess, LatinTokenizationProcess
 from cltkv1.languages.glottolog import LANGUAGES
@@ -21,13 +21,21 @@ class DefaultPipeline(Pipeline):
     or of which CLTK coverage is not know.
 
     >>> from cltkv1.utils.pipelines import DefaultPipeline
-    >>> a_pipeline = DefaultPipeline(description="Pipeline for some language", execution_order=[DefaultTokenizationProcess], language=LANGUAGES["ett"])
+    >>> a_pipeline = DefaultPipeline(description="Pipeline for some language", processes=[DefaultTokenizationProcess], language=LANGUAGES["ett"])
     >>> a_pipeline.description
     'Pipeline for some language'
     >>> etruscan = "laris velkasnas mini muluvanice menervas"
-    >>> for process in a_pipeline.execution_order:    print(process.algorithm(etruscan))
+    >>> for process in a_pipeline.processes:    print(process.algorithm(etruscan))
     ['laris', 'velkasnas', 'mini', 'muluvanice', 'menervas']
     """
+
+
+def upp(_str: str) -> str:
+    return _str.upper()
+
+
+def apnd(_str: str) -> str:
+    return _str + " YYY"
 
 
 @dataclass
@@ -35,17 +43,17 @@ class LatinPipeline(Pipeline):
     """Default ``Pipeline`` for Latin.
 
     >>> from cltkv1.utils.pipelines import DefaultPipeline
-    >>> a_pipeline = LatinPipeline(description="Pipeline for some language", execution_order=[DefaultTokenizationProcess])
+    >>> a_pipeline = LatinPipeline()
     >>> a_pipeline.description
-    'Pipeline for some language'
+    'Pipeline for the Latin language'
     >>> a_pipeline.language
     Language(name='Latin', glottolog_id='lati1261', latitude=41.9026, longitude=12.4502, dates=[], family_id='indo1319', parent_id='impe1234', level='language', iso_639_3_code='lat', type='a')
     >>> a_pipeline.language.name
     'Latin'
+    >>> a_pipeline.processes[0]
+    <class 'cltkv1.wrappers.StanfordNLPProcess'>
     """
 
-    word_tokenizer = LatinTokenizationProcess
+    description: str = "Pipeline for the Latin language"
     language: Language = LANGUAGES["lat"]
-    # execution_order: List[Type[Process]] = field(default_factory=[word_tokenizer, StanfordNLPProcess])
-    # execution_order: List[Type[Process]] = field(default_factory=[StanfordNLPProcess])
-    process0: Process = StanfordNLPProcess
+    processes: List[Type[Process]] = field(default_factory=lambda: [StanfordNLPProcess])

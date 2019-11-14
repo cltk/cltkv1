@@ -140,13 +140,13 @@ class Pipeline:
     >>> from cltkv1.utils.data_types import Process, Pipeline
     >>> from cltkv1.languages.glottolog import LANGUAGES
     >>> from cltkv1.tokenizers import LatinTokenizationProcess
-    >>> a_pipeline = Pipeline(description="an abstract pipeline", execution_order=[LatinTokenizationProcess], language=LANGUAGES["lat"])
+    >>> a_pipeline = Pipeline(description="A custom Latin pipeline", processes=[LatinTokenizationProcess], language=LANGUAGES["lat"])
     >>> a_pipeline.description
-    'an abstract pipeline'
-    >>> issubclass(a_pipeline.execution_order[0], Process)
+    'A custom Latin pipeline'
+    >>> issubclass(a_pipeline.processes[0], Process)
     True
     """
 
     description: str
-    execution_order: List[Type[Process]]
+    processes: List[Type[Process]]
     language: Language

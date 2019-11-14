@@ -58,22 +58,31 @@ class NLP:
         >>> from cltkv1.utils.example_texts import LATIN
         >>> from cltkv1.utils.data_types import Doc
         >>> cltk_nlp = NLP(language="lat")
-        >>> cltk_doc = cltk_nlp.analyze(text=LATIN)
-        >>> isinstance(cltk_doc, Doc)
+        >>> cltk_obj = cltk_nlp.analyze(text=LATIN)
+        >>> isinstance(cltk_obj, Doc)
         True
-        >>> cltk_doc.tokens[0]
+        >>> cltk_obj.tokens[0]
         Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='Gallia', pos='A1|grn1|casA|gen2|stAM', lemma='aallius', scansion=None, xpos='A1|grn1|casA|gen2|stAM', upos='NOUN', dependency_relation='nsubj', governor=4, parent_token=<Token index=1;words=[<Word index=1;text=Gallia;lemma=aallius;upos=NOUN;xpos=A1|grn1|casA|gen2|stAM;feats=Case=Nom|Degree=Pos|Gender=Fem|Number=Sing;governor=4;dependency_relation=nsubj>]>, feats='Case=Nom|Degree=Pos|Gender=Fem|Number=Sing')
         """
-        # TODO: Figure out why I cannot get the .execution_order attribute when using feild(default_factory=)
-        # 'language', 'process0', 'word_tokenizer'
-        # print(dir(self.pipeline))  # type: Pipeline
-        # 'algorithm', 'data_output', 'language', 'stanfordnlp_to_cltk_word_type
-        snlpwrapper = self.pipeline.process0
-        # print(dir(snlp))
-        process_stanford = snlpwrapper(
-            data_input=text, language=self.language.iso_639_3_code
-        )
-        cltk_words = process_stanford.words
-        # print(cltk_words)
-        doc = Doc(language=self.language.iso_639_3_code, tokens=cltk_words, raw=text)
-        return doc
+        # print(self.pipeline)  # <class 'cltkv1.utils.pipelines.LatinPipeline'>
+        # print(dir(self.pipeline))  # 'description', 'language'
+        a_pipeline = self.pipeline()
+        # print(a_pipeline.description)
+        # print(a_pipeline.language)
+        # print(a_pipeline.language.name)  # Latin
+        # print(type(a_pipeline.processes))  # <class 'list'>
+        # print(a_pipeline.processes[0])  # <class 'cltkv1.wrappers.StanfordNLPProcess'>
+        # print("")
+        for process in a_pipeline.processes:
+            # print(type(process))  # <class 'type'>
+            # print(dir(process))  # ['algorithm', 'data_output', 'language', 'stanfordnlp_to_cltk_word_type']
+            # print(process)  # <class 'cltkv1.wrappers.StanfordNLPProcess'>
+            # print("")
+            process_stanford = process(
+                data_input=text, language=self.language.iso_639_3_code
+            )
+            cltk_words = process_stanford.words
+
+            doc = Doc(language=self.language.iso_639_3_code, tokens=cltk_words)
+
+            return doc
