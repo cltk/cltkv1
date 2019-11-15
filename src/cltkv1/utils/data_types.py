@@ -45,7 +45,7 @@ class Language:
 @dataclass
 class Word:
     """Contains attributes of each processed word in a list of
-    tokens. To be used most often in the ``Doc.tokens`` dataclass.
+    words. To be used most often in the ``Doc.words`` dataclass.
 
     >>> from cltkv1.utils.data_types import Word
     >>> from cltkv1.utils.example_texts import LATIN
@@ -119,14 +119,14 @@ class MultiProcess(Process):
 class Doc:
     """The object returned to the user from the ``NLP()`` class.
     Contains overall attributes of submitted texts, plus most
-    importantly the processed tokenized text ``tokens``,
+    importantly the processed tokenized text ``words``,
     being a list of ``Word`` types.
     """
 
     indices_sentences: List[List[int]] = None
     indices_tokens: List[List[int]] = None
     language: str = None
-    tokens: List[Word] = None
+    words: List[Word] = None
     pipeline: List[Process] = None
     raw: str = None
 

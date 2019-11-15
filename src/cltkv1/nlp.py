@@ -61,7 +61,7 @@ class NLP:
         >>> cltk_obj = cltk_nlp.analyze(text=LATIN)
         >>> isinstance(cltk_obj, Doc)
         True
-        >>> cltk_obj.tokens[0]
+        >>> cltk_obj.words[0]
         Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='Gallia', pos='A1|grn1|casA|gen2|stAM', lemma='aallius', scansion=None, xpos='A1|grn1|casA|gen2|stAM', upos='NOUN', dependency_relation='nsubj', governor=4, parent_token=<Token index=1;words=[<Word index=1;text=Gallia;lemma=aallius;upos=NOUN;xpos=A1|grn1|casA|gen2|stAM;feats=Case=Nom|Degree=Pos|Gender=Fem|Number=Sing;governor=4;dependency_relation=nsubj>]>, feats='Case=Nom|Degree=Pos|Gender=Fem|Number=Sing')
         """
         # print(self.pipeline)  # <class 'cltkv1.utils.pipelines.LatinPipeline'>
@@ -83,6 +83,6 @@ class NLP:
             )
             cltk_words = process_stanford.words
 
-            doc = Doc(language=self.language.iso_639_3_code, tokens=cltk_words)
+            doc = Doc(language=self.language.iso_639_3_code, words=cltk_words)
 
             return doc
