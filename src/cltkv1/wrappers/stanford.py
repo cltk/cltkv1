@@ -1,4 +1,4 @@
-"""Wrapper for the Python StanfordNLP package ``stanfordnlp``.
+"""Wrapper for the Python StanfordNLP package.
 About: https://github.com/stanfordnlp/stanfordnlp.
 """
 
@@ -239,7 +239,7 @@ class StanfordNLPWrapper:
         return False
 
     def is_wrapper_available(self) -> bool:
-        """Maps CLTK's internal language term (e.g., ``latin``) to
+        """Maps an ISO 639-3 language id (e.g., ``lat`` for Latin) to
         that used by ``stanfordnlp`` (``la``); confirms that this is
         a language the CLTK supports (i.e., is it pre-modern or not).
 

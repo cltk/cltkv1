@@ -45,7 +45,7 @@ class Language:
 @dataclass
 class Word:
     """Contains attributes of each processed word in a list of
-    words. To be used most often in the ``Doc.words`` dataclass.
+    words. Designed to be used in the ``Doc.words`` dataclass.
 
     >>> from cltkv1.utils.data_types import Word
     >>> from cltkv1.utils.example_texts import LATIN
@@ -80,8 +80,6 @@ class Process:
     ``Word``, etc.) and what field within ``Word`` it will populate.
     This base class is intended to be inherited by NLP process
     types (e.g., ``TokenizationProcess`` or ``DependencyProcess``).
-
-    TODO: Rename ``Process`` here and in all subclasses to ``Process``
 
     >>> a_process = Process(data_input="input words here")
     """

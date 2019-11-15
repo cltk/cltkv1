@@ -41,7 +41,7 @@ class StanfordNLPProcess(MultiProcess):
 
     def stanfordnlp_to_cltk_word_type(self):
         """Take an entire ``stanfordnlp`` object, extract
-        each word, and encode it in the way expected in
+        each word, and encode it in the way expected by
         the CLTK's ``Word`` type.
 
         >>> from cltkv1.wrappers import StanfordNLPProcess
