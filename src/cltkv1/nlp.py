@@ -5,7 +5,7 @@ from typing import List
 from cltkv1.languages.glottolog import get_lang
 from cltkv1.utils.data_types import Doc, Language, Pipeline
 from cltkv1.utils.exceptions import UnknownLanguageError
-from cltkv1.utils.pipelines import DefaultPipeline, LatinPipeline, GreekPipeline, OCSPipeline
+from cltkv1.utils.pipelines import DefaultPipeline, LatinPipeline, GreekPipeline, OCSPipeline, OldFrenchPipeline
 
 
 class NLP:
@@ -53,6 +53,8 @@ class NLP:
             return GreekPipeline
         elif self.language.iso_639_3_code == "chu":
             return OCSPipeline
+        elif self.language.iso_639_3_code == "fro":
+            return OldFrenchPipeline
         return DefaultPipeline
 
     def analyze(self, text: str) -> Doc:

@@ -99,3 +99,24 @@ class OCSPipeline(Pipeline):
     description: str = "Pipeline for the Old Church Slavonic language"
     language: Language = LANGUAGES["chu"]
     processes: List[Type[Process]] = field(default_factory=lambda: [StanfordNLPProcess])
+
+
+@dataclass
+class OldFrenchPipeline(Pipeline):
+    """Default ``Pipeline`` for Old French.
+
+    >>> from cltkv1.utils.pipelines import OldFrenchPipeline
+    >>> a_pipeline = OldFrenchPipeline()
+    >>> a_pipeline.description
+    'Pipeline for the Old French language'
+    >>> a_pipeline.language
+    Language(name='Old French (842-ca. 1400)', glottolog_id='oldf1239', latitude=0.0, longitude=0.0, dates=[], family_id='indo1319', parent_id='oila1234', level='language', iso_639_3_code='fro', type='h')
+    >>> a_pipeline.language.name
+    'Old French (842-ca. 1400)'
+    >>> a_pipeline.processes[0]
+    <class 'cltkv1.wrappers.StanfordNLPProcess'>
+    """
+
+    description: str = "Pipeline for the Old French language"
+    language: Language = LANGUAGES["fro"]
+    processes: List[Type[Process]] = field(default_factory=lambda: [StanfordNLPProcess])
