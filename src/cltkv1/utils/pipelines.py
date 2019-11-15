@@ -42,7 +42,7 @@ def apnd(_str: str) -> str:
 class LatinPipeline(Pipeline):
     """Default ``Pipeline`` for Latin.
 
-    >>> from cltkv1.utils.pipelines import DefaultPipeline
+    >>> from cltkv1.utils.pipelines import LatinPipeline
     >>> a_pipeline = LatinPipeline()
     >>> a_pipeline.description
     'Pipeline for the Latin language'
@@ -56,4 +56,25 @@ class LatinPipeline(Pipeline):
 
     description: str = "Pipeline for the Latin language"
     language: Language = LANGUAGES["lat"]
+    processes: List[Type[Process]] = field(default_factory=lambda: [StanfordNLPProcess])
+
+
+@dataclass
+class GreekPipeline(Pipeline):
+    """Default ``Pipeline`` for Ancient Greek.
+
+    >>> from cltkv1.utils.pipelines import GreekPipeline
+    >>> a_pipeline = GreekPipeline()
+    >>> a_pipeline.description
+    'Pipeline for the Greek language'
+    >>> a_pipeline.language
+    Language(name='Ancient Greek', glottolog_id='anci1242', latitude=39.8155, longitude=21.9129, dates=[], family_id='indo1319', parent_id='east2798', level='language', iso_639_3_code='grc', type='h')
+    >>> a_pipeline.language.name
+    'Ancient Greek'
+    >>> a_pipeline.processes[0]
+    <class 'cltkv1.wrappers.StanfordNLPProcess'>
+    """
+
+    description: str = "Pipeline for the Greek language"
+    language: Language = LANGUAGES["grc"]
     processes: List[Type[Process]] = field(default_factory=lambda: [StanfordNLPProcess])

@@ -5,7 +5,7 @@ from typing import List
 from cltkv1.languages.glottolog import get_lang
 from cltkv1.utils.data_types import Doc, Language, Pipeline
 from cltkv1.utils.exceptions import UnknownLanguageError
-from cltkv1.utils.pipelines import DefaultPipeline, LatinPipeline
+from cltkv1.utils.pipelines import DefaultPipeline, LatinPipeline, GreekPipeline
 
 
 class NLP:
@@ -49,6 +49,8 @@ class NLP:
         """
         if self.language.iso_639_3_code == "lat":
             return LatinPipeline
+        elif self.language.iso_639_3_code == "grc":
+            return GreekPipeline
         return DefaultPipeline
 
     def analyze(self, text: str) -> Doc:
@@ -63,6 +65,12 @@ class NLP:
         True
         >>> cltk_obj.words[0]
         Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='Gallia', pos='A1|grn1|casA|gen2|stAM', lemma='aallius', scansion=None, xpos='A1|grn1|casA|gen2|stAM', upos='NOUN', dependency_relation='nsubj', governor=4, parent_token=<Token index=1;words=[<Word index=1;text=Gallia;lemma=aallius;upos=NOUN;xpos=A1|grn1|casA|gen2|stAM;feats=Case=Nom|Degree=Pos|Gender=Fem|Number=Sing;governor=4;dependency_relation=nsubj>]>, feats='Case=Nom|Degree=Pos|Gender=Fem|Number=Sing')
+
+        >>> from cltkv1.utils.example_texts import GREEK
+        >>> cltk_nlp = NLP(language="grc")
+        >>> cltk_obj = cltk_nlp.analyze(text=GREEK)
+        >>> cltk_obj.words[0]
+        Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='ὅτι', pos='Df', lemma='ὅτι#1', scansion=None, xpos='Df', upos='ADV', dependency_relation='advmod', governor=13, parent_token=<Token index=1;words=[<Word index=1;text=ὅτι;lemma=ὅτι#1;upos=ADV;xpos=Df;feats=_;governor=13;dependency_relation=advmod>]>, feats='_')
         """
         # print(self.pipeline)  # <class 'cltkv1.utils.pipelines.LatinPipeline'>
         # print(dir(self.pipeline))  # 'description', 'language'
