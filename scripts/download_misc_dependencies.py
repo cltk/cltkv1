@@ -37,4 +37,4 @@ def get_stanfordnlp_models(force_update: bool = True) -> None:
 
 
 if __name__ == "__main__":
-    get_stanfordnlp_models()
+    get_stanfordnlp_models(force_update=True)

@@ -5,7 +5,13 @@ from typing import List
 from cltkv1.languages.glottolog import get_lang
 from cltkv1.utils.data_types import Doc, Language, Pipeline
 from cltkv1.utils.exceptions import UnknownLanguageError
-from cltkv1.utils.pipelines import DefaultPipeline, LatinPipeline, GreekPipeline, OCSPipeline, OldFrenchPipeline
+from cltkv1.utils.pipelines import (
+    DefaultPipeline,
+    GreekPipeline,
+    LatinPipeline,
+    OCSPipeline,
+    OldFrenchPipeline,
+)
 
 
 class NLP:
@@ -60,6 +66,8 @@ class NLP:
     def analyze(self, text: str) -> Doc:
         """The primary method for the NLP object, to which raw text strings are passed.
 
+        TODO: Run the OF example and then log the FileNotFoundError inside the `stanford.py` module
+
         >>> from cltkv1 import NLP
         >>> from cltkv1.utils.example_texts import LATIN
         >>> from cltkv1.utils.data_types import Doc
@@ -76,27 +84,14 @@ class NLP:
         >>> cltk_obj.words[0]
         Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='ὅτι', pos='Df', lemma='ὅτι#1', scansion=None, xpos='Df', upos='ADV', dependency_relation='advmod', governor=13, parent_token=<Token index=1;words=[<Word index=1;text=ὅτι;lemma=ὅτι#1;upos=ADV;xpos=Df;feats=_;governor=13;dependency_relation=advmod>]>, feats='_')
 
-        # OLD_CHURCH_SLAVONIC
         >>> from cltkv1.utils.example_texts import OLD_CHURCH_SLAVONIC
         >>> cltk_nlp = NLP(language="chu")
         >>> cltk_obj = cltk_nlp.analyze(text=OLD_CHURCH_SLAVONIC)
         >>> cltk_obj.words[0]
         Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='отьчє', pos='Nb', lemma='отьць', scansion=None, xpos='Nb', upos='NOUN', dependency_relation='nsubj', governor=6, parent_token=<Token index=1;words=[<Word index=1;text=отьчє;lemma=отьць;upos=NOUN;xpos=Nb;feats=Case=Nom|Gender=Masc|Number=Sing;governor=6;dependency_relation=nsubj>]>, feats='Case=Nom|Gender=Masc|Number=Sing')
         """
-        # print(self.pipeline)  # <class 'cltkv1.utils.pipelines.LatinPipeline'>
-        # print(dir(self.pipeline))  # 'description', 'language'
         a_pipeline = self.pipeline()
-        # print(a_pipeline.description)
-        # print(a_pipeline.language)
-        # print(a_pipeline.language.name)  # Latin
-        # print(type(a_pipeline.processes))  # <class 'list'>
-        # print(a_pipeline.processes[0])  # <class 'cltkv1.wrappers.StanfordNLPProcess'>
-        # print("")
         for process in a_pipeline.processes:
-            # print(type(process))  # <class 'type'>
-            # print(dir(process))  # ['algorithm', 'data_output', 'language', 'stanfordnlp_to_cltk_word_type']
-            # print(process)  # <class 'cltkv1.wrappers.StanfordNLPProcess'>
-            # print("")
             process_stanford = process(
                 data_input=text, language=self.language.iso_639_3_code
             )

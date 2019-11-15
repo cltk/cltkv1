@@ -2,6 +2,7 @@
 About: https://github.com/stanfordnlp/stanfordnlp.
 """
 
+import logging
 import os
 from typing import Dict, Optional
 
@@ -14,12 +15,17 @@ from cltkv1.utils import (
     suppress_stdout,
 )
 
+LOG = logging.getLogger(__name__)
+LOG.addHandler(logging.NullHandler())
+
 
 class StanfordNLPWrapper:
     """CLTK's wrapper for the StanfordNLP project."""
 
     def __init__(self, language: str, treebank: Optional[str] = None) -> None:
         """Constructor for ``get_stanfordnlp_models`` wrapper class.
+
+        TODO: Do tests for all langs and available models for each
 
         >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
         >>> isinstance(stanford_wrapper, StanfordNLPWrapper)
@@ -29,26 +35,36 @@ class StanfordNLPWrapper:
         >>> stanford_wrapper.treebank
         'grc_proiel'
 
-        >>> stanford_wrapper_perseus = StanfordNLPWrapper(language='grc', treebank='grc_perseus')
-        >>> isinstance(stanford_wrapper_perseus, StanfordNLPWrapper)
+        >>> stanford_wrapper = StanfordNLPWrapper(language="grc", treebank="grc_perseus")
+        >>> isinstance(stanford_wrapper, StanfordNLPWrapper)
         True
-        >>> stanford_wrapper_perseus.language
+        >>> stanford_wrapper.language
         'grc'
-        >>> stanford_wrapper_perseus.treebank
+        >>> stanford_wrapper.treebank
         'grc_perseus'
+        >>> snlp_doc = stanford_wrapper.parse(example_texts.GREEK)
 
-        >>> greek_nlp = stanford_wrapper.parse(example_texts.GREEK)
-
-        >>> stanford_nlp_obj_bad = StanfordNLPWrapper(language='xxx')
+        >>> StanfordNLPWrapper(language="xxx")
         Traceback (most recent call last):
           ...
         cltkv1.utils.exceptions.UnknownLanguageError: Language 'xxx' either not in scope for CLTK or not supported by StanfordNLP.
+
+        >>> stanford_wrapper = StanfordNLPWrapper(language="grc", treebank="grc_proiel")
+        >>> snlp_doc = stanford_wrapper.parse(example_texts.GREEK)
+
+        >>> stanford_wrapper = StanfordNLPWrapper(language="lat", treebank="la_perseus")
+        >>> snlp_doc = stanford_wrapper.parse(example_texts.LATIN)
+
+        >>> stanford_wrapper = StanfordNLPWrapper(language="lat", treebank="la_proiel")
+        >>> snlp_doc = stanford_wrapper.parse(example_texts.LATIN)
+
+        >>> stanford_wrapper = StanfordNLPWrapper(language="chu")
+        >>> snlp_doc = stanford_wrapper.parse(example_texts.OLD_CHURCH_SLAVONIC)
         """
         self.language = language
         self.treebank = treebank
 
         # Setup language
-        # TODO: SWitch cltk to ISO ids
         self.map_langs_cltk_stanford = {
             "grc": "Ancient_Greek",
             "lat": "Latin",
