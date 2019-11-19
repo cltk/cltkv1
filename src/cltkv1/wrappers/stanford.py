@@ -42,7 +42,7 @@ class StanfordNLPWrapper:
         'grc'
         >>> stanford_wrapper.treebank
         'grc_perseus'
-        >>> snlp_doc = stanford_wrapper.parse(example_texts.GREEK)
+        >>> snlp_doc = stanford_wrapper.parse(example_texts.GRC)
 
         >>> StanfordNLPWrapper(language="xxx")
         Traceback (most recent call last):
@@ -50,16 +50,16 @@ class StanfordNLPWrapper:
         cltkv1.utils.exceptions.UnknownLanguageError: Language 'xxx' either not in scope for CLTK or not supported by StanfordNLP.
 
         >>> stanford_wrapper = StanfordNLPWrapper(language="grc", treebank="grc_proiel")
-        >>> snlp_doc = stanford_wrapper.parse(example_texts.GREEK)
+        >>> snlp_doc = stanford_wrapper.parse(example_texts.GRC)
 
         >>> stanford_wrapper = StanfordNLPWrapper(language="lat", treebank="la_perseus")
-        >>> snlp_doc = stanford_wrapper.parse(example_texts.LATIN)
+        >>> snlp_doc = stanford_wrapper.parse(example_texts.LAT)
 
         >>> stanford_wrapper = StanfordNLPWrapper(language="lat", treebank="la_proiel")
-        >>> snlp_doc = stanford_wrapper.parse(example_texts.LATIN)
+        >>> snlp_doc = stanford_wrapper.parse(example_texts.LAT)
 
         >>> stanford_wrapper = StanfordNLPWrapper(language="chu")
-        >>> snlp_doc = stanford_wrapper.parse(example_texts.OLD_CHURCH_SLAVONIC)
+        >>> snlp_doc = stanford_wrapper.parse(example_texts.CHU)
         """
         self.language = language
         self.treebank = treebank
@@ -122,7 +122,7 @@ class StanfordNLPWrapper:
         """Run all available ``stanfordnlp`` parsing on input text.
 
         >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
-        >>> greek_nlp = stanford_wrapper.parse(example_texts.GREEK)
+        >>> greek_nlp = stanford_wrapper.parse(example_texts.GRC)
         >>> isinstance(greek_nlp, stanfordnlp.pipeline.doc.Document)
         True
 

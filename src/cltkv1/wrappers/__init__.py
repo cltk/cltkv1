@@ -16,8 +16,8 @@ class StanfordNLPProcess(MultiProcess):
 
 
     >>> from cltkv1.wrappers import StanfordNLPProcess
-    >>> from cltkv1.utils.example_texts import LATIN
-    >>> process_stanford = StanfordNLPProcess(data_input=LATIN, language="lat")
+    >>> from cltkv1.utils.example_texts import LAT
+    >>> process_stanford = StanfordNLPProcess(data_input=LAT, language="lat")
     >>> from cltkv1.wrappers import StanfordNLPProcess
     >>> isinstance(process_stanford, StanfordNLPProcess)
     True
@@ -45,8 +45,8 @@ class StanfordNLPProcess(MultiProcess):
         the CLTK's ``Word`` type.
 
         >>> from cltkv1.wrappers import StanfordNLPProcess
-        >>> from cltkv1.utils.example_texts import LATIN
-        >>> process_stanford = StanfordNLPProcess(data_input=LATIN, language="lat")
+        >>> from cltkv1.utils.example_texts import LAT
+        >>> process_stanford = StanfordNLPProcess(data_input=LAT, language="lat")
         >>> cltk_words = process_stanford.words
         >>> isinstance(cltk_words, list)
         True

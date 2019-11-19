@@ -123,10 +123,10 @@ class LatinPipeline(Pipeline):
 
 
 if __name__ == "__main__":
-    from cltkv1.utils.example_texts import LATIN
+    from cltkv1.utils.example_texts import LAT
 
     cltk_nlp = NLP(language="latin")
-    doc_germanica = cltk_nlp.run_pipeline(LATIN)
+    doc_germanica = cltk_nlp.run_pipeline(LAT)
 
     print("")
     print("``Doc``:", doc_germanica)

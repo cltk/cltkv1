@@ -48,12 +48,12 @@ class Word:
     words. Designed to be used in the ``Doc.words`` dataclass.
 
     >>> from cltkv1.utils.data_types import Word
-    >>> from cltkv1.utils.example_texts import LATIN
-    >>> LATIN[:25]
+    >>> from cltkv1.utils.example_texts import LAT
+    >>> LAT[:25]
     'Gallia est omnis divisa i'
     >>> from cltkv1.languages.glottolog import LANGUAGES
     >>> latin = LANGUAGES["lat"]
-    >>> Word(index_char_start=0, index_char_stop=6, index_token=0, string=LATIN[0:6], pos="nom")
+    >>> Word(index_char_start=0, index_char_stop=6, index_token=0, string=LAT[0:6], pos="nom")
     Word(index_char_start=0, index_char_stop=6, index_token=0, index_sentence=None, string='Gallia', pos='nom', lemma=None, scansion=None, xpos=None, upos=None, dependency_relation=None, governor=None, parent_token=None, feats=None)
     """
 

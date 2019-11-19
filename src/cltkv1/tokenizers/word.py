@@ -44,8 +44,8 @@ class DefaultTokenizationProcess(TokenizationProcess):
     """The default tokenization algorithm.
 
     >>> from cltkv1.tokenizers.word import DefaultTokenizationProcess
-    >>> from cltkv1.utils.example_texts import OLD_NORSE
-    >>> tok = DefaultTokenizationProcess(data_input=OLD_NORSE[:29])
+    >>> from cltkv1.utils.example_texts import NON
+    >>> tok = DefaultTokenizationProcess(data_input=NON[:29])
     >>> tok.description
     'Whitespace tokenizer inheriting from the NLTK'
     >>> tok.data_output
@@ -63,8 +63,8 @@ class LatinTokenizationProcess(TokenizationProcess):
     """The default Latin tokenization algorithm.
 
     >>> from cltkv1.tokenizers import LatinTokenizationProcess
-    >>> from cltkv1.utils.example_texts import LATIN
-    >>> tok = LatinTokenizationProcess(data_input=LATIN[:23])
+    >>> from cltkv1.utils.example_texts import LAT
+    >>> tok = LatinTokenizationProcess(data_input=LAT[:23])
     >>> tok.data_output
     ['Gallia', 'est', 'omnis', 'divisa']
     """
@@ -80,8 +80,8 @@ class GreekTokenizationProcess(TokenizationProcess):
     """The default Greek tokenization algorithm.
 
     >>> from cltkv1.tokenizers import GreekTokenizationProcess
-    >>> from cltkv1.utils.example_texts import GREEK
-    >>> tok = GreekTokenizationProcess(data_input=GREEK[:23])
+    >>> from cltkv1.utils.example_texts import GRC
+    >>> tok = GreekTokenizationProcess(data_input=GRC[:23])
     >>> tok.data_output
     ['ὅτι', 'μὲν', 'ὑμεῖς', ',', 'ὦ', 'ἄνδρες']
     """
@@ -97,8 +97,8 @@ class AkkadianTokenizationProcess(TokenizationProcess):
     """The default Akkadian tokenization algorithm.
 
     >>> from cltkv1.tokenizers import AkkadianTokenizationProcess
-    >>> from cltkv1.utils.example_texts import AKKADIAN
-    >>> tok = AkkadianTokenizationProcess(data_input=AKKADIAN)
+    >>> from cltkv1.utils.example_texts import AKK
+    >>> tok = AkkadianTokenizationProcess(data_input=AKK)
     >>> tok.data_output
     [('u2-wa-a-ru', 'akkadian'), ('at-ta', 'akkadian'), ('e2-kal2-la-ka', 'akkadian'), ('_e2_-ka', 'sumerian'), ('wu-e-er', 'akkadian')]
     """
@@ -114,8 +114,8 @@ class OldNorseTokenizationProcess(TokenizationProcess):
     """The default OldNorse tokenization algorithm.
 
     >>> from cltkv1.tokenizers import OldNorseTokenizationProcess
-    >>> from cltkv1.utils.example_texts import OLD_NORSE
-    >>> tok = OldNorseTokenizationProcess(data_input=OLD_NORSE[:29])
+    >>> from cltkv1.utils.example_texts import NON
+    >>> tok = OldNorseTokenizationProcess(data_input=NON[:29])
     >>> tok.data_output
     ['Gylfi', 'konungr', 'réð', 'þar', 'löndum']
     """
@@ -131,8 +131,8 @@ class MHGTokenizationProcess(TokenizationProcess):
     """The default Middle High German tokenization algorithm.
 
     >>> from cltkv1.tokenizers import MHGTokenizationProcess
-    >>> from cltkv1.utils.example_texts import MIDDLE_HIGH_GERMAN
-    >>> tok = MHGTokenizationProcess(data_input=MIDDLE_HIGH_GERMAN[:29])
+    >>> from cltkv1.utils.example_texts import GMH
+    >>> tok = MHGTokenizationProcess(data_input=GMH[:29])
     >>> tok.data_output
     ['Ik', 'gihorta', 'ðat', 'seggen', 'ðat', 'sih']
     """
@@ -148,8 +148,8 @@ class ArabicTokenizationProcess(TokenizationProcess):
     """The default Arabic tokenization algorithm.
 
     >>> from cltkv1.tokenizers import ArabicTokenizationProcess
-    >>> from cltkv1.utils.example_texts import ARABIC
-    >>> tok = ArabicTokenizationProcess(data_input=ARABIC[:34])
+    >>> from cltkv1.utils.example_texts import ARB
+    >>> tok = ArabicTokenizationProcess(data_input=ARB[:34])
     >>> tok.data_output
     ['كهيعص', '﴿', '١', '﴾', 'ذِكْرُ', 'رَحْمَتِ', 'رَبِّكَ']
     """
@@ -165,8 +165,8 @@ class OldFrenchTokenizationProcess(TokenizationProcess):
     """The default Old French tokenization algorithm.
 
     >>> from cltkv1.tokenizers import OldFrenchTokenizationProcess
-    >>> from cltkv1.utils.example_texts import OLD_FRENCH
-    >>> tok = OldFrenchTokenizationProcess(data_input=OLD_FRENCH[:37])
+    >>> from cltkv1.utils.example_texts import FRO
+    >>> tok = OldFrenchTokenizationProcess(data_input=FRO[:37])
     >>> tok.data_output
     ['Une', 'aventure', 'vos', 'voil', 'dire', 'Molt', 'bien']
     """
@@ -182,8 +182,8 @@ class MiddleFrenchTokenizationProcess(TokenizationProcess):
     """The default Middle French tokenization algorithm.
 
     >>> from cltkv1.tokenizers import MiddleFrenchTokenizationProcess
-    >>> from cltkv1.utils.example_texts import MIDDLE_FRENCH
-    >>> tok = MiddleFrenchTokenizationProcess(data_input=MIDDLE_FRENCH[:37])
+    >>> from cltkv1.utils.example_texts import FRM
+    >>> tok = MiddleFrenchTokenizationProcess(data_input=FRM[:37])
     >>> tok.data_output
     ['Attilius', 'Regulus', ',', 'general', 'de', "l'", 'armée']
     """
@@ -199,8 +199,8 @@ class MiddleEnglishTokenizationProcess(TokenizationProcess):
     """The default Middle English tokenization algorithm.
 
     >>> from cltkv1.tokenizers import MiddleEnglishTokenizationProcess
-    >>> from cltkv1.utils.example_texts import MIDDLE_ENGLISH
-    >>> tok = MiddleEnglishTokenizationProcess(data_input=MIDDLE_ENGLISH[:31])
+    >>> from cltkv1.utils.example_texts import ENM
+    >>> tok = MiddleEnglishTokenizationProcess(data_input=ENM[:31])
     >>> tok.data_output
     ['Whilom', ',', 'as', 'olde', 'stories', 'tellen']
     """
@@ -216,8 +216,8 @@ class SanskritTokenizationProcess(TokenizationProcess):
     """The default Middle English tokenization algorithm.
 
     >>> from cltkv1.tokenizers import SanskritTokenizationProcess
-    >>> from cltkv1.utils.example_texts import SANSKRIT
-    >>> tok = SanskritTokenizationProcess(data_input=SANSKRIT[:31])
+    >>> from cltkv1.utils.example_texts import SAN
+    >>> tok = SanskritTokenizationProcess(data_input=SAN[:31])
     >>> tok.data_output
     ['ईशा', 'वास्यम्', 'इदं', 'सर्वं', 'यत्', 'किञ्च']
     """

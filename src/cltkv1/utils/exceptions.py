@@ -14,6 +14,20 @@ class CLTKException(Exception):
     """
 
 
+class UnimplementedLanguageError(CLTKException):
+    """Exception for when a language is supported by the CLTK however
+    a particular process is not available for that language.
+
+    >>> from cltkv1.utils.exceptions import UnimplementedLanguageError
+    >>> raise UnimplementedLanguageError
+    Traceback (most recent call last):
+      ...
+      File "<doctest cltkv1.utils.exceptions.UnimplementedLanguageError[1]>", line 1, in <module>
+        raise UnimplementedLanguageError
+    cltkv1.utils.exceptions.UnimplementedLanguageError
+    """
+
+
 class UnknownLanguageError(CLTKException):
     """Exception for when a user requests an NLP method that is not
     supported.
