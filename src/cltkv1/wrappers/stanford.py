@@ -154,20 +154,33 @@ class StanfordNLPWrapper:
         return parsed_text
 
     def _load_pipeline(self):
-        """Instantiate `stanfordnlp.Pipeline()`.
+        """Instantiate ``stanfordnlp.Pipeline()``.
+
+        TODO: Make sure that logging captures what it should from the default stanfordnlp printout.
+        TODO: Make note that full lemmatization is not possible for Old French
 
         >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
         >>> with suppress_stdout():    nlp_obj = stanford_wrapper._load_pipeline()
         >>> isinstance(nlp_obj, stanfordnlp.pipeline.core.Pipeline)
         True
+        >>> stanford_wrapper = StanfordNLPWrapper(language='fro')
+        >>> with suppress_stdout():    nlp_obj = stanford_wrapper._load_pipeline()
+        >>> isinstance(nlp_obj, stanfordnlp.pipeline.core.Pipeline)
+        True
         """
         models_dir = os.path.expanduser("~/stanfordnlp_resources/")
+        # Note: To prevent FileNotFoundError (``~/stanfordnlp_resources/fro_srcmf_models/fro_srcmf_lemmatizer.pt``) for Old French
+        if self.language == "fro":
+            lemma_use_identity = True
+        else:
+            lemma_use_identity = False
         nlp = stanfordnlp.Pipeline(
             processors="tokenize,mwt,pos,lemma,depparse",  # these are the default processors
             lang=self.stanford_code,
             models_dir=models_dir,
             treebank=self.treebank,
             use_gpu=True,  # default, won't fail if GPU not present
+            lemma_use_identity=lemma_use_identity,
         )
         return nlp
 

@@ -68,6 +68,8 @@ class NLP:
 
         TODO: Run the OF example and then log the FileNotFoundError inside the `stanford.py` module
 
+        TODO: Add Gothic language ("got") to StanfordNLP
+
         >>> from cltkv1 import NLP
         >>> from cltkv1.utils.example_texts import LATIN
         >>> from cltkv1.utils.data_types import Doc
@@ -89,6 +91,12 @@ class NLP:
         >>> cltk_obj = cltk_nlp.analyze(text=OLD_CHURCH_SLAVONIC)
         >>> cltk_obj.words[0]
         Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='отьчє', pos='Nb', lemma='отьць', scansion=None, xpos='Nb', upos='NOUN', dependency_relation='nsubj', governor=6, parent_token=<Token index=1;words=[<Word index=1;text=отьчє;lemma=отьць;upos=NOUN;xpos=Nb;feats=Case=Nom|Gender=Masc|Number=Sing;governor=6;dependency_relation=nsubj>]>, feats='Case=Nom|Gender=Masc|Number=Sing')
+
+        >>> from cltkv1.utils.example_texts import OLD_FRENCH
+        >>> cltk_nlp = NLP(language="fro")
+        >>> cltk_obj = cltk_nlp.analyze(text=OLD_FRENCH)
+        >>> cltk_obj.words[0]
+        Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='Une', pos='DETndf', lemma='Une', scansion=None, xpos='DETndf', upos='DET', dependency_relation='det', governor=2, parent_token=<Token index=1;words=[<Word index=1;text=Une;lemma=Une;upos=DET;xpos=DETndf;feats=Definite=Ind|PronType=Art;governor=2;dependency_relation=det>]>, feats='Definite=Ind|PronType=Art')
         """
         a_pipeline = self.pipeline()
         for process in a_pipeline.processes:
