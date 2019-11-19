@@ -105,6 +105,7 @@ class NLP:
             )
             cltk_words = process_stanford.words
 
+            # TODO: Write fn which annotates ``doc.words``, not just writing over what is in there
             doc = Doc(language=self.language.iso_639_3_code, words=cltk_words)
 
             return doc
