@@ -7,6 +7,7 @@ from cltkv1.utils.data_types import Doc, Language, Pipeline
 from cltkv1.utils.exceptions import UnknownLanguageError
 from cltkv1.utils.pipelines import (
     DefaultPipeline,
+    GothicPipeline,
     GreekPipeline,
     LatinPipeline,
     OCSPipeline,
@@ -61,6 +62,8 @@ class NLP:
             return OCSPipeline
         elif self.language.iso_639_3_code == "fro":
             return OldFrenchPipeline
+        elif self.language.iso_639_3_code == "got":
+            return GothicPipeline
         return DefaultPipeline
 
     def analyze(self, text: str) -> Doc:
@@ -97,6 +100,12 @@ class NLP:
         >>> cltk_obj = cltk_nlp.analyze(text=OLD_FRENCH)
         >>> cltk_obj.words[0]
         Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='Une', pos='DETndf', lemma='Une', scansion=None, xpos='DETndf', upos='DET', dependency_relation='det', governor=2, parent_token=<Token index=1;words=[<Word index=1;text=Une;lemma=Une;upos=DET;xpos=DETndf;feats=Definite=Ind|PronType=Art;governor=2;dependency_relation=det>]>, feats='Definite=Ind|PronType=Art')
+
+        >>> from cltkv1.utils.example_texts import GOTHIC
+        >>> cltk_nlp = NLP(language="got")
+        >>> cltk_obj = cltk_nlp.analyze(text=GOTHIC)
+        >>> cltk_obj.words[0]
+        Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='swa', pos='Df', lemma='swa', scansion=None, xpos='Df', upos='ADV', dependency_relation='advmod', governor=2, parent_token=<Token index=1;words=[<Word index=1;text=swa;lemma=swa;upos=ADV;xpos=Df;feats=_;governor=2;dependency_relation=advmod>]>, feats='_')
         """
         a_pipeline = self.pipeline()
         for process in a_pipeline.processes:

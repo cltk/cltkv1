@@ -22,6 +22,7 @@ def get_stanfordnlp_models(force_update: bool = True) -> None:
         "la_proiel",
         "cu_proiel",  # Old Church Slavonic
         "fro_srcmf",  # Old French
+        "got_proiel",
     ]  # type: List[str]
 
     stanford_dir = os.path.expanduser("~/stanfordnlp_resources/")  # type: str

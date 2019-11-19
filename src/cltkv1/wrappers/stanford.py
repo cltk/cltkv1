@@ -70,6 +70,7 @@ class StanfordNLPWrapper:
             "lat": "Latin",
             "chu": "Old_Church_Slavonic",
             "fro": "Old_French",
+            "got": "Gothic",
         }
 
         self.wrapper_available = self.is_wrapper_available()  # type: bool

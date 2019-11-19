@@ -120,3 +120,24 @@ class OldFrenchPipeline(Pipeline):
     description: str = "Pipeline for the Old French language"
     language: Language = LANGUAGES["fro"]
     processes: List[Type[Process]] = field(default_factory=lambda: [StanfordNLPProcess])
+
+
+@dataclass
+class GothicPipeline(Pipeline):
+    """Default ``Pipeline`` for Gothic.
+
+    >>> from cltkv1.utils.pipelines import GothicPipeline
+    >>> a_pipeline = GothicPipeline()
+    >>> a_pipeline.description
+    'Pipeline for the Gothic language'
+    >>> a_pipeline.language
+    Language(name='Gothic', glottolog_id='goth1244', latitude=46.9304, longitude=29.9786, dates=[], family_id='indo1319', parent_id='east2805', level='language', iso_639_3_code='got', type='a')
+    >>> a_pipeline.language.name
+    'Gothic'
+    >>> a_pipeline.processes[0]
+    <class 'cltkv1.wrappers.StanfordNLPProcess'>
+    """
+
+    description: str = "Pipeline for the Gothic language"
+    language: Language = LANGUAGES["got"]
+    processes: List[Type[Process]] = field(default_factory=lambda: [StanfordNLPProcess])
