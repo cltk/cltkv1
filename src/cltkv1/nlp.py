@@ -89,19 +89,16 @@ class NLP:
         >>> cltk_obj.words[0]
         Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='ὅτι', pos='Df', lemma='ὅτι#1', scansion=None, xpos='Df', upos='ADV', dependency_relation='advmod', governor=13, parent_token=<Token index=1;words=[<Word index=1;text=ὅτι;lemma=ὅτι#1;upos=ADV;xpos=Df;feats=_;governor=13;dependency_relation=advmod>]>, feats='_')
 
-        >>> from cltkv1.utils.example_texts import EXAMPLE_TEXTS
         >>> cltk_nlp = NLP(language="chu")
         >>> cltk_obj = cltk_nlp.analyze(text=EXAMPLE_TEXTS["chu"])
         >>> cltk_obj.words[0]
         Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='отьчє', pos='Nb', lemma='отьць', scansion=None, xpos='Nb', upos='NOUN', dependency_relation='nsubj', governor=6, parent_token=<Token index=1;words=[<Word index=1;text=отьчє;lemma=отьць;upos=NOUN;xpos=Nb;feats=Case=Nom|Gender=Masc|Number=Sing;governor=6;dependency_relation=nsubj>]>, feats='Case=Nom|Gender=Masc|Number=Sing')
 
-        >>> from cltkv1.utils.example_texts import EXAMPLE_TEXTS
         >>> cltk_nlp = NLP(language="fro")
         >>> cltk_obj = cltk_nlp.analyze(text=EXAMPLE_TEXTS["fro"])
         >>> cltk_obj.words[0]
         Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='Une', pos='DETndf', lemma='Une', scansion=None, xpos='DETndf', upos='DET', dependency_relation='det', governor=2, parent_token=<Token index=1;words=[<Word index=1;text=Une;lemma=Une;upos=DET;xpos=DETndf;feats=Definite=Ind|PronType=Art;governor=2;dependency_relation=det>]>, feats='Definite=Ind|PronType=Art')
 
-        >>> from cltkv1.utils.example_texts import EXAMPLE_TEXTS
         >>> cltk_nlp = NLP(language="got")
         >>> cltk_obj = cltk_nlp.analyze(text=EXAMPLE_TEXTS["got"])
         >>> cltk_obj.words[0]
