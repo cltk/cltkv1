@@ -9,11 +9,11 @@ from typing import Dict, Optional
 import stanfordnlp  # type: ignore
 
 from cltkv1.utils import (
+    UnimplementedLanguageError,
     UnknownLanguageError,
     example_texts,
     file_exists,
     suppress_stdout,
-    UnimplementedLanguageError,
 )
 from cltkv1.utils.example_texts import EXAMPLE_TEXTS
 

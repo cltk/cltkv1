@@ -66,17 +66,20 @@ class NLP:
         >>> cltk_nlp.pipeline is DefaultPipeline
         True
         """
+
         if self.language.iso_639_3_code == "lat":
-            return LatinPipeline
+            current_pipeline = LatinPipeline
         elif self.language.iso_639_3_code == "grc":
-            return GreekPipeline
+            current_pipeline = GreekPipeline
         elif self.language.iso_639_3_code == "chu":
-            return OCSPipeline
+            current_pipeline = OCSPipeline
         elif self.language.iso_639_3_code == "fro":
-            return OldFrenchPipeline
+            current_pipeline = OldFrenchPipeline
         elif self.language.iso_639_3_code == "got":
-            return GothicPipeline
-        return DefaultPipeline
+            current_pipeline = GothicPipeline
+        else:
+            current_pipeline = DefaultPipeline
+        return current_pipeline
 
     def analyze(self, text: str) -> Doc:
         """The primary method for the NLP object, to which raw text strings are passed.
