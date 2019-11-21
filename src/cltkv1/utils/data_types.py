@@ -92,6 +92,12 @@ class Process:
     def data_output(self):
         """Attribute for subclassed ``Process`` objects to return
         ``data_input`` that has been processed by the ``algorithm``.
+
+        >>> a_process = Process(data_input="input words here")
+        >>> a_process.data_output
+        Traceback (most recent call last):
+          ...
+        NotImplementedError
         """
         if self.algorithm:
             return self.algorithm(self.data_input)

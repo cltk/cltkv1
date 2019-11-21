@@ -30,14 +30,6 @@ class DefaultPipeline(Pipeline):
     """
 
 
-def upp(_str: str) -> str:
-    return _str.upper()
-
-
-def apnd(_str: str) -> str:
-    return _str + " YYY"
-
-
 @dataclass
 class LatinPipeline(Pipeline):
     """Default ``Pipeline`` for Latin.

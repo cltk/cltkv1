@@ -18,7 +18,7 @@ from cltkv1.utils.pipelines import (
 class NLP:
     """NLP class for default processing."""
 
-    def __init__(self, language: str, custom_pipeline: List[str] = None) -> None:
+    def __init__(self, language: str, custom_pipeline: Pipeline = None) -> None:
         """Constructor for CLTK class.
 
         >>> from cltkv1 import NLP
@@ -29,6 +29,14 @@ class NLP:
         Traceback (most recent call last):
           ...
         cltkv1.utils.exceptions.UnknownLanguageError: Unknown language 'xxx'. Use ISO 639-3 languages.
+        >>> from cltkv1.utils.data_types import Pipeline
+        >>> from cltkv1.tokenizers import LatinTokenizationProcess
+        >>> from cltkv1.languages.glottolog import LANGUAGES
+        >>> a_pipeline = Pipeline(description="A custom Latin pipeline", processes=[LatinTokenizationProcess], language=LANGUAGES["lat"])
+        >>> NLP(language="lat", custom_pipeline=a_pipeline)
+        Traceback (most recent call last):
+          ...
+        NotImplementedError: Custom pipelines not implemented yet.
         """
         try:
             self.language = get_lang(language)  # type: Language
@@ -52,6 +60,10 @@ class NLP:
         >>> issubclass(cltk_nlp.pipeline, Pipeline)
         True
         >>> issubclass(lat_pipeline, Pipeline)
+        True
+        >>> cltk_nlp = NLP(language="axm")
+        >>> from cltkv1.utils.pipelines import DefaultPipeline
+        >>> cltk_nlp.pipeline is DefaultPipeline
         True
         """
         if self.language.iso_639_3_code == "lat":

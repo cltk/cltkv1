@@ -8,13 +8,14 @@ from typing import Dict, Optional
 
 import stanfordnlp  # type: ignore
 
-from cltkv1.utils.example_texts import EXAMPLE_TEXTS
 from cltkv1.utils import (
     UnknownLanguageError,
     example_texts,
     file_exists,
     suppress_stdout,
+    UnimplementedLanguageError,
 )
+from cltkv1.utils.example_texts import EXAMPLE_TEXTS
 
 LOG = logging.getLogger(__name__)
 LOG.addHandler(logging.NullHandler())
@@ -92,8 +93,7 @@ class StanfordNLPWrapper:
         if self.treebank:
             valid_treebank = self._is_valid_treebank()
             if not valid_treebank:
-                # TODO: change this to a more general CLTK error
-                raise UnknownLanguageError(
+                raise UnimplementedLanguageError(
                     "Invalid treebank '{0}' for language '{1}'.".format(
                         self.treebank, self.language
                     )
@@ -201,24 +201,24 @@ class StanfordNLPWrapper:
     def _download_model(self):
         """Interface with the `stanfordnlp` model downloader.
 
-        TODO: Figure out why doctests here hang. Presumably because waiting for user op_input, but prompt shouldn't arise if models already present.
+        TODO: (old) Figure out why doctests here hang. Presumably because waiting for user op_input, but prompt shouldn't arise if models already present.
 
         # >>> stanford_wrapper = StanfordNLPWrapper(language='grc')
         # >>> stanford_wrapper._download_model()
         # True
         """
         # prompt user to DL the get_stanfordnlp_models models
-        print("")
-        print("")
-        print("Α" * 80)
-        print("")
-        print(
+        print("")  # pragma: no cover
+        print("")  # pragma: no cover
+        print("Α" * 80)  # pragma: no cover
+        print("")  # pragma: no cover
+        print(  # pragma: no cover
             "CLTK message: The part of the CLTK that you are using depends upon the Stanford NLP library (`stanfordnlp`). What follows are several question prompts coming from it. (More at: <https://github.com/stanfordnlp/stanfordnlp>.) Answer with defaults."
-        )
-        print("")
-        print("Ω" * 80)
-        print("")
-        print("")
+        )  # pragma: no cover
+        print("")  # pragma: no cover
+        print("Ω" * 80)  # pragma: no cover
+        print("")  # pragma: no cover
+        print("")  # pragma: no cover
         stanfordnlp.download(self.treebank)
         # if file model still not available after attempted DL, then raise error
         if not file_exists(self.model_path):
@@ -248,6 +248,8 @@ class StanfordNLPWrapper:
         >>> stanford_wrapper = StanfordNLPWrapper(language='grc', treebank='grc_proiel')
         >>> stanford_wrapper._is_valid_treebank()
         True
+        >>> stanford_wrapper.language = "xxx"
+        >>>
         """
         possible_treebanks = self.map_code_treebanks[self.stanford_code]
         if self.treebank in possible_treebanks:
