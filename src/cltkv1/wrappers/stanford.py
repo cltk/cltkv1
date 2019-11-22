@@ -173,10 +173,10 @@ class StanfordNLPWrapper:
         """
         models_dir = os.path.expanduser("~/stanfordnlp_resources/")
         # Note: To prevent FileNotFoundError (``~/stanfordnlp_resources/fro_srcmf_models/fro_srcmf_lemmatizer.pt``) for Old French
+        # Background: https://github.com/stanfordnlp/stanfordnlp/issues/157
+        lemma_use_identity = False
         if self.language == "fro":
             lemma_use_identity = True
-        else:
-            lemma_use_identity = False
         nlp = stanfordnlp.Pipeline(
             processors="tokenize,mwt,pos,lemma,depparse",  # these are the default processors
             lang=self.stanford_code,
@@ -198,7 +198,7 @@ class StanfordNLPWrapper:
             return True
         return False
 
-    def _download_model(self):
+    def _download_model(self) -> None:
         """Interface with the `stanfordnlp` model downloader.
 
         TODO: (old) Figure out why doctests here hang. Presumably because waiting for user op_input, but prompt shouldn't arise if models already present.

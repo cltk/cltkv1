@@ -11,7 +11,7 @@ of the NLP pipeline.
 """
 
 from dataclasses import dataclass
-from typing import Any, Callable, List, Type
+from typing import Any, Callable, List, Type, Union
 
 
 @dataclass
@@ -84,12 +84,12 @@ class Process:
     >>> a_process = Process(data_input="input words here")
     """
 
-    data_input: Any
+    data_input: Union[str, List[str]]
     algorithm = None
     language = None
 
     @property
-    def data_output(self):
+    def data_output(self) -> Any:
         """Attribute for subclassed ``Process`` objects to return
         ``data_input`` that has been processed by the ``algorithm``.
 

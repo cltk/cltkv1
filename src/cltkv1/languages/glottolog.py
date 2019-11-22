@@ -258,7 +258,7 @@ from cltkv1.utils.data_types import Language
 from cltkv1.utils.exceptions import UnknownLanguageError
 
 
-def get_lang(iso_code):
+def get_lang(iso_code: str) -> Language:
     """Take in search term of usual language name and find ISO code.
 
     >>> from cltkv1.languages.glottolog import get_lang

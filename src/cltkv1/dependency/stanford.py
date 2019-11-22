@@ -6,7 +6,7 @@ __author__ = ["John Stewart <free-variation>"]
 from typing import List, Union
 from xml.etree.ElementTree import Element, ElementTree
 
-import stanfordnlp
+import stanfordnlp  # type: ignore
 
 
 class Form(Element):

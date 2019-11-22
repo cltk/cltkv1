@@ -23,7 +23,8 @@ def file_exists(file_path: str, is_dir: bool = False) -> bool:
 
 
 def reverse_dict(
-    input_dict: Dict[str, Any], ignore_keys: Optional[List[str]] = None
+    input_dict: Dict[str, Any],  # pylint: disable=bad-continuation
+    ignore_keys: Optional[List[str]] = None,  # pylint: disable=bad-continuation
 ) -> Dict[str, str]:
     """Take a dict and reverse its keys and values. Optional
     parameter to ignore certain keys.

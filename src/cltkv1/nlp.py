@@ -3,7 +3,7 @@
 from typing import List
 
 from cltkv1.languages.glottolog import get_lang
-from cltkv1.utils.data_types import Doc, Language, Pipeline
+from cltkv1.utils.data_types import Doc, Language, Pipeline, Type
 from cltkv1.utils.exceptions import UnknownLanguageError
 from cltkv1.utils.pipelines import (
     DefaultPipeline,
@@ -48,7 +48,7 @@ class NLP:
             raise NotImplementedError("Custom pipelines not implemented yet.")
         self.pipeline = self._get_pipeline()  # type: Pipeline
 
-    def _get_pipeline(self):
+    def _get_pipeline(self) -> Type[Pipeline]:
         """Select appropriate pipeline for given language. If custom
         processing is requested, ensure that user-selected choices
         are valid, both in themselves and in unison.
@@ -119,7 +119,9 @@ class NLP:
         >>> cltk_obj.words[0]
         Word(index_char_start=None, index_char_stop=None, index_token=1, index_sentence=0, string='swa', pos='Df', lemma='swa', scansion=None, xpos='Df', upos='ADV', dependency_relation='advmod', governor=2, parent_token=<Token index=1;words=[<Word index=1;text=swa;lemma=swa;upos=ADV;xpos=Df;feats=_;governor=2;dependency_relation=advmod>]>, feats='_')
         """
+        # TODO: Figure out if I can avoid having to call the dataclass Pipeline
         a_pipeline = self.pipeline()
+        doc = Doc(language=self.language.iso_639_3_code)
         for process in a_pipeline.processes:
             process_stanford = process(
                 data_input=text, language=self.language.iso_639_3_code
@@ -129,4 +131,4 @@ class NLP:
             # TODO: Write fn which annotates ``doc.words``, not just writing over what is in there
             doc = Doc(language=self.language.iso_639_3_code, words=cltk_words)
 
-            return doc
+        return doc
