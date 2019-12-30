@@ -7,6 +7,7 @@ from xml.etree.ElementTree import Element, ElementTree
 
 from cltkv1.utils.data_types import Word
 
+
 class Form(Element):
     """For the word (ie, node) of a dependency tree and its attributes. Inherits
     from the ``Element`` class of Python's ``xml.etree`` library.
@@ -121,7 +122,7 @@ class Form(Element):
 
     @staticmethod
     def to_form(word: Word) -> "Form":
-        """Converts a ``CLTK`` ``Word`` object to a ``Form``.
+        """Converts a ``cltk`` ``Word`` object to a ``Form``.
 
         >>> from cltkv1 import NLP
         >>> from cltkv1.utils.example_texts import EXAMPLE_TEXTS
@@ -203,7 +204,7 @@ class DependencyTree(ElementTree):
 
     def print_tree(self, all_features: bool = True):
         """Prints a pretty-printed (indented) representation
-        of the dependency tree. If all_features is True, then
+        of the dependency tree. If ``all_features`` is ``True``, then
         each node is printed with its complete feature bundle.
         """
         self._print_treelet(self.getroot(), indent=0, all_features=all_features)
@@ -237,4 +238,5 @@ class DependencyTree(ElementTree):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

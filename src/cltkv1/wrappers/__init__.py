@@ -35,7 +35,7 @@ class StanfordNLPProcess(MultiProcess):
 
     def algorithm(self):
         stanfordnlp_doc = self.stanfordnlp_wrapper.parse(self.data_input)
-        return = self.stanfordnlp_to_cltk_word_type(stanford_doc)
+        return self.stanfordnlp_to_cltk_word_type(stanford_doc)
 
     def stanfordnlp_to_cltk_word_type(self):
         """Take an entire ``stanfordnlp`` document, extract
