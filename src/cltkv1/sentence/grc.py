@@ -1,8 +1,8 @@
 """Code for sentence tokenization: Greek.
 
-Sentence tokenization for Ancient Greek is available using (by default) a regular-expression based tokenizer. To tokenize a Greek text by sentences:
+Sentence tokenization for Ancient Greek is available using a regular-expression based tokenizer.
 
->>> from cltk.tokenize.greek.sentence import GreekRegexSentenceTokenizer
+>>> from cltkv1.sentence.grc import GreekRegexSentenceTokenizer
 >>> from cltkv1.utils.example_texts import get_example_text
 >>> splitter_regex = GreekRegexSentenceTokenizer()
 >>> sentences = splitter_regex.tokenize(get_example_text("grc"))
@@ -20,18 +20,12 @@ from cltkv1.tokenizers.grc import GreekLanguageVars
 
 
 class GreekRegexSentenceTokenizer(BaseRegexSentenceTokenizer):
-    """ RegexSentenceTokenizer for Ancient Greek
-    """
+    """``RegexSentenceTokenizer`` for Ancient Greek."""
 
     def __init__(self: object):
         super().__init__(
             language="greek", sent_end_chars=GreekLanguageVars.sent_end_chars
         )
-
-
-# def splitter():
-#     """Calls a regular expression-based sentence splitter."""
-#     return GreekRegexSentenceTokenizer()
 
 
 # TODO: KJ: I recommend deprecating this, since a statistical model isn't really necessary for Greek. And if it were, our old training set might not have been right.

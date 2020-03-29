@@ -1,5 +1,4 @@
-""" Code for sentence tokenization: Latin
-"""
+""" Code for sentence tokenization: Latin"""
 
 __author__ = ["Patrick J. Burns <patrick@diyclassics.org>"]
 __license__ = "MIT License."
@@ -20,9 +19,9 @@ from cltkv1.tokenizers.lat import PUNCTUATION, STRICT_PUNCTUATION, LatinLanguage
 from cltkv1.utils import get_cltk_data_dir
 
 
-def SentenceTokenizer(tokenizer: str = "punkt", strict: bool = False):
-    if tokenizer == "punkt":
-        return LatinPunktSentenceTokenizer(strict=strict)
+# def SentenceTokenizer(tokenizer: str = "punkt", strict: bool = False):
+#     if tokenizer == "punkt":
+#         return LatinPunktSentenceTokenizer(strict=strict)
 
 
 class LatinPunktSentenceTokenizer(BasePunktSentenceTokenizer):
