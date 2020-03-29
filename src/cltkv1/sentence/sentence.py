@@ -69,6 +69,8 @@ class BasePunktSentenceTokenizer(BaseSentenceTokenizer):
         :type language: str
         """
         self.language = language
+        if self.language == "lat":
+            self.language_old = "latin"
         self.lang_vars = lang_vars
         super().__init__(language=self.language)
         if self.language:
@@ -77,7 +79,7 @@ class BasePunktSentenceTokenizer(BaseSentenceTokenizer):
                 self.model = open_pickle(
                     os.path.join(
                         os.path.expanduser(self.models_path),
-                        f"{self.language}_punkt.pickle",
+                        f"{self.language_old}_punkt.pickle",
                     )
                 )
             except FileNotFoundError as err:
