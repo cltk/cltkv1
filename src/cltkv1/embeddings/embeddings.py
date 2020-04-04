@@ -56,6 +56,8 @@ class FastTextEmbeddings:
     ):
         """Constructor for  ``FastTextEmbeddings`` class.
 
+
+
         >>> embeddings_obj = FastTextEmbeddings(iso_code="lat", interactive=False, overwrite=False, silent=True)
         >>> type(embeddings_obj)
         <class 'cltkv1.embeddings.embeddings.FastTextEmbeddings'>
