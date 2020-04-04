@@ -1,42 +1,27 @@
-""" Code for sentence tokenization: Sanskrit
+"""Sentence tokenization for Sanskrit.
+
+>>> from cltkv1.sentence.san import SanskritRegexSentenceTokenizer
+>>> from cltkv1.utils.example_texts import get_example_text
+>>> splitter = SanskritRegexSentenceTokenizer()
+>>> sentences = splitter.tokenize(get_example_text("san"))
+>>> sentences[1]
+'तेन त्यक्तेन भुञ्जीथा मा गृधः कस्य स्विद्धनम् ॥'
+>>> len(sentences)
+12
 """
 
 __author__ = ["Patrick J. Burns <patrick@diyclassics.org>"]
 __license__ = "MIT License."
 
-import os.path
-import re
 
-from cltk.tokenize.sanskrit.params import SanskritLanguageVars
-from cltk.tokenize.sentence import BaseRegexSentenceTokenizer, BaseSentenceTokenizer
-from nltk.tokenize.punkt import PunktLanguageVars
-
-from cltkv1.utils import get_cltk_data_dir
-
-
-def SentenceTokenizer(tokenizer: str = "regex"):
-    # TODO Figure this out or rm
-    if tokenizer == "regex":
-        return SanskritRegexSentenceTokenizer()
+from cltkv1.sentence.sentence import BaseRegexSentenceTokenizer
+from cltkv1.tokenizers.san import SanskritLanguageVars
 
 
 class SanskritRegexSentenceTokenizer(BaseRegexSentenceTokenizer):
-    """ RegexSentenceTokenizer for Sanskrit
-    """
+    """RegexSentenceTokenizer for Sanskrit."""
 
     def __init__(self: object):
         super().__init__(
             language="sanskrit", sent_end_chars=SanskritLanguageVars.sent_end_chars
         )
-
-
-if __name__ == "__main__":
-    text = """श्री भगवानुवाच भूय एव महाबाहो श्रृणु मे परमं वचः। यत्तेऽहं प्रीयमाणाय वक्ष्यामि हितकाम्यया।।
-न मे विदुः सुरगणाः प्रभवं न महर्षयः। अहमादिर्हि देवानां महर्षीणां च सर्वशः।।
-यो मामजमनादिं च वेत्ति लोकमहेश्वरम्। असम्मूढः स मर्त्येषु सर्वपापैः प्रमुच्यते।।
-बुद्धिर्ज्ञानमसंमोहः क्षमा सत्यं दमः शमः। सुखं दुःखं भवोऽभावो भयं चाभयमेव च।।"""
-
-    t = SanskritRegexSentenceTokenizer()
-    sents = t.tokenize(text)
-    for i, sent in enumerate(sents, 1):
-        print(f"{i}: {sent}")
