@@ -1,4 +1,7 @@
-"""Tokenize sentences."""
+"""Tokenize sentences.
+
+TODO: Thoroughly refactor.
+"""
 
 __author__ = [
     "Patrick J. Burns <patrick@diyclassics.org>",
@@ -9,14 +12,15 @@ __license__ = "MIT License. See LICENSE."
 
 import os
 import re
-import string
-from typing import Any, Dict, Generator, List, Set, Tuple
+from typing import List
 
-from cltk.tokenize.greek.params import GreekLanguageVars
-from cltk.tokenize.latin.params import LatinLanguageVars
-from cltk.tokenize.sanskrit.params import SanskritLanguageVars
-from cltk.utils.file_operations import open_pickle
-from nltk.tokenize.punkt import PunktLanguageVars, PunktSentenceTokenizer
+from nltk.tokenize.punkt import PunktSentenceTokenizer
+
+from cltkv1.tokenizers.grc import GreekLanguageVars
+from cltkv1.tokenizers.lat import LatinLanguageVars
+from cltkv1.tokenizers.san import SanskritLanguageVars
+from cltkv1.utils import get_cltk_data_dir
+from cltkv1.utils.file_operations import open_pickle
 
 INDIAN_LANGUAGES = ["bengali", "hindi", "marathi", "sanskrit", "telugu"]
 
