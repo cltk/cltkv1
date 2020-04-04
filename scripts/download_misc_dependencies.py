@@ -66,7 +66,7 @@ def download_all_cltk_models(iso_code: str):
 
     corpus_downloader = FetchCorpus(language=iso_code)
     # print(corpus_downloader.list_corpora)
-    corpus_downloader.import_corpus(corpus_name="latin_models_cltk")
+    corpus_downloader.import_corpus(corpus_name="lat_models_cltk")
 
 
 if __name__ == "__main__":
