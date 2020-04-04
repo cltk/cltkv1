@@ -71,7 +71,6 @@ def download_all_cltk_models(iso_code: str):
 
 if __name__ == "__main__":
     # TODO: add command line params for what langs (all or just one); useful for build server
-    # get_stanfordnlp_models(force_update=True, lang="all")
-    # get_fasttext_models(interactive=False)
-
+    get_stanfordnlp_models(force_update=True, lang="all")
+    get_fasttext_models(interactive=False)
     download_all_cltk_models(iso_code="lat")
