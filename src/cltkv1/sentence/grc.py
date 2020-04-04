@@ -26,32 +26,3 @@ class GreekRegexSentenceTokenizer(BaseRegexSentenceTokenizer):
         super().__init__(
             language="greek", sent_end_chars=GreekLanguageVars.sent_end_chars
         )
-
-
-# TODO: KJ: I recommend deprecating this, since a statistical model isn't really necessary for Greek. And if it were, our old training set might not have been right.
-# class GreekPunktSentenceTokenizer(BasePunktSentenceTokenizer):
-#     """ PunktSentenceTokenizer trained on Ancient Greek
-#
-#     """
-#
-#     models_path = (
-#         get_cltk_data_dir() + "/greek/model/greek_models_cltk/tokenizers/sentence"
-#     )
-#     missing_models_message = "GreekPunktSentenceTokenizer requires the ```greek_models_cltk``` to be in cltk_data. Please load this corpus."
-#
-#     def __init__(self: object, language: str = "greek"):
-#         """
-#         :param language : language for sentence tokenization
-#         :type language: str
-#         """
-#         super().__init__(language="greek")
-#         self.models_path = GreekPunktSentenceTokenizer.models_path
-#
-#         try:
-#             self.model = open_pickle(
-#                 os.path.join(os.path.expanduser(self.models_path), "greek_punkt.pickle")
-#             )
-#         except FileNotFoundError as err:
-#             raise type(err)(GreekPunktSentenceTokenizer.missing_models_message)
-#
-#         self.lang_vars = GreekLanguageVars()

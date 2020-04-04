@@ -17,7 +17,7 @@ from cltkv1.utils import get_cltk_data_dir
 def SentenceTokenizer(tokenizer: str = "regex"):
     # TODO Figure this out or rm
     if tokenizer == "regex":
-        return GreekRegexSentenceTokenizer()
+        return SanskritRegexSentenceTokenizer()
 
 
 class SanskritRegexSentenceTokenizer(BaseRegexSentenceTokenizer):

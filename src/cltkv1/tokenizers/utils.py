@@ -1,4 +1,6 @@
 """ Tokenization utilities
+
+TODO: KJ consider moving to ``scripts`` dir.
 """
 
 __author__ = ["Patrick J. Burns <patrick@diyclassics.org>"]

@@ -1,4 +1,8 @@
 """ Params: Latin
+
+TODO: Some of these are only used for training. PRAENOMINA for training punkt tokenizer (als ABBREVIATIONS, CALENDAR, MISC)
+TODO: The enclitic exceptions (que_exceptions and below) can all be deleted
+
 """
 
 __author__ = ["Patrick J. Burns <patrick@diyclassics.org>"]
