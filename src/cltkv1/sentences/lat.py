@@ -1,6 +1,6 @@
-""" Code for sentence tokenization: Latin
+""" Code for sentences tokenization: Latin
 
->>> from cltkv1.sentence.lat import LatinPunktSentenceTokenizer
+>>> from cltkv1.sentences.lat import LatinPunktSentenceTokenizer
 >>> from cltkv1.utils.example_texts import get_example_text
 >>> splitter = LatinPunktSentenceTokenizer()
 >>> sentences = splitter.tokenize(get_example_text("lat"))
@@ -17,7 +17,7 @@ import os
 
 from nltk.tokenize.punkt import PunktLanguageVars
 
-from cltkv1.sentence.sentence import BasePunktSentenceTokenizer
+from cltkv1.sentences.sentence import BasePunktSentenceTokenizer
 from cltkv1.tokenizers.lat import PUNCTUATION, STRICT_PUNCTUATION, LatinLanguageVars
 from cltkv1.utils import get_cltk_data_dir
 from cltkv1.utils.file_operations import open_pickle
@@ -33,7 +33,7 @@ class LatinPunktSentenceTokenizer(BasePunktSentenceTokenizer):
     def __init__(self: object, strict: bool = False):
         """Constructor for ``LatinPunktSentenceTokenizer``.
 
-        :param strict : allow for stricter punctuation for sentence tokenization
+        :param strict : allow for stricter punctuation for sentences tokenization
         :type strict: bool
         """
         self.lang_vars = LatinLanguageVars()

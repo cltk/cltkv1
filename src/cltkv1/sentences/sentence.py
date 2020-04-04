@@ -26,11 +26,11 @@ INDIAN_LANGUAGES = ["bengali", "hindi", "marathi", "sanskrit", "telugu"]
 
 
 class BaseSentenceTokenizer:
-    """ Base class for sentence tokenization"""
+    """ Base class for sentences tokenization"""
 
     def __init__(self, language: str = None):
         """ Initialize stoplist builder with option for language specific parameters
-        :param language : language for sentence tokenization
+        :param language : language for sentences tokenization
         :type language: str
         """
         if language:
@@ -63,13 +63,13 @@ class BaseSentenceTokenizer:
 
 
 class BasePunktSentenceTokenizer(BaseSentenceTokenizer):
-    """Base class for punkt sentence tokenization"""
+    """Base class for punkt sentences tokenization"""
 
     missing_models_message = "BasePunktSentenceTokenizer requires a language model."
 
     def __init__(self, language: str = None, lang_vars: object = None):
         """
-        :param language : language for sentence tokenization
+        :param language : language for sentences tokenization
         :type language: str
         """
         self.language = language
@@ -91,13 +91,13 @@ class BasePunktSentenceTokenizer(BaseSentenceTokenizer):
 
 
 class BaseRegexSentenceTokenizer(BaseSentenceTokenizer):
-    """ Base class for regex sentence tokenization"""
+    """ Base class for regex sentences tokenization"""
 
     def __init__(self, language: str = None, sent_end_chars: List[str] = None):
         """
-        :param language: language for sentence tokenization
+        :param language: language for sentences tokenization
         :type language: str
-        :param sent_end_chars: list of sentence-ending punctuation marks
+        :param sent_end_chars: list of sentences-ending punctuation marks
         :type sent_end_chars: list
         """
         BaseSentenceTokenizer.__init__(self, language)
@@ -130,7 +130,7 @@ class TokenizeSentence(BasePunktSentenceTokenizer):  # pylint: disable=R0903
     def __init__(self, language: str):
         """Lower incoming language name and assemble variables.
         :type language: str
-        :param language : Language for sentence tokenization.
+        :param language : Language for sentences tokenization.
         """
         self.language = language.lower()
         # Workaround for Latin—use old API syntax to load new sent tokenizer
@@ -172,7 +172,7 @@ class TokenizeSentence(BasePunktSentenceTokenizer):  # pylint: disable=R0903
 
     def tokenize(self, untokenized_string: str, model=None):
         """Alias for tokenize_sentences()—NLTK's PlaintextCorpusReader needs a
-        function called tokenize in functions used as a parameter for sentence
+        function called tokenize in functions used as a parameter for sentences
         tokenization.
 
         :type untokenized_string: str

@@ -13,7 +13,7 @@ class LineTokenizer:
     def __init__(self, language):
         """Lower incoming language name and assemble variables.
         :type language: str
-        :param language : Language for sentence tokenization.
+        :param language : Language for sentences tokenization.
         """
         self.language = (
             language.lower()

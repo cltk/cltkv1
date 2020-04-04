@@ -15,7 +15,7 @@ from nltk.tokenize.punkt import PunktLanguageVars, PunktSentenceTokenizer, Punkt
 
 
 class BaseSentenceTokenizerTrainer:
-    """ Train sentence tokenizer
+    """ Train sentences tokenizer
     """
 
     def __init__(
@@ -30,13 +30,13 @@ class BaseSentenceTokenizerTrainer:
         :type language: str
         :param language: text from which to build the stoplist
         :type punctuation: list
-        :param punctuation: list of punctuation used to train sentence tokenizer
+        :param punctuation: list of punctuation used to train sentences tokenizer
         :type strict: bool
         :param strict: option for including additional punctuation for tokenizer
         :type strict: list
-        :param strict: list of additional punctuation used to train sentence tokenizer if strict is used
+        :param strict: list of additional punctuation used to train sentences tokenizer if strict is used
         :type abbreviations: list
-        :param abbreviations: list of abbreviations used to train sentence tokenizer
+        :param abbreviations: list of abbreviations used to train sentences tokenizer
         """
         if language:
             self.language = language.lower()
@@ -48,7 +48,7 @@ class BaseSentenceTokenizerTrainer:
 
     def train_sentence_tokenizer(self: object, text: str):
         """
-        Train sentence tokenizer.
+        Train sentences tokenizer.
         """
         language_punkt_vars = PunktLanguageVars
 

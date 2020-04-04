@@ -37,7 +37,7 @@ class WordTokenizer:  # pylint: disable=too-few-public-methods
     """Tokenize according to rules specific to a given language.
 
     TODO: KJ refactor as necessary, there are issues in it
-    TODO: PJB: (1) Recommends verbs as namespace, stressing the activity (eg, ``tokenize``); (2) sentence & word have different spaces and don't use tokenize; look at Jurafski 3rd ed, does he use segment
+    TODO: PJB: (1) Recommends verbs as namespace, stressing the activity (eg, ``tokenize``); (2) sentences & word have different spaces and don't use tokenize; look at Jurafski 3rd ed, does he use segment
     """
 
     def __init__(self, language):
@@ -146,7 +146,7 @@ class BasePunktWordTokenizer(BaseWordTokenizer):
 
     def __init__(self, language: str = None, sent_tokenizer: object = None):
         """
-        :param language : language for sentence tokenization
+        :param language : language for sentences tokenization
         :type language: str
         """
         self.language = language
@@ -173,7 +173,7 @@ class BaseRegexWordTokenizer(BaseWordTokenizer):
 
     def __init__(self, language: str = None, patterns: List[str] = None):
         """
-        :param language : language for sentence tokenization
+        :param language : language for sentences tokenization
         :type language: str
         :param patterns: regex patterns for word tokenization
         :type patterns: list of strings
@@ -203,7 +203,7 @@ class BaseArabyWordTokenizer(BaseWordTokenizer):
 
     def __init__(self, language: str = None):
         """
-        :param language : language for sentence tokenization
+        :param language : language for sentences tokenization
         :type language: str
         """
         self.language = language
