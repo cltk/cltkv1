@@ -104,7 +104,7 @@ class BaseRegexSentenceTokenizer(BaseSentenceTokenizer):
         else:
             raise Exception  # TODO add message, must specify sent_end_chars, or warn and use defaults
 
-    def tokenize(self, text: str, model: object = None):
+    def tokenize(self, text: str, model: object = None) -> List[str]:
         """
         Method for tokenizing sentences with regular expressions.
 
