@@ -102,16 +102,6 @@ class StanfordNLPProcess(Process):
                 )
                 words_list.append(cltk_word)
 
-            # JS's original version put entire ``Word`` into ``Word.governor`` and ``Word.parent``
-            # for idx, cltk_word in enumerate(sent_words.values()):
-            #     governor_index, parent_index = indices[idx]  # type: int, int
-            #     cltk_word.governor = (
-            #         sent_words[governor_index] if governor_index > 0 else None
-            #     )
-            #     if cltk_word.index_token != sent_words[parent_index].index_token:
-            #         cltk_word.parent = sent_words[parent_index]
-
-            # Instead, put only the index # of the governor and parent
             # TODO: Confirm that cltk_word.parent is ever getting filled out. Only for some lang models?
             for idx, cltk_word in enumerate(sent_words.values()):
                 governor_index, parent_index = indices[idx]  # type: int, int
