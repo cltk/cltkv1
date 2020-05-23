@@ -9,7 +9,7 @@ from cltkv1.stops.words import Stops
 
 @dataclass
 class StopsProcess(Process):
-    """
+    """``Process`` for stopword identification and (optionally) removal.
 
     >>> from cltkv1.core.data_types import Doc, Word
     >>> from cltkv1.stops.processes import StopsProcess
